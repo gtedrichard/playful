@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {
+        "title": "This page doesn't exist.",
+        "subtext": "Looks like this page packed up its stickers and left."
+      }
+    },
+    "featured": {
+      "type": "kk-featured-collection",
+      "settings": {
+        "title": "While you're here.",
+        "columns": "3",
+        "products_to_show": 3,
+        "show_view_all": false,
+        "bg": "#F4F1EA"
+      }
+    }
+  },
+  "order": ["main", "featured"]
+}

@@ -1,0 +1,81 @@
+{
+  "sections": {
+    "hero": {
+      "type": "kk-rich-text",
+      "settings": {
+        "bg_color": "#1A1A1A",
+        "eyebrow": "Our story",
+        "title": "Built because we kept destroying stickers we loved.",
+        "text": "<p style='color:rgba(255,255,255,.6)'>KeepKase started at UC Berkeley. Ted had a MacBook covered in rare stickers — show tickets, brand collabs, memories from two years of college. Then he got a new laptop. The stickers were gone in 20 minutes. So was whatever they meant.</p><p style='color:rgba(255,255,255,.6)'>We spent six months prototyping a case that lets you preserve sticker layouts as physical objects. Two removable polycarbonate sheets. No adhesive ever touches your MacBook. Swap layouts whenever. Retire old sheets to your wall.</p>",
+        "show_dots": true
+      }
+    },
+    "image_text_1": {
+      "type": "kk-image-with-text",
+      "settings": {
+        "eyebrow": "The product",
+        "heading": "Three components. One system.",
+        "text": "<p>A hardshell PC border that clips onto your MacBook like any standard case. Two sheets of UV-stabilized polycarbonate — one inner, one outer — that sandwich your stickers between them.</p><p>No adhesive. No damage to anodization. No destruction when you want to change things up.</p>",
+        "image_placeholder": "Product exploded view",
+        "reverse": false
+      }
+    },
+    "image_text_2": {
+      "type": "kk-image-with-text",
+      "settings": {
+        "eyebrow": "The philosophy",
+        "heading": "Your past should be portable.",
+        "text": "<p>Retired sheets become framed objects. A year of college. A summer. A band era. They live on your wall instead of a landfill. We think that's worth building for.</p>",
+        "image_placeholder": "Retired sheet on wall",
+        "reverse": true
+      }
+    },
+    "team": {
+      "type": "kk-multicolumn",
+      "blocks": {
+        "t1": {
+          "type": "feature",
+          "settings": {
+            "icon": "👤",
+            "icon_bg": "#F4F1EA",
+            "title": "Ted",
+            "text": "Founder. UC Berkeley. Obsessive about objects that carry meaning."
+          }
+        },
+        "t2": {
+          "type": "feature",
+          "settings": {
+            "icon": "🏭",
+            "icon_bg": "#E8F4FF",
+            "title": "Manufacturing",
+            "text": "Factory relationships built over a decade. Everything made to last."
+          }
+        },
+        "t3": {
+          "type": "feature",
+          "settings": {
+            "icon": "📣",
+            "icon_bg": "#FFF8E0",
+            "title": "Community",
+            "text": "Building in public. Alpha testers shape the product before it ships."
+          }
+        }
+      },
+      "block_order": ["t1", "t2", "t3"],
+      "settings": {
+        "eyebrow": "The team",
+        "title": "Small team. Big intentions.",
+        "columns": "3"
+      }
+    },
+    "cta": {
+      "type": "kk-email-signup",
+      "settings": {
+        "eyebrow": "Join us",
+        "title": "Be part of the story.",
+        "subtext": "30 alpha units available. Join the waitlist for the Kickstarter launch."
+      }
+    }
+  },
+  "order": ["hero", "image_text_1", "image_text_2", "team", "cta"]
+}

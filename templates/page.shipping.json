@@ -1,0 +1,39 @@
+{
+  "sections": {
+    "header": {
+      "type": "kk-rich-text",
+      "settings": {
+        "bg_color": "#F4F1EA",
+        "eyebrow": "Orders",
+        "title": "Shipping & returns.",
+        "text": "<p>Straightforward. No fine print designed to trick you.</p>"
+      }
+    },
+    "details": {
+      "type": "kk-multicolumn",
+      "blocks": {
+        "s1": { "type": "feature", "settings": { "icon": "🚚", "icon_bg": "#E8F4FF", "title": "Free US shipping", "text": "All US orders ship free via USPS Priority. Tracking number sent within 24 hours of dispatch." } },
+        "s2": { "type": "feature", "settings": { "icon": "⏱", "icon_bg": "#F4F1EA", "title": "Alpha: 2-week dispatch", "text": "Alpha units are hand-packed and dispatched within 14 days of order. You get a personal note in the box." } },
+        "s3": { "type": "feature", "settings": { "icon": "↩️", "icon_bg": "#FFF0F0", "title": "30-day returns", "text": "Unopened units in original packaging. Contact hello@keepkase.com and we sort it same day. No restocking fees." } },
+        "s4": { "type": "feature", "settings": { "icon": "🌍", "icon_bg": "#FFF8E0", "title": "International", "text": "International orders available at checkout. Duties and taxes calculated at checkout. Not included in listed price." } }
+      },
+      "block_order": ["s1","s2","s3","s4"],
+      "settings": {
+        "title": "",
+        "columns": "2"
+      }
+    },
+    "faq": {
+      "type": "kk-faq",
+      "blocks": {
+        "q1": { "type": "item", "settings": { "question": "How long does shipping take?", "answer": "<p>US: 3–5 business days via USPS Priority after dispatch. Alpha orders dispatch within 14 days. Standard store orders dispatch within 2 business days.</p>" } },
+        "q2": { "type": "item", "settings": { "question": "Can I change or cancel my order?", "answer": "<p>Contact us within 12 hours of placing your order and we can usually modify or cancel it before dispatch. After dispatch, standard return policy applies.</p>" } },
+        "q3": { "type": "item", "settings": { "question": "My order arrived damaged. What do I do?", "answer": "<p>Email hello@keepkase.com with a photo. We ship a replacement same week. No return required for damaged goods.</p>" } },
+        "q4": { "type": "item", "settings": { "question": "Are alpha units returnable?", "answer": "<p>Alpha units are final sale given cost-price pricing. If yours arrives defective or damaged, we replace it immediately. Contact us.</p>" } }
+      },
+      "block_order": ["q1","q2","q3","q4"],
+      "settings": { "eyebrow": "Common questions", "title": "Shipping FAQ." }
+    }
+  },
+  "order": ["header", "details", "faq"]
+}

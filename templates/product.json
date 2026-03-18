@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "acc1": { "type": "accordion", "settings": { "title": "What's in the box", "content": "<p>1× KeepKase hardshell border, 2× polycarbonate transparent sheets, microfiber cloth, setup guide.</p>" } },
+        "acc2": { "type": "accordion", "settings": { "title": "Materials", "content": "<p>UV-stabilized polycarbonate with hard coat and anti-fingerprint treatment. PC-printed hardshell border.</p>" } },
+        "acc3": { "type": "accordion", "settings": { "title": "Compatibility", "content": "<p>MacBook Pro 14\" (M1/M2/M3/M4) and MacBook Pro 16\". More models coming.</p>" } },
+        "acc4": { "type": "accordion", "settings": { "title": "Shipping & returns", "content": "<p>Free US shipping. 30-day returns on unopened units. Alpha units ship within 2 weeks of order.</p>" } }
+      },
+      "block_order": ["acc1","acc2","acc3","acc4"],
+      "settings": { "show_dynamic_checkout": true }
+    },
+    "related": {
+      "type": "kk-related-products",
+      "settings": { "title": "You might also like." }
+    }
+  },
+  "order": ["main", "related"]
+}

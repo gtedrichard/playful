@@ -1,0 +1,172 @@
+{
+  "sections": {
+    "kk-hero": {
+      "type": "kk-hero",
+      "settings": {
+        "eyebrow_text": "Alpha open \u2014 30 spots",
+        "eyebrow_text_2": "12 left",
+        "heading_line1": "Your",
+        "heading_line1b": "stickers.",
+        "heading_line2": "Finally",
+        "heading_line3": "free.",
+        "subtext": "A modular MacBook case with two removable transparent sheets that sandwich your stickers. Swap layouts. Retire sheets. Keep your history.",
+        "primary_btn_text": "Claim alpha spot \u2014 $50",
+        "primary_btn_url": "/#tracks",
+        "secondary_btn_text": "Reserve free spot",
+        "secondary_btn_url": "/#tracks",
+        "swap_chip": "Swap anytime \u2726"
+      }
+    },
+    "kk-marquee": {
+      "type": "kk-marquee",
+      "blocks": {
+        "m1": {
+          "type": "item",
+          "settings": {
+            "text": "Swap your layout"
+          }
+        },
+        "m2": {
+          "type": "item",
+          "settings": {
+            "text": "Keep your stickers"
+          }
+        },
+        "m3": {
+          "type": "item",
+          "settings": {
+            "text": "No adhesive on your MacBook"
+          }
+        },
+        "m4": {
+          "type": "item",
+          "settings": {
+            "text": "Retire sheets as wall art"
+          }
+        },
+        "m5": {
+          "type": "item",
+          "settings": {
+            "text": "Alpha now open"
+          }
+        },
+        "m6": {
+          "type": "item",
+          "settings": {
+            "text": "Built in Berkeley"
+          }
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2",
+        "m3",
+        "m4",
+        "m5",
+        "m6"
+      ],
+      "settings": {}
+    },
+    "kk-problem": {
+      "type": "kk-problem",
+      "blocks": {
+        "p1": {
+          "type": "problem",
+          "settings": {
+            "icon": "\ud83d\udc80",
+            "title": "Removal destroys them",
+            "text": "Rare stickers, sentimental stickers \u2014 peel them off and they're gone forever. No second chances."
+          }
+        },
+        "p2": {
+          "type": "problem",
+          "settings": {
+            "icon": "\ud83d\udd12",
+            "title": "One layout, forever",
+            "text": "Your aesthetic evolves. Your MacBook doesn't. Stuck with last year's vibe until you get a new laptop."
+          }
+        },
+        "p3": {
+          "type": "problem",
+          "settings": {
+            "icon": "\ud83d\udcb8",
+            "title": "Can't resell cleanly",
+            "text": "Adhesive eats into anodization. Your laptop loses value and you lose your stickers anyway."
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "settings": {}
+    },
+    "kk-how": {
+      "type": "kk-how-it-works",
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "title": "Place your stickers",
+            "text": "Lay them between the two clear polycarbonate sheets. No adhesive touches your MacBook \u2014 ever.",
+            "tag": "Zero adhesive"
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "title": "Snap in the frame",
+            "text": "The hardshell border clips around your MacBook and holds the sheet sandwich in place.",
+            "tag": "Full protection"
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "title": "Swap or retire",
+            "text": "Pop the sheets out. Rearrange. Retire a layout to your wall. Start fresh whenever.",
+            "tag": "Keep forever \u2726"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "settings": {}
+    },
+    "kk-wild": {
+      "type": "kk-in-the-wild",
+      "settings": {}
+    },
+    "kk-paths": {
+      "type": "kk-pick-your-path",
+      "settings": {}
+    },
+    "kk-voices": {
+      "type": "kk-social-proof",
+      "settings": {}
+    },
+    "kk-email": {
+      "type": "kk-email-signup",
+      "settings": {}
+    },
+    "kk-promise": {
+      "type": "kk-promise",
+      "settings": {}
+    }
+  },
+  "order": [
+    "kk-hero",
+    "kk-marquee",
+    "kk-problem",
+    "kk-how",
+    "kk-wild",
+    "kk-paths",
+    "kk-voices",
+    "kk-email",
+    "kk-promise"
+  ]
+}

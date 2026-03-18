@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "contact-form",
+      "settings": {
+        "eyebrow": "Get in touch",
+        "title": "We'd love to hear from you.",
+        "subtext": "Questions about the alpha program, your order, or just want to talk stickers — we read everything.",
+        "email": "hello@keepkase.com",
+        "response_time": "Usually within 24 hours",
+        "location": "Berkeley, CA"
+      }
+    }
+  },
+  "order": ["main"]
+}

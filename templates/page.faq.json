@@ -1,0 +1,105 @@
+{
+  "sections": {
+    "faq_header": {
+      "type": "kk-rich-text",
+      "settings": {
+        "bg_color": "#F4F1EA",
+        "eyebrow": "Support",
+        "title": "Frequently asked.",
+        "text": "<p>Everything you need to know about KeepKase. Can't find an answer? <a href='/pages/contact'>Contact us.</a></p>"
+      }
+    },
+    "faq_product": {
+      "type": "kk-faq",
+      "blocks": {
+        "q1": {
+          "type": "item",
+          "settings": {
+            "question": "What MacBook models does KeepKase fit?",
+            "answer": "<p>We're launching with MacBook Pro 14\" and MacBook Pro 16\" (M1, M2, M3, M4 chips). MacBook Air 13\" and 15\" are on the roadmap for our Kickstarter batch. Sign up for the waitlist to get notified when your model is supported.</p>"
+          }
+        },
+        "q2": {
+          "type": "item",
+          "settings": {
+            "question": "What are the sheets made of?",
+            "answer": "<p>UV-stabilized polycarbonate with an anti-fingerprint hard coat. The same material family used in premium phone screen protectors, engineered to stay crystal clear and resist yellowing for years.</p>"
+          }
+        },
+        "q3": {
+          "type": "item",
+          "settings": {
+            "question": "Will it damage my MacBook?",
+            "answer": "<p>No. Zero adhesive ever touches your MacBook. The hardshell border clips on like any standard case — same clip mechanism, no anodization damage, no residue, no risk. When you remove it, your laptop looks exactly the same.</p>"
+          }
+        },
+        "q4": {
+          "type": "item",
+          "settings": {
+            "question": "How thick does it make my laptop?",
+            "answer": "<p>About 3–4mm of additional thickness total — comparable to a standard hardshell MacBook case. It's light enough that most sleeves and bags still fit without issues.</p>"
+          }
+        },
+        "q5": {
+          "type": "item",
+          "settings": {
+            "question": "What's in the box?",
+            "answer": "<p>1× KeepKase hardshell border, 2× UV-stabilized polycarbonate sheets, 1× microfiber cleaning cloth, 1× setup guide. The two sheets let you immediately have one active layout and one spare.</p>"
+          }
+        },
+        "q6": {
+          "type": "item",
+          "settings": {
+            "question": "What is the alpha program?",
+            "answer": "<p>30 hand-selected units at $50 cost price, shipped to real users who'll test the product hard. Alpha testers get 35–40% off our Kickstarter launch price, named credits in the product, direct Discord access with the team, and first pick of colorways.</p>"
+          }
+        },
+        "q7": {
+          "type": "item",
+          "settings": {
+            "question": "When does it ship?",
+            "answer": "<p>Alpha units ship to US addresses first. We're targeting Kickstarter for the main public launch. Join the waitlist for exact timeline updates — we send real updates, not marketing fluff.</p>"
+          }
+        },
+        "q8": {
+          "type": "item",
+          "settings": {
+            "question": "Can I swap sheets without removing the case?",
+            "answer": "<p>Yes — that's the point. The outer sheet lifts out without removing the border frame. Swap takes about 30 seconds. Retiring a sheet takes 10 seconds. You never have to fully remove the case unless you want to.</p>"
+          }
+        },
+        "q9": {
+          "type": "item",
+          "settings": {
+            "question": "What's the return policy?",
+            "answer": "<p>30-day returns on unopened units. Alpha units are final sale given the limited quantity and cost-price pricing. Contact us at hello@keepkase.com with any issues — we fix things.</p>"
+          }
+        },
+        "q10": {
+          "type": "item",
+          "settings": {
+            "question": "Will stickers get dirty or damaged inside?",
+            "answer": "<p>No — the sheets fully enclose the stickers and protect them from dust, oils, and physical damage. Paper-based stickers especially benefit since they can no longer absorb moisture or get scuffed.</p>"
+          }
+        }
+      },
+      "block_order": ["q1","q2","q3","q4","q5","q6","q7","q8","q9","q10"],
+      "settings": {
+        "eyebrow": "",
+        "title": ""
+      }
+    },
+    "contact_cta": {
+      "type": "kk-rich-text",
+      "settings": {
+        "bg_color": "#1A8FFF",
+        "eyebrow": "Still have questions?",
+        "title": "We actually reply.",
+        "text": "<p style='color:rgba(255,255,255,.7)'>Email us at hello@keepkase.com. Real response within 24 hours, from the people building the product.</p>",
+        "btn_text": "Contact us →",
+        "btn_url": "/pages/contact"
+      }
+    }
+  },
+  "order": ["faq_header", "faq_product", "contact_cta"]
+}

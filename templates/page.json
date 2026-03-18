@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "page_header": {
+      "type": "kk-rich-text",
+      "settings": {
+        "bg_color": "#F4F1EA",
+        "eyebrow": "",
+        "title": "",
+        "text": ""
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    }
+  },
+  "order": ["page_header", "main"]
+}

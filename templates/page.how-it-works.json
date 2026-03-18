@@ -1,0 +1,80 @@
+{
+  "sections": {
+    "intro": {
+      "type": "kk-rich-text",
+      "settings": {
+        "bg_color": "#F4F1EA",
+        "eyebrow": "The mechanism",
+        "title": "How KeepKase works.",
+        "text": "<p>Three components. Zero adhesive. Infinite configurations.</p>"
+      }
+    },
+    "how": {
+      "type": "kk-how-it-works",
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "title": "Place your stickers",
+            "text": "Lay your stickers between the two clear polycarbonate sheets. Arrange them however you want. No adhesive touches your MacBook — ever.",
+            "tag": "Zero adhesive",
+            "image_label": "Sticker layout photo",
+            "image_sub": "4:3 ratio recommended"
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "title": "Snap in the frame",
+            "text": "The hardshell border clips around your MacBook just like a standard case, holding the sheet sandwich firmly in place with full corner and edge protection.",
+            "tag": "Full protection",
+            "image_label": "Frame snap photo",
+            "image_sub": "4:3 ratio recommended"
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "title": "Swap or retire",
+            "text": "Pop the outer sheet to rearrange or replace your layout in 30 seconds. Retired sheets become framed objects — chapters of your life you can actually keep.",
+            "tag": "Keep forever",
+            "image_label": "Sheet swap / wall art photo",
+            "image_sub": "4:3 ratio recommended"
+          }
+        }
+      },
+      "block_order": ["s1","s2","s3"],
+      "settings": {
+        "eyebrow": "Step by step",
+        "title": "Three steps to",
+        "title_accent": "freedom."
+      }
+    },
+    "features": {
+      "type": "kk-multicolumn",
+      "blocks": {
+        "f1": { "type": "feature", "settings": { "icon": "🧊", "icon_bg": "#F4F1EA", "title": "UV-stabilized PC sheets", "text": "Anti-yellowing, anti-fingerprint hard coat keeps stickers vivid for years." } },
+        "f2": { "type": "feature", "settings": { "icon": "🔄", "icon_bg": "#E8F4FF", "title": "Swap in 30 seconds", "text": "The outer sheet lifts out without removing the border. No tools, no drama." } },
+        "f3": { "type": "feature", "settings": { "icon": "🛡", "icon_bg": "#F0FFF4", "title": "Zero MacBook contact", "text": "No adhesive, no anodization risk. Remove it clean years from now." } },
+        "f4": { "type": "feature", "settings": { "icon": "🖼", "icon_bg": "#FFF8E0", "title": "Wall-art ready", "text": "Retired sheets fit standard frames. Every layout tells a chapter." } },
+        "f5": { "type": "feature", "settings": { "icon": "📦", "icon_bg": "#FFF0F0", "title": "Paper sticker friendly", "text": "Enclosed from moisture, oils, and scuffs. Paper stickers finally protected." } },
+        "f6": { "type": "feature", "settings": { "icon": "💻", "icon_bg": "#F4F1EA", "title": "Case-quality protection", "text": "Hardshell PC border. Corner drop protection. Same specs as premium cases." } }
+      },
+      "block_order": ["f1","f2","f3","f4","f5","f6"],
+      "settings": {
+        "eyebrow": "What makes it different",
+        "title": "Why it works.",
+        "columns": "3"
+      }
+    },
+    "cta": {
+      "type": "kk-pick-your-path",
+      "settings": {
+        "label": "Ready to try it?",
+        "title": "Pick your",
+        "title_accent": "path."
+      }
+    }
+  },
+  "order": ["intro", "how", "features", "cta"]
+}
