@@ -1,0 +1,100 @@
+<footer class="kk-footer">
+  <div class="kk-footer-top">
+    <div class="kk-footer-brand">
+      <a id="kk-footer-logo" class="kk-footer-logo" href="{{ routes.root_url }}">
+        <div class="kk-footer-logo-k">K</div>
+        {{ section.settings.logo_text | default: shop.name }}
+      </a>
+      <p class="kk-footer-desc">{{ section.settings.description | default: 'A modular MacBook case built for people who collect moments, not just stickers.' }}</p>
+      <div class="kk-footer-social">
+        {%- if section.settings.social_tiktok != blank -%}
+          <a class="kk-footer-social-link" href="{{ section.settings.social_tiktok }}" aria-label="TikTok" target="_blank" rel="noopener">▶</a>
+        {%- endif -%}
+        {%- if section.settings.social_instagram != blank -%}
+          <a class="kk-footer-social-link" href="{{ section.settings.social_instagram }}" aria-label="Instagram" target="_blank" rel="noopener">◉</a>
+        {%- endif -%}
+        {%- if section.settings.social_twitter != blank -%}
+          <a class="kk-footer-social-link" href="{{ section.settings.social_twitter }}" aria-label="Twitter/X" target="_blank" rel="noopener">✕</a>
+        {%- endif -%}
+        {%- if section.settings.social_youtube != blank -%}
+          <a class="kk-footer-social-link" href="{{ section.settings.social_youtube }}" aria-label="YouTube" target="_blank" rel="noopener">▷</a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'link_column' -%}
+        <div {{ block.shopify_attributes }}>
+          <div class="kk-footer-col-title">{{ block.settings.title }}</div>
+          <ul class="kk-footer-col-links">
+            {%- for link in block.settings.menu.links -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <div>
+        <div class="kk-footer-col-title">Product</div>
+        <ul class="kk-footer-col-links">
+          <li><a href="/collections/all">Shop</a></li>
+          <li><a href="/pages/how-it-works">How it works</a></li>
+          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/about">Our story</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="kk-footer-col-title">Alpha</div>
+        <ul class="kk-footer-col-links">
+          <li><a href="/#tracks">Claim alpha spot</a></li>
+          <li><a href="/#tracks">Join waitlist</a></li>
+          <li><a href="/blogs/news">Updates</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="kk-footer-col-title">Support</div>
+        <ul class="kk-footer-col-links">
+          <li><a href="/pages/contact">Contact</a></li>
+          <li><a href="/pages/shipping">Shipping</a></li>
+          <li><a href="/policies/refund-policy">Returns</a></li>
+          <li><a href="/policies/privacy-policy">Privacy</a></li>
+        </ul>
+      </div>
+    {%- endfor -%}
+  </div>
+  <div class="kk-footer-bottom">
+    <span class="kk-footer-copyright">© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</span>
+    <nav class="kk-footer-legal">
+      <a href="{{ shop.privacy_policy.url }}">Privacy</a>
+      <a href="{{ shop.terms_of_service.url }}">Terms</a>
+      <a href="{{ shop.refund_policy.url }}">Refunds</a>
+    </nav>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "class": "section-footer",
+  "settings": [
+    { "type": "text", "id": "logo_text", "label": "Logo text", "default": "KeepKase" },
+    { "type": "textarea", "id": "description", "label": "Brand description", "default": "A modular MacBook case built for people who collect moments, not just stickers." },
+    { "type": "header", "content": "Social links" },
+    { "type": "url", "id": "social_tiktok", "label": "TikTok URL" },
+    { "type": "url", "id": "social_instagram", "label": "Instagram URL" },
+    { "type": "url", "id": "social_twitter", "label": "Twitter/X URL" },
+    { "type": "url", "id": "social_youtube", "label": "YouTube URL" }
+  ],
+  "blocks": [
+    {
+      "type": "link_column",
+      "name": "Link column",
+      "limit": 3,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Column title", "default": "Links" },
+        { "type": "link_list", "id": "menu", "label": "Menu" }
+      ]
+    }
+  ]
+}
+{% endschema %}

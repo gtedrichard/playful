@@ -1,0 +1,26 @@
+{
+  "name": "Header group",
+  "type": "header",
+  "sections": {
+    "announcement": {
+      "type": "kk-announcement",
+      "settings": {
+        "text": "🎉 Alpha open — 30 spots only. Free US shipping.",
+        "link_text": "Claim yours →",
+        "link_url": "/#tracks",
+        "bg_color": "#1A1A1A",
+        "dismissible": true
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_text": "KeepKase",
+        "cta_text": "Get early access →",
+        "cta_url": "/#tracks",
+        "show_search": true
+      }
+    }
+  },
+  "order": ["announcement", "header"]
+}

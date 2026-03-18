@@ -1,0 +1,77 @@
+<div class="kk-account">
+  <div class="kk-account-sidebar">
+    <div class="kk-account-sidebar-logo">
+      <div style="width:28px;height:28px;background:var(--kk-ink);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--kk-yellow);font-size:13px;font-weight:900;">K</div>
+      My Account
+    </div>
+    <ul class="kk-account-nav">
+      <li class="kk-account-nav-item active"><a href="{{ routes.account_url }}">Orders</a></li>
+      <li class="kk-account-nav-item"><a href="{{ routes.account_addresses_url }}">Addresses</a></li>
+      <li class="kk-account-nav-item"><a href="{{ routes.account_logout_url }}">Sign out</a></li>
+    </ul>
+  </div>
+
+  <div class="kk-account-content kk-reveal">
+    <a href="{{ routes.account_url }}" style="font-size:13px;color:#888;text-decoration:none;display:flex;align-items:center;gap:6px;margin-bottom:20px;">← Back to orders</a>
+    <h1 class="kk-account-title" style="font-size:2rem;">Order {{ order.name }}</h1>
+    <div style="margin-bottom:32px;">
+      <span class="kk-order-status {%- if order.financial_status == 'paid' %} kk-status-fulfilled{%- elsif order.financial_status == 'pending' %} kk-status-pending{%- else %} kk-status-unfulfilled{% endif %}">
+        {{ order.financial_status_label }}
+      </span>
+      <span style="font-size:13px;color:#888;margin-left:12px;">Placed {{ order.created_at | date: '%B %d, %Y' }}</span>
+    </div>
+
+    <div class="kk-cart-items" style="margin-bottom:32px;">
+      {%- for line_item in order.line_items -%}
+        <div class="kk-cart-item">
+          <div class="kk-cart-item-img">
+            {%- if line_item.image -%}
+              <img src="{{ line_item.image | image_url: width: 160 }}" alt="{{ line_item.title | escape }}" width="80" height="80" loading="lazy">
+            {%- else -%}
+              <div style="width:80px;height:80px;display:flex;align-items:center;justify-content:center;background:rgba(26,26,26,.04);font-size:24px;">📦</div>
+            {%- endif -%}
+          </div>
+          <div>
+            <div class="kk-cart-item-title">{{ line_item.product.title }}</div>
+            {%- unless line_item.variant.title == 'Default Title' -%}
+              <div class="kk-cart-item-variant">{{ line_item.variant.title }}</div>
+            {%- endunless -%}
+            <div style="font-size:13px;color:#888;">Qty: {{ line_item.quantity }}</div>
+          </div>
+          <div style="font-size:16px;font-weight:900;">{{ line_item.final_line_price | money }}</div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+      <div>
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#aaa;margin-bottom:12px;">Shipping address</div>
+        <address style="font-style:normal;font-size:14px;color:#555;line-height:1.8;">
+          {{ order.shipping_address.name }}<br>
+          {{ order.shipping_address.address1 }}<br>
+          {%- if order.shipping_address.address2 != blank -%}{{ order.shipping_address.address2 }}<br>{%- endif -%}
+          {{ order.shipping_address.city }}, {{ order.shipping_address.province_code }} {{ order.shipping_address.zip }}<br>
+          {{ order.shipping_address.country }}
+        </address>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#aaa;margin-bottom:12px;">Order total</div>
+        <div style="font-size:14px;color:#555;line-height:2;">
+          <div style="display:flex;justify-content:space-between;">Subtotal <span>{{ order.subtotal_price | money }}</span></div>
+          {%- for discount in order.cart_level_discount_applications -%}
+            <div style="display:flex;justify-content:space-between;color:var(--kk-coral);">{{ discount.title }} <span>-{{ discount.total_allocated_amount | money }}</span></div>
+          {%- endfor -%}
+          <div style="display:flex;justify-content:space-between;">Shipping <span>{{ order.shipping_price | money }}</span></div>
+          <div style="display:flex;justify-content:space-between;font-weight:800;font-size:16px;color:var(--kk-ink);border-top:2px solid var(--kk-ink);padding-top:8px;margin-top:4px;">Total <span>{{ order.total_price | money }}</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Order",
+  "settings": []
+}
+{% endschema %}

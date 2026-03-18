@@ -1,0 +1,33 @@
+<div class="kk-auth-wrap kk-reveal">
+  <div class="kk-auth-title">Welcome back.</div>
+  <div class="kk-auth-sub">Sign in to your KeepKase account.</div>
+  <div class="kk-auth-card">
+    {%- form 'customer_login' -%}
+      {%- if form.errors -%}
+        <div class="kk-error">{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+      <div class="kk-form-group">
+        <label class="kk-form-label" for="login-email">Email</label>
+        <input class="kk-form-input" type="email" id="login-email" name="customer[email]" autocomplete="email" required>
+      </div>
+      <div class="kk-form-group">
+        <label class="kk-form-label" for="login-password">Password</label>
+        <input class="kk-form-input" type="password" id="login-password" name="customer[password]" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="kk-form-submit" style="margin-bottom:16px;">Sign in →</button>
+      <div class="kk-auth-divider">or</div>
+      <div style="text-align:center;">
+        <a href="{{ routes.account_register_url }}" class="kk-auth-link">Create an account</a>
+        &nbsp;·&nbsp;
+        <a href="{{ routes.account_recover_url }}" class="kk-auth-link">Forgot password?</a>
+      </div>
+    {%- endform -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Login",
+  "settings": []
+}
+{% endschema %}

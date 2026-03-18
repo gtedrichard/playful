@@ -1,0 +1,184 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign product_form_id = 'kk-product-form-' | append: section.id -%}
+
+<div class="kk-product">
+  <div class="kk-product-layout">
+
+    <!-- GALLERY -->
+    <div class="kk-product-gallery kk-reveal">
+      <div class="kk-product-main-img">
+        {%- if product.featured_media -%}
+          <img id="kk-main-img" src="{{ product.featured_media | image_url: width: 1000 }}" alt="{{ product.featured_media.alt | escape }}" width="500" height="500" loading="eager">
+        {%- else -%}
+          <div style="font-size:48px;opacity:.3;">📦</div>
+        {%- endif -%}
+      </div>
+      {%- if product.media.size > 1 -%}
+        <div class="kk-product-thumbs">
+          {%- for media in product.media -%}
+            <div class="kk-product-thumb{% if forloop.first %} active{% endif %}" data-src="{{ media | image_url: width: 1000 }}">
+              <img src="{{ media | image_url: width: 144 }}" alt="{{ media.alt | escape }}" loading="lazy" width="72" height="72">
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- PRODUCT INFO -->
+    <div class="kk-product-info kk-reveal kk-d2">
+      <div class="kk-product-breadcrumb">
+        <a href="{{ routes.root_url }}">Home</a>
+        <span>›</span>
+        <a href="{{ product.collections.first.url | default: routes.collections_url }}">{{ product.collections.first.title | default: 'Shop' }}</a>
+        <span>›</span>
+        <span>{{ product.title }}</span>
+      </div>
+
+      {%- if product.vendor != blank -%}
+        <div class="kk-pill kk-pill-outline" style="margin-bottom:14px;">{{ product.vendor }}</div>
+      {%- endif -%}
+
+      <h1 class="kk-product-title">{{ product.title }}</h1>
+
+      <div class="kk-product-price">
+        <span id="kk-price">{{ current_variant.price | money }}</span>
+        {%- if current_variant.compare_at_price > current_variant.price -%}
+          <span class="kk-product-price-compare">{{ current_variant.compare_at_price | money }}</span>
+          <span class="kk-product-price-badge">
+            -{{ current_variant.compare_at_price | minus: current_variant.price | times: 100 | divided_by: current_variant.compare_at_price }}%
+          </span>
+        {%- endif -%}
+      </div>
+
+      {%- if product.description != blank -%}
+        <div class="kk-product-desc">{{ product.description }}</div>
+      {%- endif -%}
+
+      {%- unless product.has_only_default_variant -%}
+        {%- for option in product.options_with_values -%}
+          <div class="kk-variant-label">{{ option.name }}</div>
+          <div class="kk-variant-options" data-option-index="{{ forloop.index0 }}">
+            {%- for value in option.values -%}
+              <div class="kk-variant-option{% if option.selected_value == value %} selected{% endif %}" data-value="{{ value }}">{{ value }}</div>
+            {%- endfor -%}
+          </div>
+        {%- endfor -%}
+      {%- endunless -%}
+
+      {%- form 'product', product, id: product_form_id -%}
+        <input type="hidden" name="id" value="{{ current_variant.id }}" id="kk-variant-id">
+
+        <div class="kk-qty-wrap" style="margin-top:20px;">
+          <span class="kk-qty-label">Quantity</span>
+          <div class="kk-qty">
+            <button type="button" class="kk-qty-btn kk-qty-minus">−</button>
+            <input class="kk-qty-input" type="number" name="quantity" value="1" min="1" max="{{ current_variant.inventory_quantity | default: 99 }}">
+            <button type="button" class="kk-qty-btn kk-qty-plus">+</button>
+          </div>
+        </div>
+
+        <button type="submit" name="add" class="kk-atc-btn{% unless current_variant.available %} sold-out{% endunless %}"
+          {% unless current_variant.available %}disabled{% endunless %}>
+          {%- if current_variant.available -%}
+            Add to cart
+          {%- else -%}
+            Sold out
+          {%- endif -%}
+        </button>
+
+        {%- if section.settings.show_dynamic_checkout -%}
+          {{ form | payment_button }}
+        {%- endif -%}
+      {%- endform -%}
+
+      <!-- Guarantees -->
+      <div class="kk-product-guarantees">
+        <div class="kk-guarantee">🚚 Free US shipping</div>
+        <div class="kk-guarantee">↩️ 30-day returns</div>
+        <div class="kk-guarantee">🔒 Secure checkout</div>
+      </div>
+
+      <!-- Accordion -->
+      <div class="kk-product-accordion">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'accordion' -%}
+            <div class="kk-accordion-item" {{ block.shopify_attributes }}>
+              <button class="kk-accordion-toggle">{{ block.settings.title }}</button>
+              <div class="kk-accordion-body">{{ block.settings.content }}</div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var productData = {{ product | json }};
+    var currentVariantId = {{ current_variant.id }};
+
+    // Update price on variant change
+    document.querySelectorAll('.kk-variant-option').forEach(function(opt) {
+      opt.addEventListener('click', function() {
+        var parent = this.closest('.kk-variant-options');
+        parent.querySelectorAll('.kk-variant-option').forEach(function(o) { o.classList.remove('selected'); });
+        this.classList.add('selected');
+
+        // Find matching variant
+        var selectedValues = [];
+        document.querySelectorAll('.kk-variant-options').forEach(function(group) {
+          var sel = group.querySelector('.selected');
+          if (sel) selectedValues.push(sel.getAttribute('data-value'));
+        });
+
+        var matchedVariant = productData.variants.find(function(v) {
+          return selectedValues.every(function(val, i) { return v.options[i] === val; });
+        });
+
+        if (matchedVariant) {
+          document.getElementById('kk-variant-id').value = matchedVariant.id;
+          var priceEl = document.getElementById('kk-price');
+          if (priceEl) {
+            var formatted = (matchedVariant.price / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            priceEl.textContent = formatted;
+          }
+          var atcBtn = document.querySelector('.kk-atc-btn');
+          if (atcBtn) {
+            atcBtn.disabled = !matchedVariant.available;
+            atcBtn.classList.toggle('sold-out', !matchedVariant.available);
+            atcBtn.textContent = matchedVariant.available ? 'Add to cart' : 'Sold out';
+          }
+        }
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [
+    { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show dynamic checkout button (Buy now)", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Accordion tab",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Tab title", "default": "Product details" },
+        { "type": "richtext", "id": "content", "label": "Tab content", "default": "<p>UV-stabilized polycarbonate sheets with anti-fingerprint hard coat.</p>" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Product",
+    "blocks": [
+      { "type": "accordion", "settings": { "title": "What's in the box", "content": "<p>1× KeepKase hardshell border, 2× polycarbonate transparent sheets, microfiber cloth, setup guide.</p>" } },
+      { "type": "accordion", "settings": { "title": "Materials", "content": "<p>UV-stabilized polycarbonate with hard coat and anti-fingerprint treatment. PC-printed hardshell border.</p>" } },
+      { "type": "accordion", "settings": { "title": "Compatibility", "content": "<p>MacBook Pro 14\" (M1/M2/M3/M4) and MacBook Pro 16\". More models coming.</p>" } },
+      { "type": "accordion", "settings": { "title": "Shipping & returns", "content": "<p>Free US shipping. 30-day returns on unopened units. Alpha units ship within 2 weeks of order.</p>" } }
+    ]
+  }]
+}
+{% endschema %}

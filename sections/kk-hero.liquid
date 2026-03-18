@@ -1,0 +1,91 @@
+<section class="kk-hero kk-section">
+  <svg style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:.06;z-index:0;pointer-events:none;" preserveAspectRatio="xMidYMid slice">
+    <defs><pattern id="kk-hero-dots" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.5" fill="#1A1A1A"/></pattern></defs>
+    <rect width="100%" height="100%" fill="url(#kk-hero-dots)"/>
+  </svg>
+  <!-- animated squiggles left edge -->
+  <svg style="position:absolute;left:0;top:0;height:100%;width:90px;opacity:.065;z-index:0;pointer-events:none;" preserveAspectRatio="xMidYMid slice" viewBox="0 0 90 600">
+    <path id="kk-sq-hl1" d="M15 0 Q38 50 15 100 Q-8 150 15 200 Q38 250 15 300 Q-8 350 15 400 Q38 450 15 500 Q-8 550 15 600" stroke="#1A1A1A" stroke-width="2.5" fill="none"/>
+    <path id="kk-sq-hl2" d="M42 0 Q65 50 42 100 Q19 150 42 200 Q65 250 42 300 Q19 350 42 400 Q65 450 42 500 Q19 550 42 600" stroke="#1A1A1A" stroke-width="1.8" fill="none"/>
+  </svg>
+
+  <div class="kk-hero-left">
+    <div class="kk-hero-lattice"></div>
+    <div class="kk-hero-content" style="animation:kkRevealUp .7s cubic-bezier(.16,1,.3,1) both;">
+      <div class="kk-hero-eyebrow">
+        <div class="kk-pill kk-pill-yellow">
+          <span style="width:8px;height:8px;background:#F55D3E;border-radius:50%;animation:kkBlink 2s infinite;flex-shrink:0;"></span>
+          {{ section.settings.eyebrow_text | default: 'Alpha open — 30 spots' }}
+        </div>
+        {%- if section.settings.eyebrow_text_2 != blank -%}
+          <div class="kk-pill kk-pill-outline">{{ section.settings.eyebrow_text_2 }}</div>
+        {%- endif -%}
+      </div>
+      <div class="kk-big-type">
+        <span class="kk-bt-line kk-bt1">
+          {{ section.settings.heading_line1 | default: 'Your' }}
+          <span class="kk-bt-stroke">{{ section.settings.heading_line1b | default: 'stickers.' }}</span>
+        </span>
+        <span class="kk-bt-line kk-bt2">
+          <span class="kk-bt-serif">{{ section.settings.heading_line2 | default: 'Finally' }}</span>
+        </span>
+        <span class="kk-bt-line kk-bt3">
+          <span class="kk-bt-fill-b">{{ section.settings.heading_line3 | default: 'free.' }}</span>
+        </span>
+      </div>
+      <p class="kk-hero-sub">{{ section.settings.subtext | default: 'A modular MacBook case with two removable transparent sheets that sandwich your stickers. Swap layouts. Retire sheets. Keep your history.' }}</p>
+      <div class="kk-hero-btns">
+        <a href="{{ section.settings.primary_btn_url | default: '#tracks' }}" class="kk-btn kk-btn-filled">{{ section.settings.primary_btn_text | default: 'Claim alpha spot — $50' }}</a>
+        <a href="{{ section.settings.secondary_btn_url | default: '#tracks' }}" class="kk-btn kk-btn-ghost">{{ section.settings.secondary_btn_text | default: 'Reserve free spot' }}</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="kk-hero-right">
+    <div class="kk-hero-orb1"></div>
+    <div class="kk-hero-orb2"></div>
+    <div class="kk-hero-right-dots"></div>
+    <!-- animated squiggles right edge -->
+    <svg style="position:absolute;right:0;top:0;height:100%;width:80px;opacity:.11;z-index:0;pointer-events:none;" preserveAspectRatio="xMidYMid slice" viewBox="0 0 80 600">
+      <path id="kk-sq-hr1" d="M20 0 Q50 50 20 100 Q-10 150 20 200 Q50 250 20 300 Q-10 350 20 400 Q50 450 20 500 Q-10 550 20 600" stroke="white" stroke-width="2" fill="none"/>
+      <path id="kk-sq-hr2" d="M50 30 Q75 80 50 130 Q25 180 50 230 Q75 280 50 330 Q25 380 50 430 Q75 480 50 530" stroke="white" stroke-width="1.4" fill="none"/>
+    </svg>
+    <div id="kk-mac-wrap" class="kk-mb-wrap">
+      <div class="kk-swap-chip">{{ section.settings.swap_chip | default: 'Swap anytime ✦' }}</div>
+      <div class="kk-mb-frame">
+        <div class="kk-mb-screen">
+          <div class="kk-mb-sheet">
+            <div class="kk-sticker kk-draggable" style="width:48px;height:48px;background:#fff3cd;font-size:1.2rem;animation-delay:.6s;">🌿</div>
+            <div class="kk-sticker kk-draggable" style="width:42px;height:42px;background:#cce5ff;font-size:1.2rem;animation-delay:.75s;">⚡</div>
+            <div class="kk-sticker kk-draggable" style="width:58px;height:34px;background:#f8d7da;border-radius:16px;font-size:.6rem;font-weight:700;color:#444;animation-delay:.9s;">✦ vibes</div>
+            <div class="kk-sticker kk-draggable" style="width:36px;height:48px;background:#e2d9f3;font-size:1.2rem;animation-delay:1.05s;">🎸</div>
+            <div class="kk-sticker kk-draggable" style="width:46px;height:46px;background:#d4edda;border-radius:50%;font-size:1.2rem;animation-delay:1.2s;">🌙</div>
+            <div class="kk-sticker kk-draggable" style="width:52px;height:32px;background:#fff3cd;font-size:.58rem;font-weight:700;color:#444;animation-delay:1.35s;">BKL 2024</div>
+          </div>
+        </div>
+        <div class="kk-mb-notch"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow_text", "label": "Eyebrow pill text", "default": "Alpha open — 30 spots" },
+    { "type": "text", "id": "eyebrow_text_2", "label": "Second pill text", "default": "12 left" },
+    { "type": "text", "id": "heading_line1",  "label": "Line 1 (plain)",          "default": "Your" },
+    { "type": "text", "id": "heading_line1b", "label": "Line 1 (stroke/outline)",  "default": "stickers." },
+    { "type": "text", "id": "heading_line2",  "label": "Line 2 (italic serif coral)","default": "Finally" },
+    { "type": "text", "id": "heading_line3",  "label": "Line 3 (blue fill)",        "default": "free." },
+    { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "A modular MacBook case with two removable transparent sheets that sandwich your stickers. Swap layouts. Retire sheets. Keep your history." },
+    { "type": "text", "id": "primary_btn_text", "label": "Primary button text", "default": "Claim alpha spot — $50" },
+    { "type": "url", "id": "primary_btn_url", "label": "Primary button URL", "default": "/" },
+    { "type": "text", "id": "secondary_btn_text", "label": "Secondary button text", "default": "Reserve free spot" },
+    { "type": "url", "id": "secondary_btn_url", "label": "Secondary button URL", "default": "/" },
+    { "type": "text", "id": "swap_chip", "label": "Floating chip text", "default": "Swap anytime ✦" }
+  ],
+  "presets": [{ "name": "KeepKase Hero" }]
+}
+{% endschema %}

@@ -1,0 +1,66 @@
+<div class="kk-contact kk-reveal">
+  <div class="kk-contact-info">
+    <div class="kk-pill kk-pill-yellow" style="margin-bottom:20px;">{{ section.settings.eyebrow | default: 'Get in touch' }}</div>
+    <h1>{{ section.settings.title | default: "We'd love to hear from you." }}</h1>
+    <p>{{ section.settings.subtext | default: "Questions about the alpha program, your order, or just want to talk stickers — we read everything." }}</p>
+    {%- if section.settings.email != blank -%}
+      <div class="kk-contact-detail">📧 <a href="mailto:{{ section.settings.email }}" style="color:inherit;text-decoration:none;">{{ section.settings.email }}</a></div>
+    {%- endif -%}
+    {%- if section.settings.response_time != blank -%}
+      <div class="kk-contact-detail">⏱ {{ section.settings.response_time }}</div>
+    {%- endif -%}
+    {%- if section.settings.location != blank -%}
+      <div class="kk-contact-detail">📍 {{ section.settings.location }}</div>
+    {%- endif -%}
+  </div>
+
+  <div class="kk-contact-form">
+    {%- form 'contact' -%}
+      {%- if form.posted_successfully? -%}
+        <div class="kk-success">✓ Message sent! We'll get back to you within 24 hours.</div>
+      {%- endif -%}
+      {%- if form.errors -%}
+        <div class="kk-error">{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+      <div class="kk-form-group">
+        <label class="kk-form-label" for="contact-name">Name</label>
+        <input class="kk-form-input" type="text" id="contact-name" name="contact[name]" value="{{ form.name }}" placeholder="Your name" autocomplete="name">
+      </div>
+      <div class="kk-form-group">
+        <label class="kk-form-label" for="contact-email">Email <span style="color:var(--kk-coral);">*</span></label>
+        <input class="kk-form-input" type="email" id="contact-email" name="contact[email]" value="{{ form.email }}" placeholder="your@email.com" required autocomplete="email">
+      </div>
+      <div class="kk-form-group">
+        <label class="kk-form-label" for="contact-subject">Subject</label>
+        <select class="kk-form-select" id="contact-subject" name="contact[subject]">
+          <option value="">Select a topic</option>
+          <option value="Alpha program">Alpha program</option>
+          <option value="Waitlist">Waitlist</option>
+          <option value="Order question">Order question</option>
+          <option value="Product feedback">Product feedback</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="kk-form-group">
+        <label class="kk-form-label" for="contact-body">Message <span style="color:var(--kk-coral);">*</span></label>
+        <textarea class="kk-form-textarea" id="contact-body" name="contact[body]" placeholder="What's on your mind?" required>{{ form.body }}</textarea>
+      </div>
+      <button type="submit" class="kk-form-submit">Send message →</button>
+    {%- endform -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Get in touch" },
+    { "type": "text", "id": "title", "label": "Title", "default": "We'd love to hear from you." },
+    { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "Questions about the alpha program, your order, or just want to talk stickers — we read everything." },
+    { "type": "text", "id": "email", "label": "Email address", "default": "hello@keepkase.com" },
+    { "type": "text", "id": "response_time", "label": "Response time text", "default": "Usually within 24 hours" },
+    { "type": "text", "id": "location", "label": "Location text", "default": "Berkeley, CA" }
+  ],
+  "presets": [{ "name": "Contact" }]
+}
+{% endschema %}

@@ -1,0 +1,46 @@
+<section class="kk-video-section kk-reveal">
+  {%- if section.settings.eyebrow != blank or section.settings.title != blank -%}
+    <div class="kk-video-header">
+      {%- if section.settings.eyebrow != blank -%}
+        <div class="kk-section-label">{{ section.settings.eyebrow }}</div>
+      {%- endif -%}
+      {%- if section.settings.title != blank -%}
+        <h2 class="kk-video-title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+  <div class="kk-video-wrap" data-video-id="{{ section.settings.video_id }}" data-video-type="{{ section.settings.video_type | default: 'youtube' }}">
+    {%- if section.settings.cover_image != blank -%}
+      <div class="kk-video-placeholder" style="background-image:url('{{ section.settings.cover_image | image_url: width: 1600 }}');background-size:cover;background-position:center;">
+        <div class="kk-video-play">▶</div>
+      </div>
+    {%- elsif section.settings.video_id != blank -%}
+      <div class="kk-video-placeholder" style="background:var(--kk-ink);">
+        <div style="font-size:48px;margin-bottom:8px;">🎬</div>
+        <div class="kk-video-play">▶</div>
+      </div>
+    {%- else -%}
+      <div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:var(--kk-ink);color:rgba(255,255,255,.4);">
+        <div style="font-size:40px;">🎬</div>
+        <div style="font-size:13px;font-weight:700;">Add video ID in customizer</div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Video",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "title", "label": "Title" },
+    { "type": "text", "id": "video_id", "label": "YouTube / Vimeo video ID", "info": "E.g. dQw4w9WgXcQ for YouTube" },
+    { "type": "select", "id": "video_type", "label": "Video platform", "default": "youtube", "options": [
+      { "value": "youtube", "label": "YouTube" },
+      { "value": "vimeo", "label": "Vimeo" }
+    ]},
+    { "type": "image_picker", "id": "cover_image", "label": "Cover / thumbnail image" }
+  ],
+  "presets": [{ "name": "Video" }]
+}
+{% endschema %}

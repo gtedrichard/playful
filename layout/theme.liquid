@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#F4F1EA">
+  <link rel="canonical" href="{{ canonical_url }}">
+  {%- if settings.favicon != blank -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  {%- endif -%}
+  <title>
+    {{ page_title }}
+    {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+    {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  </title>
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+  {% render 'meta-tags' %}
+
+  <!-- KeepKase Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <!-- Shopify required scripts -->
+  <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
+
+  {{ content_for_header }}
+
+  <!-- Dawn base CSS (kept for Shopify component compatibility) -->
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+
+  {%- if settings.cart_type == 'drawer' -%}
+    {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
+    {{ 'component-cart.css' | asset_url | stylesheet_tag }}
+    {{ 'component-totals.css' | asset_url | stylesheet_tag }}
+    {{ 'component-price.css' | asset_url | stylesheet_tag }}
+    {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+  {%- endif -%}
+
+  <!-- KeepKase design system CSS -->
+  {{ 'keepkase.css' | asset_url | stylesheet_tag }}
+
+  <!-- KeepKase theme vars -->
+  <style>
+    :root {
+      --kk-blue:  #1A8FFF;
+      --kk-yellow:#F7CB15;
+      --kk-coral: #F55D3E;
+      --kk-bg:    #F4F1EA;
+      --kk-ink:   #1A1A1A;
+      --kk-white: #ffffff;
+    }
+    body {
+      font-family: 'Cabinet Grotesk', sans-serif !important;
+      background: #F4F1EA !important;
+    }
+  </style>
+
+  {%- if settings.predictive_search_enabled -%}
+    <link rel="stylesheet" href="{{ 'component-predictive-search.css' | asset_url }}" media="print" onload="this.media='all'">
+  {%- endif -%}
+</head>
+
+<body>
+  <a class="kk-visually-hidden" href="#MainContent">Skip to content</a>
+
+  <!-- Cart Drawer (always in DOM, opened by JS) -->
+  <div class="kk-cart-drawer-overlay"></div>
+  <div class="kk-cart-drawer" id="kk-cart-drawer">
+    <div class="kk-cart-drawer-header">
+      <div class="kk-cart-drawer-title">Your cart</div>
+      <button class="kk-cart-drawer-close" aria-label="Close cart">✕</button>
+    </div>
+    <div class="kk-cart-drawer-items" id="kk-cart-drawer-items">
+      {%- if cart.item_count > 0 -%}
+        {%- for item in cart.items -%}
+          <div class="kk-cart-drawer-item">
+            <div class="kk-cart-drawer-item-img">
+              {% if item.image %}
+                <img src="{{ item.image | image_url: width: 136 }}" alt="{{ item.title | escape }}" loading="lazy" width="68" height="68">
+              {% else %}
+                <div style="width:68px;height:68px;display:flex;align-items:center;justify-content:center;background:rgba(26,26,26,.05);font-size:20px;">📦</div>
+              {% endif %}
+            </div>
+            <div>
+              <div class="kk-cart-drawer-item-name">{{ item.product.title }}</div>
+              {%- unless item.variant.title == 'Default Title' -%}
+                <div class="kk-cart-drawer-item-variant">{{ item.variant.title }}</div>
+              {%- endunless -%}
+              <div class="kk-cart-drawer-item-price">{{ item.final_line_price | money }}</div>
+              <a href="{{ routes.cart_change_url }}?id={{ item.key }}&quantity=0" class="kk-cart-drawer-item-remove">Remove</a>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:13px;color:#888;">Qty: {{ item.quantity }}</div>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <div style="padding:40px 24px;text-align:center;color:#888;">
+          <div style="font-size:32px;margin-bottom:12px;">🛍️</div>
+          <div style="font-size:15px;font-weight:700;">Your cart is empty</div>
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="kk-cart-drawer-footer">
+      <div class="kk-cart-drawer-subtotal">
+        <span class="kk-cart-drawer-subtotal-label">Subtotal</span>
+        <span class="kk-cart-drawer-subtotal-price">{{ cart.total_price | money }}</span>
+      </div>
+      <a href="{{ routes.checkout }}" class="kk-checkout-btn">Checkout →</a>
+      <a href="{{ routes.cart_url }}" class="kk-continue-btn">View full cart</a>
+    </div>
+  </div>
+
+  {% sections 'header-group' %}
+
+  <main id="MainContent" class="focus-none" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  {% sections 'footer-group' %}
+
+  <!-- KeepKase JS -->
+  <script src="{{ 'keepkase.js' | asset_url }}" defer></script>
+
+  <script>
+    window.shopUrl = '{{ request.origin }}';
+    window.routes = {
+      cart_add_url: '{{ routes.cart_add_url }}',
+      cart_change_url: '{{ routes.cart_change_url }}',
+      cart_update_url: '{{ routes.cart_update_url }}',
+      cart_url: '{{ routes.cart_url }}',
+      predictive_search_url: '{{ routes.predictive_search_url }}',
+    };
+    window.cartStrings = {
+      error: `{{ 'sections.cart.cart_error' | t }}`,
+      quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t: quantity: '[quantity]' }}`,
+    };
+    window.variantStrings = {
+      addToCart: `{{ 'products.product.add_to_cart' | t }}`,
+      soldOut: `{{ 'products.product.sold_out' | t }}`,
+      unavailable: `{{ 'products.product.unavailable' | t }}`,
+    };
+    window.accessibilityStrings = {
+      imageAvailable: `{{ 'products.product.media.image_available' | t: index: '[index]' }}`,
+      shareSuccess: `{{ 'general.share.success_message' | t }}`,
+    };
+  </script>
+
+  {%- if settings.predictive_search_enabled -%}
+    <script src="{{ 'predictive-search.js' | asset_url }}" defer></script>
+  {%- endif -%}
+  {%- if settings.cart_type == 'drawer' -%}
+    <script src="{{ 'cart-drawer.js' | asset_url }}" defer></script>
+  {%- endif -%}
+</body>
+</html>

@@ -1,0 +1,67 @@
+<section class="kk-voices kk-reveal">
+  <svg class="kk-voices-rings" width="340" height="340" viewBox="0 0 340 340" fill="none" style="position:absolute;bottom:-80px;right:-80px;">
+    <circle cx="340" cy="340" r="90" stroke="#1A1A1A" stroke-width="1.5" stroke-dasharray="8 6"/>
+    <circle cx="340" cy="340" r="155" stroke="#1A1A1A" stroke-width="1" stroke-dasharray="6 8"/>
+    <circle cx="340" cy="340" r="225" stroke="#1A1A1A" stroke-width=".6" stroke-dasharray="4 10"/>
+  </svg>
+  <div class="kk-voices-head">
+    <span class="kk-voices-eyebrow">{{ section.settings.eyebrow | default: 'Early voices' }}</span>
+    <h2 class="kk-voices-title">{{ section.settings.title | default: 'What alpha testers say.' }}</h2>
+  </div>
+  <div class="kk-voices-grid">
+    {%- for block in section.blocks -%}
+      <div class="kk-voice-card kk-draggable" {{ block.shopify_attributes }}>
+        <div class="kk-voice-photo">
+          <div class="kk-voice-photo-inner">
+            <div class="kk-voice-photo-dots"></div>
+            {%- if block.settings.image != blank -%}
+              <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.name }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+            {%- else -%}
+              <div class="kk-voice-photo-icon">📸</div>
+              <div class="kk-voice-photo-label">{{ block.settings.image_label | default: 'Tester photo' }}</div>
+            {%- endif -%}
+          </div>
+        </div>
+        <div class="kk-voice-body">
+          <p class="kk-voice-quote">"{{ block.settings.quote }}"</p>
+          <div class="kk-voice-attr">
+            <div class="kk-voice-avatar" style="background:{{ block.settings.avatar_color | default: '#1A8FFF' }};"></div>
+            <div>
+              <div class="kk-voice-name">{{ block.settings.name }}</div>
+              <div class="kk-voice-handle">{{ block.settings.handle }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- else -%}
+      <div class="kk-voice-card kk-draggable"><div class="kk-voice-photo"><div class="kk-voice-photo-inner"><div class="kk-voice-photo-dots"></div><div class="kk-voice-photo-icon">📸</div><div class="kk-voice-photo-label">Tester photo</div></div></div><div class="kk-voice-body"><p class="kk-voice-quote">"Finally moved my stickers without destroying a single one. Been waiting for this forever."</p><div class="kk-voice-attr"><div class="kk-voice-avatar" style="background:#1A8FFF;"></div><div><div class="kk-voice-name">Alex T.</div><div class="kk-voice-handle">UC Berkeley · Alpha #04</div></div></div></div></div>
+      <div class="kk-voice-card kk-draggable"><div class="kk-voice-photo"><div class="kk-voice-photo-inner"><div class="kk-voice-photo-dots"></div><div class="kk-voice-photo-icon">📸</div><div class="kk-voice-photo-label">Tester photo</div></div></div><div class="kk-voice-body"><p class="kk-voice-quote">"The swap mechanism is so satisfying. My retired sheet is literally hanging on my wall right now."</p><div class="kk-voice-attr"><div class="kk-voice-avatar" style="background:#F55D3E;"></div><div><div class="kk-voice-name">Jamie L.</div><div class="kk-voice-handle">Alpha #11</div></div></div></div></div>
+      <div class="kk-voice-card kk-draggable"><div class="kk-voice-photo"><div class="kk-voice-photo-inner"><div class="kk-voice-photo-dots"></div><div class="kk-voice-photo-icon">📸</div><div class="kk-voice-photo-label">Tester photo</div></div></div><div class="kk-voice-body"><p class="kk-voice-quote">"Skeptical about the weight but it's basically the same. The stickers look incredible."</p><div class="kk-voice-attr"><div class="kk-voice-avatar" style="background:#F7CB15;"></div><div><div class="kk-voice-name">Sam K.</div><div class="kk-voice-handle">Alpha #07</div></div></div></div></div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Early voices",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow text", "default": "Early voices" },
+    { "type": "text", "id": "title", "label": "Title", "default": "What alpha testers say." }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo" },
+        { "type": "text", "id": "image_label", "label": "Image placeholder label", "default": "Tester photo" },
+        { "type": "textarea", "id": "quote", "label": "Quote", "default": "Finally moved my stickers without destroying a single one." },
+        { "type": "text", "id": "name", "label": "Name", "default": "Alex T." },
+        { "type": "text", "id": "handle", "label": "Handle / info", "default": "UC Berkeley · Alpha #04" },
+        { "type": "color", "id": "avatar_color", "label": "Avatar color", "default": "#1A8FFF" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Early voices" }]
+}
+{% endschema %}

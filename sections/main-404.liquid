@@ -1,0 +1,20 @@
+<div class="kk-404">
+  <div class="kk-404-dd"></div>
+  <div class="kk-404-num">404</div>
+  <h1 class="kk-404-title">{{ section.settings.title | default: "This page doesn't exist." }}</h1>
+  <p class="kk-404-sub">{{ section.settings.subtext | default: "Looks like this page packed up its stickers and left." }}</p>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;position:relative;z-index:2;">
+    <a href="{{ routes.root_url }}" class="kk-btn kk-btn-yellow">← Back home</a>
+    <a href="{{ routes.all_products_collection_url }}" class="kk-btn" style="border-color:rgba(255,255,255,.3);color:#fff;background:transparent;">Shop →</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "404",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading", "default": "This page doesn't exist." },
+    { "type": "text", "id": "subtext", "label": "Subtext", "default": "Looks like this page packed up its stickers and left." }
+  ]
+}
+{% endschema %}

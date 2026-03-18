@@ -1,0 +1,28 @@
+<section class="kk-promise kk-section kk-reveal">
+  <div class="kk-promise-cross"></div>
+  {%- assign promise_text = section.settings.text | default: "Designed for what you want to keep — and what you'll outgrow." -%}
+  {%- assign words = promise_text | split: ' ' -%}
+  {%- assign color_cycle = "kk-promise-w,kk-promise-w,kk-promise-c,kk-promise-w,kk-promise-w,kk-promise-b,kk-promise-stroke,kk-promise-w,kk-promise-w,kk-promise-c,kk-promise-w,kk-promise-w,kk-promise-b" | split: ',' -%}
+  <div class="kk-promise-text">
+    {%- for word in words -%}
+      {%- assign ci = forloop.index0 | modulo: 13 -%}
+      <span class="{{ color_cycle[ci] }}">{{ word }}</span>
+      {%- unless forloop.last -%}&nbsp;{%- endunless -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Promise banner",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Banner text",
+      "default": "Designed for what you want to keep and what you will outgrow."
+    }
+  ],
+  "presets": [{ "name": "Promise banner" }]
+}
+{% endschema %}

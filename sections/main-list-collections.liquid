@@ -1,0 +1,34 @@
+<div class="kk-collection">
+  <div class="kk-collection-banner kk-reveal">
+    <h1 class="kk-collection-title">{{ section.settings.title | default: 'All collections.' }}</h1>
+  </div>
+  <div class="kk-product-grid" style="grid-template-columns:repeat({{ section.settings.columns | default: 3 }},1fr);">
+    {%- for collection in collections -%}
+      <a href="{{ collection.url }}" class="kk-product-card" style="text-decoration:none;color:inherit;">
+        <div class="kk-product-card-img">
+          {%- if collection.image -%}
+            <img src="{{ collection.image | image_url: width: 600 }}" alt="{{ collection.title | escape }}" loading="lazy" width="300" height="300">
+          {%- else -%}
+            <div class="kk-product-card-img-placeholder"><div class="kk-product-card-img-placeholder-icon">🗂</div><div class="kk-product-card-img-placeholder-label">{{ collection.title }}</div></div>
+          {%- endif -%}
+        </div>
+        <div class="kk-product-card-body">
+          <div class="kk-product-card-title">{{ collection.title }}</div>
+          <div style="font-size:13px;color:#888;">{{ collection.products_count }} product{{ collection.products_count | pluralize: '', 's' }}</div>
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collections list",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading", "default": "All collections." },
+    { "type": "select", "id": "columns", "label": "Columns", "default": "3",
+      "options": [{ "value": "2", "label": "2" }, { "value": "3", "label": "3" }, { "value": "4", "label": "4" }]
+    }
+  ]
+}
+{% endschema %}

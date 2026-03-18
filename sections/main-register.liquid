@@ -1,0 +1,40 @@
+<div class="kk-auth-wrap kk-reveal">
+  <div class="kk-auth-title">Create account.</div>
+  <div class="kk-auth-sub">Join the KeepKase community.</div>
+  <div class="kk-auth-card">
+    {%- form 'create_customer' -%}
+      {%- if form.errors -%}
+        <div class="kk-error">{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="kk-form-group">
+          <label class="kk-form-label">First name</label>
+          <input class="kk-form-input" type="text" name="customer[first_name]" autocomplete="given-name">
+        </div>
+        <div class="kk-form-group">
+          <label class="kk-form-label">Last name</label>
+          <input class="kk-form-input" type="text" name="customer[last_name]" autocomplete="family-name">
+        </div>
+      </div>
+      <div class="kk-form-group">
+        <label class="kk-form-label">Email <span style="color:var(--kk-coral);">*</span></label>
+        <input class="kk-form-input" type="email" name="customer[email]" autocomplete="email" required>
+      </div>
+      <div class="kk-form-group">
+        <label class="kk-form-label">Password <span style="color:var(--kk-coral);">*</span></label>
+        <input class="kk-form-input" type="password" name="customer[password]" autocomplete="new-password" required minlength="5">
+      </div>
+      <button type="submit" class="kk-form-submit" style="margin-bottom:16px;">Create account →</button>
+      <div style="text-align:center;font-size:13px;">
+        Already have an account? <a href="{{ routes.account_login_url }}" class="kk-auth-link">Sign in</a>
+      </div>
+    {%- endform -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Register",
+  "settings": []
+}
+{% endschema %}

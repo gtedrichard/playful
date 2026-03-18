@@ -1,0 +1,28 @@
+{%- assign bar_text = section.settings.text -%}
+{%- if bar_text != blank -%}
+<div class="kk-announcement" id="kk-bar" style="background:{{ section.settings.bg_color | default: '#1A1A1A' }};">
+  <span>
+    {{ bar_text }}
+    {%- if section.settings.link_url != blank and section.settings.link_text != blank -%}
+      &nbsp;<a href="{{ section.settings.link_url }}">{{ section.settings.link_text }}</a>
+    {%- endif -%}
+  </span>
+  {%- if section.settings.dismissible -%}
+    <button class="kk-announcement-close" aria-label="Close" onclick="this.closest('#kk-bar').style.display='none'">✕</button>
+  {%- endif -%}
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    { "type": "text",     "id": "text",        "label": "Text",             "default": "🎉 Alpha open — 30 spots only. Free US shipping." },
+    { "type": "text",     "id": "link_text",   "label": "Link text",        "default": "Claim yours →" },
+    { "type": "url",      "id": "link_url",    "label": "Link URL" },
+    { "type": "color",    "id": "bg_color",    "label": "Background color", "default": "#1A1A1A" },
+    { "type": "checkbox", "id": "dismissible", "label": "Show close button","default": true }
+  ],
+  "presets": [{ "name": "Announcement bar" }]
+}
+{% endschema %}

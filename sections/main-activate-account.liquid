@@ -1,0 +1,27 @@
+<div class="kk-auth-wrap kk-reveal">
+  <div class="kk-auth-title">Activate account.</div>
+  <div class="kk-auth-sub">Create a password to activate your KeepKase account.</div>
+  <div class="kk-auth-card">
+    {%- form 'activate_customer_password' -%}
+      {%- if form.errors -%}
+        <div class="kk-error">{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+      <div class="kk-form-group">
+        <label class="kk-form-label">Password <span style="color:var(--kk-coral);">*</span></label>
+        <input class="kk-form-input" type="password" name="customer[password]" autocomplete="new-password" required minlength="5">
+      </div>
+      <div class="kk-form-group">
+        <label class="kk-form-label">Confirm password <span style="color:var(--kk-coral);">*</span></label>
+        <input class="kk-form-input" type="password" name="customer[password_confirmation]" autocomplete="new-password" required>
+      </div>
+      <button type="submit" class="kk-form-submit">Activate account →</button>
+    {%- endform -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Activate account",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,107 @@
+<section class="kk-paths kk-reveal" id="tracks">
+  <div class="kk-dots-bg"></div>
+  <!-- squiggles right edge -->
+  <svg style="position:absolute;right:0;top:0;height:100%;width:70px;opacity:.07;pointer-events:none;z-index:0;" preserveAspectRatio="xMidYMid slice" viewBox="0 0 70 500">
+    <path id="kk-sq-pp1" d="M15 0 Q38 50 15 100 Q-8 150 15 200 Q38 250 15 300 Q-8 350 15 400 Q38 450 15 500" stroke="#1A1A1A" stroke-width="2" fill="none"/>
+    <path id="kk-sq-pp2" d="M45 25 Q62 75 45 125 Q28 175 45 225 Q62 275 45 325 Q28 375 45 425" stroke="#1A1A1A" stroke-width="1.4" fill="none"/>
+  </svg>
+  <div class="kk-paths-label">{{ section.settings.label | default: 'Two ways in' }}</div>
+  <h2 class="kk-paths-title">{{ section.settings.title | default: 'Pick your' }} <em>{{ section.settings.title_accent | default: 'path.' }}</em></h2>
+  <div class="kk-paths-grid">
+    <!-- ALPHA CARD -->
+    <div class="kk-alpha-card kk-reveal kk-d1">
+      <div class="kk-alpha-dd"></div>
+      <div class="kk-alpha-blob"></div>
+      <div class="kk-alpha-spots">{{ section.settings.alpha_spots | default: '11 spots left' }}</div>
+      <div class="kk-alpha-inner">
+        <div class="kk-alpha-badge">{{ section.settings.alpha_badge | default: 'Alpha tester' }}</div>
+        <h3>{{ section.settings.alpha_title | default: 'Help us build it.' }}<br><em>{{ section.settings.alpha_title_accent | default: 'Get it first.' }}</em></h3>
+        <p class="kk-alpha-desc">{{ section.settings.alpha_desc  }}</p>
+        <ul class="kk-alpha-perks">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'alpha_perk' -%}
+              <li {{ block.shopify_attributes }}>
+                <div class="kk-perk-pip {{ block.settings.pip_color | default: 'kk-pip-b' }}">✓</div>
+                {{ block.settings.text }}
+              </li>
+            {%- endif -%}
+          {%- else -%}
+            <li><div class="kk-perk-pip kk-pip-b">✓</div>Unit at cost — $50</li>
+            <li><div class="kk-perk-pip kk-pip-y">✓</div>35–40% off Kickstarter launch</li>
+            <li><div class="kk-perk-pip kk-pip-c">✓</div>Named in product credits</li>
+            <li><div class="kk-perk-pip kk-pip-b">✓</div>Direct Discord with the team</li>
+            <li><div class="kk-perk-pip kk-pip-y">✓</div>First pick of colorways</li>
+          {%- endfor -%}
+        </ul>
+        <a href="{{ section.settings.alpha_cta_url | default: '#' }}" class="kk-alpha-cta">{{ section.settings.alpha_cta_text | default: 'Claim alpha spot — $50 →' }}</a>
+      </div>
+    </div>
+
+    <!-- WAITLIST CARD -->
+    <div class="kk-wl-card kk-reveal kk-d2">
+      <div>
+        <div class="kk-wl-badge">{{ section.settings.wl_badge | default: 'Launch waitlist' }}</div>
+        <h3>{{ section.settings.wl_title | default: 'Not ready yet?' }}<br>{{ section.settings.wl_title2 | default: 'Lock your spot.' }}</h3>
+        <p class="kk-wl-desc">{{ section.settings.wl_desc | default: 'Free to join. Optional $10 refundable deposit bumps you to the front of the line when we launch on Kickstarter.' }}</p>
+        <div class="kk-wl-tiers">
+          <div class="kk-wl-tier kk-wl-tier-free">
+            <div><div class="kk-tier-l">{{ section.settings.tier_free_label | default: 'Free join' }}</div><div class="kk-tier-s">{{ section.settings.tier_free_sub | default: 'Warm spot in queue' }}</div></div>
+            <div class="kk-tier-tag kk-tier-tag-c">{{ section.settings.tier_free_tag | default: 'Open' }}</div>
+          </div>
+          <div class="kk-wl-tier kk-wl-tier-paid">
+            <div><div class="kk-tier-lw">{{ section.settings.tier_paid_label | default: '$10 deposit' }}</div><div class="kk-tier-sw">{{ section.settings.tier_paid_sub | default: 'Locked priority position' }}</div></div>
+            <div class="kk-tier-tag kk-tier-tag-y">{{ section.settings.tier_paid_tag | default: 'Real buyer' }}</div>
+          </div>
+        </div>
+      </div>
+      <a href="{{ section.settings.wl_cta_url | default: '#' }}" class="kk-wl-cta">{{ section.settings.wl_cta_text | default: 'Reserve launch spot — free →' }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pick your path",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Section label", "default": "Two ways in" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Pick your" },
+    { "type": "text", "id": "title_accent", "label": "Title accent (italic coral)", "default": "path." },
+    { "type": "header", "content": "Alpha card" },
+    { "type": "text", "id": "alpha_spots", "label": "Spots remaining badge", "default": "11 spots left" },
+    { "type": "text", "id": "alpha_badge", "label": "Badge text", "default": "Alpha tester" },
+    { "type": "text", "id": "alpha_title", "label": "Title line 1", "default": "Help us build it." },
+    { "type": "text", "id": "alpha_title_accent", "label": "Title line 2 (yellow)", "default": "Get it first." },
+    { "type": "textarea", "id": "alpha_desc", "label": "Description", "default": "30 units to people who'll use it hard. Cost price. Real access." },
+    { "type": "text", "id": "alpha_cta_text", "label": "CTA button text", "default": "Claim alpha spot — $50 →" },
+    { "type": "url", "id": "alpha_cta_url", "label": "CTA button URL" },
+    { "type": "header", "content": "Waitlist card" },
+    { "type": "text", "id": "wl_badge", "label": "Badge text", "default": "Launch waitlist" },
+    { "type": "text", "id": "wl_title", "label": "Title line 1", "default": "Not ready yet?" },
+    { "type": "text", "id": "wl_title2", "label": "Title line 2", "default": "Lock your spot." },
+    { "type": "textarea", "id": "wl_desc", "label": "Description", "default": "Free to join. Optional $10 refundable deposit bumps you to the front of the line." },
+    { "type": "text", "id": "tier_free_label", "label": "Free tier label", "default": "Free join" },
+    { "type": "text", "id": "tier_free_sub", "label": "Free tier sublabel", "default": "Warm spot in queue" },
+    { "type": "text", "id": "tier_free_tag", "label": "Free tier tag", "default": "Open" },
+    { "type": "text", "id": "tier_paid_label", "label": "Paid tier label", "default": "$10 deposit" },
+    { "type": "text", "id": "tier_paid_sub", "label": "Paid tier sublabel", "default": "Locked priority position" },
+    { "type": "text", "id": "tier_paid_tag", "label": "Paid tier tag", "default": "Real buyer" },
+    { "type": "text", "id": "wl_cta_text", "label": "CTA button text", "default": "Reserve launch spot — free →" },
+    { "type": "url", "id": "wl_cta_url", "label": "CTA button URL" }
+  ],
+  "blocks": [
+    {
+      "type": "alpha_perk",
+      "name": "Alpha perk",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Perk text", "default": "Unit at cost — $50" },
+        { "type": "select", "id": "pip_color", "label": "Pip color", "default": "kk-pip-b", "options": [
+          { "value": "kk-pip-b", "label": "Blue" },
+          { "value": "kk-pip-y", "label": "Yellow" },
+          { "value": "kk-pip-c", "label": "Coral" }
+        ]}
+      ]
+    }
+  ],
+  "presets": [{ "name": "Pick your path" }]
+}
+{% endschema %}

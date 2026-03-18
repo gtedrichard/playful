@@ -1,0 +1,33 @@
+<section class="kk-rich-text kk-section kk-reveal" style="background:{{ section.settings.bg_color | default: '#F4F1EA' }};">
+  {%- if section.settings.show_dots -%}<div class="kk-dots-bg-light"></div>{%- endif -%}
+  <div class="kk-rich-text-inner">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="kk-rich-text-eyebrow">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
+    {%- if section.settings.title != blank -%}
+      <h2 class="kk-rich-text-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <div class="kk-rich-text-body">{{ section.settings.text }}</div>
+    {%- endif -%}
+    {%- if section.settings.btn_text != blank -%}
+      <a href="{{ section.settings.btn_url | default: '#' }}" class="kk-btn kk-btn-filled">{{ section.settings.btn_text }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Rich text",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Background color", "default": "#F4F1EA" },
+    { "type": "checkbox", "id": "show_dots", "label": "Show dot texture", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow text" },
+    { "type": "text", "id": "title", "label": "Title", "default": "A message from Ted." },
+    { "type": "richtext", "id": "text", "label": "Body text", "default": "<p>We built KeepKase because we kept destroying stickers we loved.</p>" },
+    { "type": "text", "id": "btn_text", "label": "Button text" },
+    { "type": "url", "id": "btn_url", "label": "Button URL" }
+  ],
+  "presets": [{ "name": "Rich text" }]
+}
+{% endschema %}

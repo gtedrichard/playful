@@ -1,0 +1,14 @@
+{
+  "name": "Footer group",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "logo_text": "KeepKase",
+        "description": "A modular MacBook case built for people who collect moments, not just stickers."
+      }
+    }
+  },
+  "order": ["footer"]
+}

@@ -1,0 +1,22 @@
+{
+  "current": {
+    "color_primary": "#1A8FFF",
+    "color_accent": "#F7CB15",
+    "color_highlight": "#F55D3E",
+    "color_background": "#F4F1EA",
+    "color_ink": "#1A1A1A",
+    "type_body_size": "medium",
+    "use_google_fonts": true,
+    "cart_type": "drawer",
+    "cart_note": true,
+    "card_show_vendor": false,
+    "card_show_secondary_image": true,
+    "card_image_ratio": "square",
+    "predictive_search_enabled": true,
+    "predictive_search_show_vendor": false,
+    "animations_reveal_on_scroll": true,
+    "enable_draggable": true,
+    "enable_squiggles": true,
+    "checkout_accent_color": "#1A8FFF"
+  }
+}

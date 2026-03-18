@@ -1,0 +1,81 @@
+<section class="kk-how kk-reveal">
+  <div class="kk-crosshatch"></div>
+  <div class="kk-how-eyebrow">{{ section.settings.eyebrow | default: 'How it works' }}</div>
+  <h2 class="kk-how-title">{{ section.settings.title | default: 'Three steps to' }} <span class="hs">{{ section.settings.title_accent | default: 'freedom.' }}</span></h2>
+  <div class="kk-how-stack">
+    {%- for block in section.blocks -%}
+      <div class="kk-how-card kk-reveal kk-d{{ forloop.index }} kk-draggable" {{ block.shopify_attributes }}>
+        <div class="kk-how-num">0{{ forloop.index }}</div>
+        <div class="kk-how-img">
+          <div class="kk-how-img-dots"></div>
+          {%- if block.settings.image != blank -%}
+            <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+          {%- else -%}
+            <div class="kk-how-img-icon">📸</div>
+            <div class="kk-how-img-label">{{ block.settings.image_label | default: 'Step photo' }}</div>
+            <div class="kk-how-img-sub">{{ block.settings.image_sub | default: '4:3' }}</div>
+          {%- endif -%}
+        </div>
+        <h4>{{ block.settings.title }}</h4>
+        <p>{{ block.settings.text }}</p>
+        <div class="kk-how-tag">
+          <div class="kk-how-tag-inner {% if forloop.index == 3 %}kk-how-tag-blue{% else %}kk-how-tag-outline{% endif %}">
+            {{ block.settings.tag }}
+          </div>
+        </div>
+      </div>
+    {%- else -%}
+      <div class="kk-how-card kk-draggable">
+        <div class="kk-how-num">01</div>
+        <div class="kk-how-img"><div class="kk-how-img-dots"></div><div class="kk-how-img-icon">📸</div><div class="kk-how-img-label">Step 1 photo</div><div class="kk-how-img-sub">Stickers in sheets · 4:3</div></div>
+        <h4>Place your stickers</h4><p>Lay them between the two clear polycarbonate sheets. No adhesive touches your MacBook — ever.</p>
+        <div class="kk-how-tag"><div class="kk-how-tag-inner kk-how-tag-outline">Zero adhesive</div></div>
+      </div>
+      <div class="kk-how-card kk-draggable">
+        <div class="kk-how-num">02</div>
+        <div class="kk-how-img"><div class="kk-how-img-dots"></div><div class="kk-how-img-icon">📸</div><div class="kk-how-img-label">Step 2 photo</div><div class="kk-how-img-sub">Frame snap · 4:3</div></div>
+        <h4>Snap in the frame</h4><p>The hardshell border clips around your MacBook and holds the sheet sandwich in place.</p>
+        <div class="kk-how-tag"><div class="kk-how-tag-inner kk-how-tag-outline">Full protection</div></div>
+      </div>
+      <div class="kk-how-card kk-draggable">
+        <div class="kk-how-num">03</div>
+        <div class="kk-how-img"><div class="kk-how-img-dots"></div><div class="kk-how-img-icon">📸</div><div class="kk-how-img-label">Step 3 photo</div><div class="kk-how-img-sub">Sheet swap · 4:3</div></div>
+        <h4>Swap or retire</h4><p>Pop the sheets out. Rearrange. Retire a layout to your wall. Start fresh whenever.</p>
+        <div class="kk-how-tag"><div class="kk-how-tag-inner kk-how-tag-blue">Keep forever ✦</div></div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How it works",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow text", "default": "How it works" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Three steps to" },
+    { "type": "text", "id": "title_accent", "label": "Title accent (italic blue)", "default": "freedom." }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Step image" },
+        { "type": "text", "id": "image_label", "label": "Image placeholder label", "default": "Step photo" },
+        { "type": "text", "id": "image_sub", "label": "Image placeholder sub", "default": "4:3" },
+        { "type": "text", "id": "title", "label": "Step title", "default": "Place your stickers" },
+        { "type": "textarea", "id": "text", "label": "Step description", "default": "Lay them between the two clear polycarbonate sheets." },
+        { "type": "text", "id": "tag", "label": "Tag label", "default": "Zero adhesive" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "How it works",
+    "blocks": [
+      { "type": "step", "settings": { "title": "Place your stickers", "text": "Lay them between the two clear polycarbonate sheets. No adhesive touches your MacBook — ever.", "tag": "Zero adhesive" } },
+      { "type": "step", "settings": { "title": "Snap in the frame", "text": "The hardshell border clips around your MacBook and holds the sheet sandwich in place.", "tag": "Full protection" } },
+      { "type": "step", "settings": { "title": "Swap or retire", "text": "Pop the sheets out. Rearrange. Retire a layout to your wall. Start fresh whenever.", "tag": "Keep forever ✦" } }
+    ]
+  }]
+}
+{% endschema %}

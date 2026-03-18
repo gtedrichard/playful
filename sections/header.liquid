@@ -1,0 +1,39 @@
+<nav class="kk-nav">
+  <a id="kk-logo" class="kk-nav-logo" href="{{ routes.root_url }}">
+    <div class="kk-nav-logo-k">K</div>
+    {{ section.settings.logo_text | default: shop.name }}
+  </a>
+  <div class="kk-nav-links">
+    {%- for link in section.settings.menu.links -%}
+      <a class="kk-nav-link{% if link.active %} active{% endif %}" href="{{ link.url }}">{{ link.title }}</a>
+    {%- endfor -%}
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    {%- if section.settings.show_search -%}
+      <a href="{{ routes.search_url }}" class="kk-nav-cart" aria-label="Search" style="width:40px;justify-content:center;">🔍</a>
+    {%- endif -%}
+    <a href="{{ routes.cart_url }}" class="kk-nav-cart" data-cart-drawer-open>
+      🛒
+      <span class="kk-nav-cart-count" id="kk-cart-count">{{ cart.item_count }}</span>
+    </a>
+    {%- if shop.customer_accounts_enabled -%}
+      <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="kk-nav-cart" style="width:40px;justify-content:center;">👤</a>
+    {%- endif -%}
+    <a href="{{ section.settings.cta_url | default: '#tracks' }}" class="kk-nav-btn">{{ section.settings.cta_text | default: 'Get early access →' }}</a>
+  </div>
+  <button class="kk-nav-mobile-toggle" aria-label="Menu">☰</button>
+</nav>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "section-header",
+  "settings": [
+    { "type": "text", "id": "logo_text", "label": "Logo text", "default": "KeepKase" },
+    { "type": "link_list", "id": "menu", "label": "Navigation menu", "default": "main-menu" },
+    { "type": "text", "id": "cta_text", "label": "CTA button text", "default": "Get early access →" },
+    { "type": "url", "id": "cta_url", "label": "CTA button link", "default": "/" },
+    { "type": "checkbox", "id": "show_search", "label": "Show search icon", "default": true }
+  ]
+}
+{% endschema %}

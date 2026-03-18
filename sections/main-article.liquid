@@ -1,0 +1,76 @@
+<div class="kk-article kk-reveal">
+  <a href="{{ blog.url }}" class="kk-back-to-blog">{{ blog.title }}</a>
+
+  <div class="kk-article-layout">
+    <!-- Main content -->
+    <div>
+      <div class="kk-article-header">
+        {%- if article.tags.first -%}
+          <div class="kk-article-tag">{{ article.tags.first }}</div>
+        {%- endif -%}
+        <h1 class="kk-article-title">{{ article.title }}</h1>
+        <div class="kk-article-meta">
+          <span>{{ article.published_at | date: '%B %d, %Y' }}</span>
+          <span>·</span>
+          <span>{{ article.author }}</span>
+          {%- if article.comments_count > 0 -%}
+            <span>·</span>
+            <span>{{ article.comments_count }} comment{{ article.comments_count | pluralize: '', 's' }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- if article.image -%}
+        <div class="kk-article-hero">
+          <img src="{{ article.image | image_url: width: 1200 }}" alt="{{ article.title | escape }}" loading="eager" width="600" height="338">
+        </div>
+      {%- endif -%}
+
+      <div class="kk-article-body">
+        {{ article.content }}
+      </div>
+
+      <!-- Tags -->
+      {%- if article.tags.size > 0 -%}
+        <div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:8px;">
+          {%- for tag in article.tags -%}
+            <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="kk-pill kk-pill-outline" style="text-decoration:none;font-size:12px;">{{ tag }}</a>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- Sidebar -->
+    <div class="kk-article-sidebar">
+      <div class="kk-article-share">
+        <div class="kk-article-share-title" style="color:#fff;">Share this post</div>
+        <div class="kk-article-share-links">
+          <a class="kk-share-link" href="https://twitter.com/intent/tweet?url={{ shop.url }}{{ article.url }}&text={{ article.title | url_encode }}" target="_blank" rel="noopener">Twitter / X</a>
+          <a class="kk-share-link" href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url }}{{ article.url }}" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+
+      <!-- Recent posts -->
+      {%- if blog.articles.size > 1 -%}
+        <div style="border:2px solid var(--kk-ink);border-radius:16px;padding:20px;">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#aaa;margin-bottom:16px;">More posts</div>
+          {%- for a in blog.articles limit: 4 -%}
+            {%- unless a.id == article.id -%}
+              <a href="{{ a.url }}" style="display:block;padding:10px 0;border-bottom:1px solid rgba(26,26,26,.08);text-decoration:none;color:var(--kk-ink);">
+                <div style="font-size:13px;font-weight:700;margin-bottom:3px;">{{ a.title | truncate: 50 }}</div>
+                <div style="font-size:11px;color:#aaa;">{{ a.published_at | date: '%b %d, %Y' }}</div>
+              </a>
+            {%- endunless -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Article",
+  "settings": []
+}
+{% endschema %}

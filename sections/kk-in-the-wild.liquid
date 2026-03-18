@@ -1,0 +1,72 @@
+<section class="kk-wild kk-reveal">
+  <div class="kk-dots-bg-dark"></div>
+  <svg class="kk-wild-rings" width="280" height="280" viewBox="0 0 280 280" fill="none" style="position:absolute;top:-60px;right:-60px;">
+    <circle cx="280" cy="0" r="80" stroke="white" stroke-width="1.5" stroke-dasharray="8 6"/>
+    <circle cx="280" cy="0" r="140" stroke="white" stroke-width="1" stroke-dasharray="6 8"/>
+    <circle cx="280" cy="0" r="210" stroke="white" stroke-width=".6" stroke-dasharray="4 10"/>
+  </svg>
+  <div class="kk-wild-head">
+    <h2 class="kk-wild-title">{{ section.settings.title | default: 'In the wild.' }}<br><span class="kk-yellow">{{ section.settings.title_accent | default: 'Real stories.' }}</span></h2>
+    <p class="kk-wild-sub">{{ section.settings.subtext | default: 'Alpha testers. Real setups. Real reactions.' }}</p>
+  </div>
+  <div class="kk-pinboard">
+    {%- assign pn_classes = 'kk-pn1,kk-pn2,kk-pn3,kk-pn4,kk-pn5' | split: ',' -%}
+    {%- assign push_colors = 'kk-push-y,kk-push-c,kk-push-b,kk-push-y,kk-push-c' | split: ',' -%}
+    {%- assign badge_colors = 'kk-pin-badge-ink,kk-pin-badge-coral,kk-pin-badge-blue,kk-pin-badge-ink,kk-pin-badge-coral' | split: ',' -%}
+    {%- for block in section.blocks -%}
+      {%- assign pn_class = pn_classes[forloop.index0] -%}
+      {%- assign push_color = push_colors[forloop.index0] -%}
+      {%- assign badge_color = badge_colors[forloop.index0] -%}
+      <div class="{{ pn_class }}" {{ block.shopify_attributes }}>
+        <div class="kk-pin">
+          <div class="kk-pushpin {{ push_color }} kk-draggable"></div>
+          <div class="kk-pin-inner">
+            <div class="kk-pin-dots"></div>
+            {%- if block.settings.image != blank -%}
+              <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.label }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+            {%- else -%}
+              <div class="kk-pin-icon">{{ block.settings.icon | default: '📸' }}</div>
+              <div class="kk-pin-label">{{ block.settings.label | default: 'Photo' }}</div>
+              <div class="kk-pin-sub">{{ block.settings.sublabel }}</div>
+            {%- endif -%}
+            {%- if block.settings.badge != blank -%}
+              <div class="kk-pin-badge {{ badge_color }}">{{ block.settings.badge }}</div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    {%- else -%}
+      <div class="kk-pn1"><div class="kk-pin"><div class="kk-pushpin kk-push-y kk-draggable"></div><div class="kk-pin-inner"><div class="kk-pin-dots"></div><div class="kk-pin-icon">🎬</div><div class="kk-pin-label">Hero video / GIF</div><div class="kk-pin-sub">TikTok repurpose · 16:9</div><div class="kk-pin-badge kk-pin-badge-ink">178K views ✦</div></div></div></div>
+      <div class="kk-pn2"><div class="kk-pin"><div class="kk-pushpin kk-push-c kk-draggable"></div><div class="kk-pin-inner"><div class="kk-pin-dots"></div><div class="kk-pin-icon">📱</div><div class="kk-pin-label">TikTok thumbnail</div><div class="kk-pin-sub">9:16</div><div class="kk-pin-badge kk-pin-badge-coral">TikTok</div></div></div></div>
+      <div class="kk-pn3"><div class="kk-pin"><div class="kk-pushpin kk-push-b kk-draggable"></div><div class="kk-pin-inner"><div class="kk-pin-dots"></div><div class="kk-pin-icon">🖼</div><div class="kk-pin-label">Alpha tester UGC</div><div class="kk-pin-sub">Square crop</div><div class="kk-pin-badge kk-pin-badge-blue">Alpha #04</div></div></div></div>
+      <div class="kk-pn4"><div class="kk-pin"><div class="kk-pushpin kk-push-y kk-draggable"></div><div class="kk-pin-inner"><div class="kk-pin-dots"></div><div class="kk-pin-icon">📸</div><div class="kk-pin-label">Setup lifestyle</div><div class="kk-pin-sub">4:3</div></div></div></div>
+      <div class="kk-pn5"><div class="kk-pin"><div class="kk-pushpin kk-push-c kk-draggable"></div><div class="kk-pin-inner"><div class="kk-pin-dots"></div><div class="kk-pin-icon">🖼</div><div class="kk-pin-label">Retired sheet · wall art</div><div class="kk-pin-sub">4:3</div></div></div></div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "In the wild",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "In the wild." },
+    { "type": "text", "id": "title_accent", "label": "Title accent (yellow)", "default": "Real stories." },
+    { "type": "text", "id": "subtext", "label": "Subtext", "default": "Alpha testers. Real setups. Real reactions." }
+  ],
+  "blocks": [
+    {
+      "type": "pin",
+      "name": "Pin",
+      "limit": 5,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "icon", "label": "Placeholder icon (emoji)", "default": "📸" },
+        { "type": "text", "id": "label", "label": "Placeholder label", "default": "Photo" },
+        { "type": "text", "id": "sublabel", "label": "Sublabel", "default": "4:3" },
+        { "type": "text", "id": "badge", "label": "Badge text (optional)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "In the wild" }]
+}
+{% endschema %}

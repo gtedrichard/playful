@@ -1,0 +1,244 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "KeepKase",
+    "theme_version": "1.0.0",
+    "theme_author": "KeepKase",
+    "theme_documentation_url": "https://keepkase.com",
+    "theme_support_url": "https://keepkase.com/pages/contact"
+  },
+  {
+    "name": "Logo & favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "32×32px .png or .ico recommended"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image",
+        "info": "Displayed if uploaded; falls back to text logo"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 80,
+        "max": 300,
+        "step": 10,
+        "unit": "px",
+        "label": "Logo width",
+        "default": 140
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary (blue)",
+        "default": "#1A8FFF"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent (yellow)",
+        "default": "#F7CB15"
+      },
+      {
+        "type": "color",
+        "id": "color_highlight",
+        "label": "Highlight (coral)",
+        "default": "#F55D3E"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background (cream)",
+        "default": "#F4F1EA"
+      },
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Ink (dark)",
+        "default": "#1A1A1A"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "select",
+        "id": "type_body_size",
+        "label": "Body font size",
+        "default": "medium",
+        "options": [
+          { "value": "small",  "label": "Small"  },
+          { "value": "medium", "label": "Medium" },
+          { "value": "large",  "label": "Large"  }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "use_google_fonts",
+        "label": "Load Cabinet Grotesk from Google Fonts",
+        "default": true,
+        "info": "Disable if you prefer system fonts for performance"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Cart type",
+        "default": "drawer",
+        "options": [
+          { "value": "drawer",   "label": "Slide-out drawer" },
+          { "value": "page",     "label": "Full cart page"   },
+          { "value": "notification", "label": "Notification bubble" }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_note",
+        "label": "Enable order notes",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Product cards",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "card_show_vendor",
+        "label": "Show vendor on card",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "card_show_secondary_image",
+        "label": "Show second image on hover",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "card_image_ratio",
+        "label": "Card image ratio",
+        "default": "square",
+        "options": [
+          { "value": "portrait",  "label": "Portrait (2:3)"  },
+          { "value": "square",    "label": "Square (1:1)"    },
+          { "value": "landscape", "label": "Landscape (4:3)" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Search",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "predictive_search_enabled",
+        "label": "Enable predictive search",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_show_vendor",
+        "label": "Show vendor in search results",
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "Animations",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "animations_reveal_on_scroll",
+        "label": "Reveal sections on scroll",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_draggable",
+        "label": "Enable draggable elements",
+        "default": true,
+        "info": "MacBook mock, stickers, cards — can be grabbed and released"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_squiggles",
+        "label": "Animate squiggle lines",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "url",
+        "id": "social_tiktok_link",
+        "label": "TikTok"
+      },
+      {
+        "type": "url",
+        "id": "social_instagram_link",
+        "label": "Instagram"
+      },
+      {
+        "type": "url",
+        "id": "social_twitter_link",
+        "label": "Twitter / X"
+      },
+      {
+        "type": "url",
+        "id": "social_youtube_link",
+        "label": "YouTube"
+      },
+      {
+        "type": "url",
+        "id": "social_discord_link",
+        "label": "Discord"
+      }
+    ]
+  },
+  {
+    "name": "Checkout",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "checkout_logo",
+        "label": "Checkout logo"
+      },
+      {
+        "type": "color",
+        "id": "checkout_accent_color",
+        "label": "Checkout accent color",
+        "default": "#1A8FFF",
+        "info": "Used for checkout buttons and links"
+      }
+    ]
+  },
+  {
+    "name": "SEO & sharing",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "share_image",
+        "label": "Default social share image",
+        "info": "1200×630px recommended. Used when no product/page image is available."
+      }
+    ]
+  }
+]

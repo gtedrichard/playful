@@ -1,0 +1,95 @@
+{%- paginate collection.products by section.settings.products_per_page -%}
+<div class="kk-collection">
+
+  <div class="kk-collection-banner kk-reveal">
+    <div>
+      <h1 class="kk-collection-title">{{ collection.title | default: 'Shop all.' }}</h1>
+      {%- if collection.description != blank -%}
+        <p class="kk-collection-desc">{{ collection.description }}</p>
+      {%- endif -%}
+    </div>
+    {%- if section.settings.show_count -%}
+      <div class="kk-pill kk-pill-outline">{{ collection.products_count }} product{{ collection.products_count | pluralize: '', 's' }}</div>
+    {%- endif -%}
+  </div>
+
+  <div class="kk-collection-toolbar">
+    <span class="kk-collection-count">{{ collection.products_count }} products</span>
+    <div class="kk-collection-sort">
+      <label for="kk-sort" style="font-size:13px;font-weight:600;color:#888;">Sort:</label>
+      <select id="kk-sort" class="kk-sort-select" onchange="window.location.href=this.value;">
+        {%- for option in collection.sort_options -%}
+          <option value="{{ collection.url }}?sort_by={{ option.value }}"{% if collection.sort_by == option.value %} selected{% endif %}>{{ option.name }}</option>
+        {%- endfor -%}
+      </select>
+    </div>
+  </div>
+
+  <div class="kk-product-grid" style="grid-template-columns:repeat({{ section.settings.columns | default: 3 }},1fr);">
+    {%- for product in collection.products -%}
+      <div class="kk-product-card kk-reveal">
+        <a href="{{ product.url }}" style="text-decoration:none;color:inherit;">
+          <div class="kk-product-card-img">
+            {%- if product.featured_image -%}
+              <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" loading="lazy" width="300" height="300">
+            {%- else -%}
+              <div class="kk-product-card-img-placeholder"><div class="kk-product-card-img-placeholder-icon">📦</div><div class="kk-product-card-img-placeholder-label">{{ product.title }}</div></div>
+            {%- endif -%}
+            {%- if product.compare_at_price > product.price -%}<div class="kk-product-card-badge">Sale</div>{%- endif -%}
+          </div>
+          <div class="kk-product-card-body">
+            {%- if section.settings.show_vendor -%}<div class="kk-product-card-vendor">{{ product.vendor }}</div>{%- endif -%}
+            <div class="kk-product-card-title">{{ product.title }}</div>
+            <div class="kk-product-card-price">
+              {{ product.price | money }}
+              {%- if product.compare_at_price > product.price -%}<span class="kk-product-card-price-compare">{{ product.compare_at_price | money }}</span>{%- endif -%}
+            </div>
+          </div>
+        </a>
+        <div class="kk-product-card-footer">
+          {%- if product.available -%}
+            <button class="kk-product-card-atc" onclick="kkAddToCart({{ product.variants.first.id }},this)">Add to cart</button>
+          {%- else -%}
+            <button class="kk-product-card-atc sold-out" disabled>Sold out</button>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- else -%}
+      <div style="grid-column:1/-1;text-align:center;padding:80px 0;color:#888;"><div style="font-size:36px;margin-bottom:12px;">📦</div><div style="font-size:16px;font-weight:700;">No products yet</div></div>
+    {%- endfor -%}
+  </div>
+
+  {%- if paginate.pages > 1 -%}
+    <div class="kk-pagination">
+      {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}">←</a>{%- endif -%}
+      {%- for part in paginate.parts -%}
+        {%- if part.is_link -%}<a href="{{ part.url }}">{{ part.title }}</a>{%- else -%}<span class="current">{{ part.title }}</span>{%- endif -%}
+      {%- endfor -%}
+      {%- if paginate.next -%}<a href="{{ paginate.next.url }}">→</a>{%- endif -%}
+    </div>
+  {%- endif -%}
+
+</div>
+{%- endpaginate -%}
+
+<script>
+function kkAddToCart(id,btn){var o=btn.textContent;btn.textContent='Adding…';btn.disabled=true;fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id,quantity:1})}).then(function(r){return r.json()}).then(function(){btn.textContent='Added ✓';setTimeout(function(){btn.textContent=o;btn.disabled=false},2000);fetch('/cart.js').then(function(r){return r.json()}).then(function(c){var el=document.getElementById('kk-cart-count');if(el)el.textContent=c.item_count})}).catch(function(){btn.textContent=o;btn.disabled=false})}
+</script>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    { "type": "checkbox", "id": "show_count", "label": "Show product count", "default": true },
+    { "type": "checkbox", "id": "show_vendor", "label": "Show vendor", "default": false },
+    { "type": "select", "id": "columns", "label": "Products per row", "default": "3",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ]
+    },
+    { "type": "range", "id": "products_per_page", "min": 12, "max": 48, "step": 12, "label": "Products per page", "default": 12 }
+  ]
+}
+{% endschema %}

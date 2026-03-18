@@ -1,0 +1,31 @@
+<section class="kk-newsletter kk-reveal">
+  <div class="kk-newsletter-dd"></div>
+  <div class="kk-newsletter-inner">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="kk-newsletter-eyebrow">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
+    <h2 class="kk-newsletter-title">{{ section.settings.title | default: "Stay in the loop." }}</h2>
+    <p class="kk-newsletter-sub">{{ section.settings.subtext | default: "Updates, drops, and behind-the-scenes. No spam." }}</p>
+    {%- form 'customer' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div class="kk-newsletter-form">
+        <input class="kk-newsletter-input" type="email" name="contact[email]" placeholder="{{ section.settings.placeholder | default: 'your@email.com' }}" required autocomplete="email">
+        <button type="submit" class="kk-newsletter-btn">{{ section.settings.btn_text | default: 'Subscribe' }}</button>
+      </div>
+    {%- endform -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Newsletter" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Stay in the loop." },
+    { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "Updates, drops, and behind-the-scenes. No spam." },
+    { "type": "text", "id": "placeholder", "label": "Input placeholder", "default": "your@email.com" },
+    { "type": "text", "id": "btn_text", "label": "Button text", "default": "Subscribe" }
+  ],
+  "presets": [{ "name": "Newsletter" }]
+}
+{% endschema %}

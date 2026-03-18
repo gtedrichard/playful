@@ -1,0 +1,73 @@
+<div class="kk-account">
+  <div class="kk-account-sidebar">
+    <div class="kk-account-sidebar-logo">
+      <div style="width:28px;height:28px;background:var(--kk-ink);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--kk-yellow);font-size:13px;font-weight:900;">K</div>
+      My Account
+    </div>
+    <ul class="kk-account-nav">
+      <li class="kk-account-nav-item"><a href="{{ routes.account_url }}">Orders</a></li>
+      <li class="kk-account-nav-item active"><a href="{{ routes.account_addresses_url }}">Addresses</a></li>
+      <li class="kk-account-nav-item"><a href="{{ routes.account_logout_url }}">Sign out</a></li>
+    </ul>
+  </div>
+
+  <div class="kk-account-content kk-reveal">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;">
+      <h1 class="kk-account-title" style="margin:0;">Addresses</h1>
+      <button class="kk-btn kk-btn-filled" onclick="document.getElementById('kk-add-address').style.display='block'">+ Add address</button>
+    </div>
+
+    <!-- Add address form -->
+    <div id="kk-add-address" style="display:none;background:#fff;border:2px solid var(--kk-ink);border-radius:20px;padding:32px;margin-bottom:32px;box-shadow:6px 6px 0 var(--kk-ink);">
+      <h3 style="font-size:18px;font-weight:800;margin-bottom:20px;">New address</h3>
+      {%- form 'customer_address', customer.new_address -%}
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div class="kk-form-group"><label class="kk-form-label">First name</label><input class="kk-form-input" type="text" name="address[first_name]" autocomplete="given-name"></div>
+          <div class="kk-form-group"><label class="kk-form-label">Last name</label><input class="kk-form-input" type="text" name="address[last_name]" autocomplete="family-name"></div>
+          <div class="kk-form-group" style="grid-column:1/-1;"><label class="kk-form-label">Address</label><input class="kk-form-input" type="text" name="address[address1]" autocomplete="address-line1"></div>
+          <div class="kk-form-group" style="grid-column:1/-1;"><input class="kk-form-input" type="text" name="address[address2]" placeholder="Apt, suite, etc." autocomplete="address-line2"></div>
+          <div class="kk-form-group"><label class="kk-form-label">City</label><input class="kk-form-input" type="text" name="address[city]" autocomplete="address-level2"></div>
+          <div class="kk-form-group"><label class="kk-form-label">ZIP / Postal code</label><input class="kk-form-input" type="text" name="address[zip]" autocomplete="postal-code"></div>
+          <div class="kk-form-group" style="grid-column:1/-1;"><label class="kk-form-label">Country</label>{{ all_country_option_tags | prepend: '<select class="kk-form-select" name="address[country]" autocomplete="country">' | append: '</select>' }}</div>
+        </div>
+        <div style="margin-top:8px;"><label style="display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;"><input type="checkbox" name="address[default]"> Set as default address</label></div>
+        <div style="margin-top:20px;display:flex;gap:12px;">
+          <button type="submit" class="kk-form-submit" style="width:auto;padding:12px 24px;">Save address</button>
+          <button type="button" class="kk-btn kk-btn-ghost" onclick="document.getElementById('kk-add-address').style.display='none'">Cancel</button>
+        </div>
+      {%- endform -%}
+    </div>
+
+    <!-- Existing addresses -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      {%- for address in customer.addresses -%}
+        <div style="border:2px solid var(--kk-ink);border-radius:20px;padding:24px;position:relative;">
+          {%- if address == customer.default_address -%}
+            <div class="kk-pill kk-pill-yellow" style="margin-bottom:14px;">Default</div>
+          {%- endif -%}
+          <address style="font-style:normal;font-size:14px;color:#555;line-height:2;margin-bottom:16px;">
+            <strong style="color:var(--kk-ink);font-size:15px;">{{ address.name }}</strong><br>
+            {{ address.address1 }}<br>
+            {%- if address.address2 != blank -%}{{ address.address2 }}<br>{%- endif -%}
+            {{ address.city }}, {{ address.province_code }} {{ address.zip }}<br>
+            {{ address.country }}
+          </address>
+          <div style="display:flex;gap:12px;">
+            <a href="#" class="kk-auth-link">Edit</a>
+            {%- form 'customer_address', address -%}
+              <input type="hidden" name="_method" value="delete">
+              <button type="submit" class="kk-auth-link" style="background:none;border:none;cursor:pointer;font-family:inherit;color:var(--kk-coral);">Delete</button>
+            {%- endform -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Addresses",
+  "settings": []
+}
+{% endschema %}

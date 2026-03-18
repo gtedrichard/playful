@@ -1,0 +1,38 @@
+<section class="kk-email kk-section kk-reveal">
+  <div class="kk-dots-bg" style="opacity:.06;"></div>
+  <!-- squiggles -->
+  <svg style="position:absolute;right:0;top:0;height:100%;width:80px;opacity:.10;pointer-events:none;z-index:0;" preserveAspectRatio="xMidYMid slice" viewBox="0 0 80 400">
+    <path d="M20 0 Q50 50 20 100 Q-10 150 20 200 Q50 250 20 300 Q-10 350 20 400" stroke="white" stroke-width="2" fill="none"/>
+    <path d="M52 25 Q72 75 52 125 Q32 175 52 225 Q72 275 52 325" stroke="white" stroke-width="1.4" fill="none"/>
+  </svg>
+  <div class="kk-email-left">
+    <div class="kk-pill kk-pill-yellow" style="margin-bottom:20px;">{{ section.settings.eyebrow | default: '✦ Join early' }}</div>
+    <h2>{{ section.settings.title | default: "Don't miss<br>the launch." }}</h2>
+    <p>{{ section.settings.subtext | default: "We're launching on Kickstarter. Get first access, early bird pricing, and updates straight from the team." }}</p>
+  </div>
+  <div class="kk-email-right">
+    {%- form 'customer', id: 'kk-email-form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter,waitlist">
+      <input class="kk-email-input" type="text" name="contact[first_name]" placeholder="{{ section.settings.name_placeholder | default: 'Your name' }}" autocomplete="given-name">
+      <input class="kk-email-input" type="email" name="contact[email]" placeholder="{{ section.settings.email_placeholder | default: 'your@email.com' }}" required autocomplete="email">
+      <button type="submit" class="kk-email-btn">{{ section.settings.btn_text | default: 'Reserve my spot →' }}</button>
+      <p class="kk-email-fine">{{ section.settings.fine_print | default: 'No spam. Unsubscribe anytime. Deposit is fully refundable.' }}</p>
+    {%- endform -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Email signup",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow pill", "default": "✦ Join early" },
+    { "type": "html", "id": "title", "label": "Title", "default": "Don't miss<br>the launch." },
+    { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "We're launching on Kickstarter. Get first access, early bird pricing, and updates straight from the team." },
+    { "type": "text", "id": "name_placeholder", "label": "Name placeholder", "default": "Your name" },
+    { "type": "text", "id": "email_placeholder", "label": "Email placeholder", "default": "your@email.com" },
+    { "type": "text", "id": "btn_text", "label": "Button text", "default": "Reserve my spot →" },
+    { "type": "text", "id": "fine_print", "label": "Fine print", "default": "No spam. Unsubscribe anytime. Deposit is fully refundable." }
+  ],
+  "presets": [{ "name": "Email signup" }]
+}
+{% endschema %}

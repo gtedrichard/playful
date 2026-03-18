@@ -1,0 +1,44 @@
+<section class="kk-faq kk-reveal">
+  <div class="kk-faq-header">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="kk-section-label">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
+    <h2 class="kk-faq-title">{{ section.settings.title | default: 'Frequently asked.' }}</h2>
+  </div>
+  <div class="kk-faq-grid">
+    {%- for block in section.blocks -%}
+      <div class="kk-faq-item kk-reveal kk-d{{ forloop.index | modulo: 3 | plus: 1 }}" {{ block.shopify_attributes }}>
+        <div class="kk-faq-q">{{ block.settings.question }}</div>
+        <div class="kk-faq-a">{{ block.settings.answer }}</div>
+      </div>
+    {%- else -%}
+      <div class="kk-faq-item"><div class="kk-faq-q">What MacBook models does it fit?</div><div class="kk-faq-a">We're launching with MacBook Pro 14" and MacBook Pro 16". MacBook Air 13" and 15" are on the roadmap for the Kickstarter batch.</div></div>
+      <div class="kk-faq-item"><div class="kk-faq-q">What are the sheets made of?</div><div class="kk-faq-a">UV-stabilized polycarbonate with an anti-fingerprint hard coat. The same material used in premium phone screen protectors, engineered to stay crystal clear.</div></div>
+      <div class="kk-faq-item"><div class="kk-faq-q">Will it damage my MacBook?</div><div class="kk-faq-a">No adhesive ever touches your MacBook. The hardshell border clips on like a standard case. No anodization damage, no residue, no risk.</div></div>
+      <div class="kk-faq-item"><div class="kk-faq-q">How thick does it make my laptop?</div><div class="kk-faq-a">About 3–4mm additional thickness total — comparable to a standard hardshell case. Light enough that most sleeves still fit.</div></div>
+      <div class="kk-faq-item"><div class="kk-faq-q">What's the alpha program?</div><div class="kk-faq-a">30 hand-picked units at $50 cost price. Alpha testers give us direct feedback, get named in product credits, and receive 35–40% off our Kickstarter launch price.</div></div>
+      <div class="kk-faq-item"><div class="kk-faq-q">When does it ship?</div><div class="kk-faq-a">Alpha units ship to US addresses. We're targeting Kickstarter for the main launch. Join the waitlist for exact timeline updates — we don't do fake urgency.</div></div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FAQ" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Frequently asked." }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "What MacBook models does it fit?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>We're launching with MacBook Pro 14\" and 16\".</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "FAQ" }]
+}
+{% endschema %}

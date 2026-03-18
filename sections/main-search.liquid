@@ -1,0 +1,78 @@
+<div class="kk-search kk-reveal">
+  <div class="kk-search-header">
+    <form action="{{ routes.search_url }}" method="get" class="kk-search-form" role="search">
+      <input class="kk-search-input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search products, posts…" autocomplete="off" aria-label="Search">
+      <input type="hidden" name="type" value="product,article,page">
+      <button type="submit" class="kk-search-btn">Search →</button>
+    </form>
+    {%- if search.performed -%}
+      <h1 class="kk-search-title">
+        {%- if search.results_count == 0 -%}No results for "{{ search.terms | escape }}"
+        {%- else -%}Results for "{{ search.terms | escape }}"
+        {%- endif -%}
+      </h1>
+      <p class="kk-search-count">
+        {%- if search.results_count == 0 -%}Try a different search term.
+        {%- else -%}{{ search.results_count }} result{{ search.results_count | pluralize: '', 's' }}
+        {%- endif -%}
+      </p>
+    {%- endif -%}
+  </div>
+
+  {%- if search.performed and search.results_count > 0 -%}
+    {%- paginate search.results by 12 -%}
+      <div class="kk-product-grid">
+        {%- for result in search.results -%}
+          {%- if result.object_type == 'product' -%}
+            <div class="kk-product-card kk-reveal">
+              <a href="{{ result.url }}" style="text-decoration:none;color:inherit;">
+                <div class="kk-product-card-img">
+                  {%- if result.featured_image -%}
+                    <img src="{{ result.featured_image | image_url: width: 600 }}" alt="{{ result.title | escape }}" loading="lazy" width="300" height="300">
+                  {%- else -%}
+                    <div class="kk-product-card-img-placeholder"><div class="kk-product-card-img-placeholder-icon">📦</div></div>
+                  {%- endif -%}
+                </div>
+                <div class="kk-product-card-body">
+                  <div class="kk-pill kk-pill-outline" style="font-size:10px;margin-bottom:8px;">Product</div>
+                  <div class="kk-product-card-title">{{ result.title }}</div>
+                  <div class="kk-product-card-price">{{ result.price | money }}</div>
+                </div>
+              </a>
+            </div>
+          {%- else -%}
+            <a href="{{ result.url }}" class="kk-blog-card kk-reveal" style="text-decoration:none;">
+              <div class="kk-blog-card-img" style="height:160px;">
+                {%- if result.image -%}
+                  <img src="{{ result.image | image_url: width: 800 }}" alt="{{ result.title | escape }}" loading="lazy" width="400" height="160">
+                {%- else -%}
+                  <div style="height:100%;display:flex;align-items:center;justify-content:center;background:rgba(26,26,26,.04);"><div style="font-size:24px;opacity:.3;">📝</div></div>
+                {%- endif -%}
+              </div>
+              <div class="kk-blog-card-body">
+                <div class="kk-blog-card-tag">{{ result.object_type | capitalize }}</div>
+                <div class="kk-blog-card-title">{{ result.title }}</div>
+              </div>
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      {%- if paginate.pages > 1 -%}
+        <div class="kk-pagination">
+          {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}">←</a>{%- endif -%}
+          {%- for part in paginate.parts -%}
+            {%- if part.is_link -%}<a href="{{ part.url }}">{{ part.title }}</a>{%- else -%}<span class="current">{{ part.title }}</span>{%- endif -%}
+          {%- endfor -%}
+          {%- if paginate.next -%}<a href="{{ paginate.next.url }}">→</a>{%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endpaginate -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Search",
+  "settings": []
+}
+{% endschema %}

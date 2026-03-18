@@ -1,0 +1,51 @@
+<section class="kk-multicolumn kk-reveal" style="--cols:{{ section.settings.columns | default: 3 }};">
+  <div class="kk-multicolumn-header">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="kk-section-label">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
+    {%- if section.settings.title != blank -%}
+      <h2 class="kk-multicolumn-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+  </div>
+  <div class="kk-multicolumn-grid">
+    {%- for block in section.blocks -%}
+      <div class="kk-feature-card kk-reveal kk-d{{ forloop.index | modulo: 3 | plus: 1 }}" {{ block.shopify_attributes }}>
+        <div class="kk-feature-icon" style="background:{{ block.settings.icon_bg | default: '#F4F1EA' }};">{{ block.settings.icon | default: '✦' }}</div>
+        <div class="kk-feature-title">{{ block.settings.title }}</div>
+        <div class="kk-feature-text">{{ block.settings.text }}</div>
+      </div>
+    {%- else -%}
+      <div class="kk-feature-card"><div class="kk-feature-icon" style="background:#F4F1EA;">🧊</div><div class="kk-feature-title">UV-stabilized PC</div><div class="kk-feature-text">Anti-yellowing, anti-fingerprint hard coat. Your stickers stay vivid for years.</div></div>
+      <div class="kk-feature-card"><div class="kk-feature-icon" style="background:#E8F4FF;">🔄</div><div class="kk-feature-title">Swap in seconds</div><div class="kk-feature-text">Pop the sheet out, rearrange or replace. No tools, no damage, no drama.</div></div>
+      <div class="kk-feature-card"><div class="kk-feature-icon" style="background:#FFF8E0;">🖼</div><div class="kk-feature-title">Retire as wall art</div><div class="kk-feature-text">Old sheets become framed memories. Each layout tells a chapter of your life.</div></div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Feature columns",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow text" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Why it works." },
+    { "type": "select", "id": "columns", "label": "Columns", "default": "3", "options": [
+      { "value": "2", "label": "2 columns" },
+      { "value": "3", "label": "3 columns" },
+      { "value": "4", "label": "4 columns" }
+    ]}
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icon (emoji)", "default": "✦" },
+        { "type": "color", "id": "icon_bg", "label": "Icon background", "default": "#F4F1EA" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Feature" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Feature description." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Feature columns" }]
+}
+{% endschema %}

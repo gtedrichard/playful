@@ -1,0 +1,78 @@
+<section class="kk-problem kk-reveal">
+  <div class="kk-dots-bg"></div>
+  <div class="kk-problem-wm">{{ section.settings.watermark | default: 'WHY' }}</div>
+  <!-- tasteful squiggles left edge -->
+  <svg style="position:absolute;left:0;top:0;height:100%;width:100px;opacity:.07;pointer-events:none;z-index:0;" preserveAspectRatio="xMidYMid slice" viewBox="0 0 100 400">
+    <path d="M15 0 Q38 50 15 100 Q-8 150 15 200 Q38 250 15 300 Q-8 350 15 400" stroke="white" stroke-width="2" fill="none"/>
+    <path d="M45 25 Q62 75 45 125 Q28 175 45 225 Q62 275 45 325 Q28 375 45 400" stroke="white" stroke-width="1.4" fill="none"/>
+  </svg>
+  <div class="kk-problem-head">
+    <h2 class="kk-problem-title">{{ section.settings.title  }}</h2>
+    <div class="kk-problem-count">
+      <div class="kk-problem-count-n">{{ section.blocks.size | default: '03' }}</div>
+      <div class="kk-problem-count-l">{{ section.settings.count_label | default: 'real problems' }}</div>
+    </div>
+  </div>
+  <div class="kk-problem-items">
+    {%- for block in section.blocks -%}
+      <div class="kk-problem-item kk-reveal kk-d{{ forloop.index }}" {{ block.shopify_attributes }}>
+        <div class="kk-problem-num">0{{ forloop.index }}</div>
+        <div class="kk-problem-icon kk-draggable">{{ block.settings.icon | default: '💀' }}</div>
+        <div class="kk-problem-body">
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </div>
+        <div class="kk-problem-arrow">→</div>
+      </div>
+    {%- else -%}
+      <div class="kk-problem-item kk-reveal kk-d1">
+        <div class="kk-problem-num">01</div>
+        <div class="kk-problem-icon kk-draggable">💀</div>
+        <div class="kk-problem-body"><h3>Removal destroys them</h3><p>Rare stickers, sentimental stickers — peel them off and they're gone forever. No second chances.</p></div>
+        <div class="kk-problem-arrow">→</div>
+      </div>
+      <div class="kk-problem-item kk-reveal kk-d2">
+        <div class="kk-problem-num">02</div>
+        <div class="kk-problem-icon kk-draggable">🔒</div>
+        <div class="kk-problem-body"><h3>One layout, forever</h3><p>Your aesthetic evolves. Your MacBook doesn't. Stuck with last year's vibe until you get a new laptop.</p></div>
+        <div class="kk-problem-arrow">→</div>
+      </div>
+      <div class="kk-problem-item kk-reveal kk-d3">
+        <div class="kk-problem-num">03</div>
+        <div class="kk-problem-icon kk-draggable">💸</div>
+        <div class="kk-problem-body"><h3>Can't resell cleanly</h3><p>Adhesive eats into anodization. Your laptop loses value and you lose your stickers anyway.</p></div>
+        <div class="kk-problem-arrow">→</div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Problem section",
+  "settings": [
+    { "type": "html", "id": "title", "label": "Title HTML", "default": "Stickers on MacBooks are <em>permanent.</em><br>That's broken." },
+    { "type": "text", "id": "count_label", "label": "Count label", "default": "real problems" },
+    { "type": "text", "id": "watermark", "label": "Background watermark text", "default": "WHY" }
+  ],
+  "blocks": [
+    {
+      "type": "problem",
+      "name": "Problem item",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icon (emoji)", "default": "💀" },
+        { "type": "text", "id": "title", "label": "Problem title", "default": "Removal destroys them" },
+        { "type": "textarea", "id": "text", "label": "Description", "default": "Rare stickers — peel them off and they're gone forever." }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Problem section",
+    "blocks": [
+      { "type": "problem", "settings": { "icon": "💀", "title": "Removal destroys them", "text": "Rare stickers, sentimental stickers — peel them off and they're gone forever. No second chances." } },
+      { "type": "problem", "settings": { "icon": "🔒", "title": "One layout, forever", "text": "Your aesthetic evolves. Your MacBook doesn't. Stuck with last year's vibe until a new laptop." } },
+      { "type": "problem", "settings": { "icon": "💸", "title": "Can't resell cleanly", "text": "Adhesive eats into anodization. Your laptop loses value and you lose your stickers anyway." } }
+    ]
+  }]
+}
+{% endschema %}

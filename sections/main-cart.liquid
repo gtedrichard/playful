@@ -1,0 +1,90 @@
+<div class="kk-cart">
+  <h1 class="kk-cart-title">Your cart<em>.</em></h1>
+
+  {%- if cart.item_count > 0 -%}
+    <div class="kk-cart-layout">
+      <div>
+        {%- form 'cart', cart, id: 'kk-cart-form' -%}
+          <div class="kk-cart-items">
+            {%- for item in cart.items -%}
+              <div class="kk-cart-item">
+                <div class="kk-cart-item-img">
+                  {%- if item.image -%}
+                    <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.title | escape }}" loading="lazy" width="80" height="80">
+                  {%- else -%}
+                    <div style="width:80px;height:80px;display:flex;align-items:center;justify-content:center;font-size:28px;background:rgba(26,26,26,.04);">📦</div>
+                  {%- endif -%}
+                </div>
+                <div>
+                  <div class="kk-cart-item-title"><a href="{{ item.product.url }}" style="color:inherit;text-decoration:none;">{{ item.product.title }}</a></div>
+                  {%- unless item.variant.title == 'Default Title' -%}
+                    <div class="kk-cart-item-variant">{{ item.variant.title }}</div>
+                  {%- endunless -%}
+                  <div class="kk-cart-item-price">{{ item.original_price | money }}</div>
+                  <button type="button" class="kk-cart-item-remove" onclick="removeItem('{{ item.key }}')">Remove</button>
+                </div>
+                <div class="kk-cart-item-qty">
+                  <div class="kk-qty">
+                    <button type="button" class="kk-qty-btn" onclick="changeQty('{{ item.key }}', {{ item.quantity | minus: 1 }})">−</button>
+                    <input class="kk-qty-input" type="number" value="{{ item.quantity }}" min="0" onchange="changeQty('{{ item.key }}', this.value)" style="border-left:2px solid var(--kk-ink);border-right:2px solid var(--kk-ink);">
+                    <button type="button" class="kk-qty-btn" onclick="changeQty('{{ item.key }}', {{ item.quantity | plus: 1 }})">+</button>
+                  </div>
+                  <div class="kk-cart-item-total">{{ item.final_line_price | money }}</div>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endform -%}
+      </div>
+
+      <!-- Summary -->
+      <div class="kk-cart-summary">
+        <div class="kk-cart-summary-title">Order summary</div>
+        <div class="kk-cart-summary-row"><span>Subtotal</span><span>{{ cart.total_price | money }}</span></div>
+        <div class="kk-cart-summary-row"><span>Shipping</span><span style="color:rgba(255,255,255,.4);">Calculated at checkout</span></div>
+        {%- if cart.cart_level_discount_applications.size > 0 -%}
+          {%- for discount in cart.cart_level_discount_applications -%}
+            <div class="kk-cart-summary-row" style="color:var(--kk-yellow);"><span>{{ discount.title }}</span><span>-{{ discount.total_allocated_amount | money }}</span></div>
+          {%- endfor -%}
+        {%- endif -%}
+        <div class="kk-cart-total">
+          <span class="kk-cart-total-label">Total</span>
+          <span class="kk-cart-total-price">{{ cart.total_price | money }}</span>
+        </div>
+        <textarea class="kk-cart-note" name="note" form="kk-cart-form" placeholder="Order note (optional)…">{{ cart.note }}</textarea>
+        <a href="{{ routes.checkout }}" class="kk-checkout-btn">Checkout →</a>
+        <a href="{{ routes.all_products_collection_url }}" class="kk-continue-btn">Continue shopping</a>
+        <div class="kk-cart-payment-icons">
+          {%- for type in shop.enabled_payment_types -%}
+            {{ type | payment_type_svg_tag: class: 'icon' }}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  {%- else -%}
+    <div class="kk-cart-empty">
+      <div style="font-size:60px;margin-bottom:16px;">🛒</div>
+      <h2>Your cart is empty.</h2>
+      <p>Looks like you haven't added anything yet.</p>
+      <a href="{{ routes.all_products_collection_url }}" class="kk-btn kk-btn-filled">Shop now →</a>
+    </div>
+  {%- endif -%}
+</div>
+
+<script>
+function removeItem(key) {
+  fetch('/cart/change.js', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({id:key,quantity:0}) })
+    .then(function() { location.reload(); });
+}
+function changeQty(key, qty) {
+  fetch('/cart/change.js', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({id:key,quantity:parseInt(qty)||0}) })
+    .then(function() { location.reload(); });
+}
+</script>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": []
+}
+{% endschema %}

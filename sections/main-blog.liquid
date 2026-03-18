@@ -1,0 +1,61 @@
+<div class="kk-blog kk-reveal">
+  <div class="kk-blog-header">
+    <h1 class="kk-blog-title">{{ blog.title | default: 'From the team.' }}</h1>
+  </div>
+
+  {%- paginate blog.articles by section.settings.posts_per_page | default: 9 -%}
+    <div class="kk-blog-grid">
+      {%- for article in blog.articles -%}
+        <a href="{{ article.url }}" class="kk-blog-card kk-reveal kk-d{{ forloop.index | modulo: 3 | plus: 1 }}">
+          <div class="kk-blog-card-img">
+            {%- if article.image -%}
+              <img src="{{ article.image | image_url: width: 800 }}" alt="{{ article.title | escape }}" loading="lazy" width="400" height="225">
+            {%- else -%}
+              <div style="height:180px;display:flex;align-items:center;justify-content:center;background:rgba(26,26,26,.04);">
+                <div style="font-size:32px;opacity:.3;">📝</div>
+              </div>
+            {%- endif -%}
+          </div>
+          <div class="kk-blog-card-body">
+            {%- if article.tags.first -%}
+              <div class="kk-blog-card-tag">{{ article.tags.first }}</div>
+            {%- endif -%}
+            <div class="kk-blog-card-title">{{ article.title }}</div>
+            <div class="kk-blog-card-excerpt">{{ article.excerpt | strip_html | truncate: 110 }}</div>
+            <div class="kk-blog-card-meta">
+              <span>{{ article.published_at | date: '%b %d, %Y' }}</span>
+              <span>{{ article.author }}</span>
+            </div>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+      <div class="kk-pagination" style="margin-top:52px;">
+        {%- if paginate.previous -%}
+          <a href="{{ paginate.previous.url }}">←</a>
+        {%- endif -%}
+        {%- for part in paginate.parts -%}
+          {%- if part.is_link -%}
+            <a href="{{ part.url }}">{{ part.title }}</a>
+          {%- else -%}
+            <span class="current">{{ part.title }}</span>
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if paginate.next -%}
+          <a href="{{ paginate.next.url }}">→</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  {%- endpaginate -%}
+</div>
+
+{% schema %}
+{
+  "name": "Blog posts",
+  "settings": [
+    { "type": "range", "id": "posts_per_page", "min": 3, "max": 24, "step": 3, "label": "Posts per page", "default": 9 }
+  ]
+}
+{% endschema %}
