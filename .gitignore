@@ -1,2 +1,11 @@
+# macOS junk (this drive is exFAT — Finder writes ._ AppleDouble + .DS_Store everywhere)
 .DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+# deps / build
 node_modules/
+# never ship secrets (defense in depth — these live outside the theme repo anyway)
+.env
+*.token.json
