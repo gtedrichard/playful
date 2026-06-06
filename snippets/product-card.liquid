@@ -1,0 +1,19 @@
+{%- comment -%} Usage: {% render 'product-card', product: product %} {%- endcomment -%}
+<a class="post-card" href="{{ product.url }}" aria-label="{{ product.title | escape }} — {{ product.price | money | strip_html }}">
+  <div class="post-cover">
+    {%- if product.featured_media -%}
+      <img src="{{ product.featured_media | image_url: width: 600 }}" alt="{{ product.title | escape }}" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+    {%- else -%}
+      <div class="placeholder-media" style="height:100%;border:none;border-radius:0;background:transparent"><div class="pm-i">🗂️</div></div>
+    {%- endif -%}
+  </div>
+  <div class="post-body">
+    <div class="post-meta">{% if product.available %}<span class="badge badge--b">Available</span>{% else %}<span class="badge badge--ink">Sold out</span>{% endif %}</div>
+    <h3>{{ product.title }}</h3>
+    <p>{{ product.description | strip_html | truncatewords: 18 }}</p>
+    <div class="row between mt-4">
+      <span class="price" style="font-size:20px">{{ product.price | money }}</span>
+      <span class="post-readmore">View →</span>
+    </div>
+  </div>
+</a>

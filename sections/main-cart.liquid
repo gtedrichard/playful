@@ -1,0 +1,55 @@
+<div class="page-head">
+  <div class="dotgrid" aria-hidden="true"></div>
+  <div class="wrap">
+    <h1>Your cart</h1>
+    <p class="dek">Alpha units ship at cost. Shipping &amp; taxes are calculated at checkout.</p>
+  </div>
+</div>
+
+<div class="cart-page">
+  {%- if cart.item_count > 0 -%}
+    {%- form 'cart', cart -%}
+      {%- for item in cart.items -%}
+        <div class="cart-row">
+          <a href="{{ item.url }}" class="cr-media" style="grid-area:media">
+            {%- if item.image -%}<img src="{{ item.image | image_url: width: 180 }}" alt="{{ item.product.title | escape }}" style="width:100%;height:100%;object-fit:cover">{%- else -%}🗂️{%- endif -%}
+          </a>
+          <div style="grid-area:info">
+            <a href="{{ item.url }}" style="font-weight:800;letter-spacing:-.3px">{{ item.product.title }}</a>
+            {%- unless item.variant.title contains 'Default' -%}<div style="font-size:13px;color:var(--ink-45);margin-top:2px">{{ item.variant.title }}</div>{%- endunless -%}
+            <a href="{{ item.url_to_remove }}" class="li-remove" style="display:inline-block;margin-top:8px">Remove</a>
+          </div>
+          <div class="qty" style="grid-area:qty">
+            <button type="button" data-qty="dec" aria-label="Decrease">–</button>
+            <input type="text" name="updates[]" value="{{ item.quantity }}" inputmode="numeric" aria-label="Quantity for {{ item.product.title | escape }}">
+            <button type="button" data-qty="inc" aria-label="Increase">+</button>
+          </div>
+          <div style="grid-area:price;text-align:right;font-weight:900;letter-spacing:-.5px;font-size:18px">{{ item.final_line_price | money }}</div>
+        </div>
+      {%- endfor -%}
+
+      <div class="cart-foot">
+        <div class="cart-summary">
+          <div class="cs-row"><span>Subtotal</span><span>{{ cart.total_price | money }}</span></div>
+          <div class="cs-row"><span>Shipping</span><span>At checkout</span></div>
+          <div class="cs-total"><span style="font-weight:800">Total</span><span class="v">{{ cart.total_price | money }}</span></div>
+          <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+            <button type="submit" name="update" class="btn btn--ghost btn--sm">Update</button>
+            <button type="submit" name="checkout" class="btn btn--coral btn--block btn--lg" style="flex:1">Checkout →</button>
+          </div>
+          <p class="drawer-fine" style="margin-top:12px">You'll get your Discord invite and Alpha number right after checkout.</p>
+        </div>
+      </div>
+    {%- endform -%}
+  {%- else -%}
+    <div class="drawer-empty" style="border:var(--line);border-radius:var(--r-lg);background:var(--paper);box-shadow:var(--sh-4)">
+      <p style="font-weight:900;font-size:24px;letter-spacing:-1px;color:var(--ink)">Your cart is empty.</p>
+      <p style="margin-top:8px">There are still alpha spots open.</p>
+      <a href="/products/keepkase-alpha" class="btn btn--ink" style="margin-top:20px">Claim a spot — $50 →</a>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{ "name": "Cart", "settings": [] }
+{% endschema %}

@@ -1,0 +1,48 @@
+<div class="page-head">
+  <div class="dotgrid" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="breadcrumbs"><a href="{{ routes.account_url }}">Account</a><span class="sep">/</span><span>Addresses</span></div>
+    <h1 style="margin-top:6px">Your addresses</h1>
+  </div>
+</div>
+
+<div class="account-wrap">
+  <details class="account-card" style="margin-bottom:20px">
+    <summary style="cursor:pointer;font-weight:800;font-size:16px">+ Add a new address</summary>
+    <div style="margin-top:16px">
+      {%- form 'customer_address', customer.new_address -%}
+        <div class="tl-edit-row"><div class="field"><label>First name</label><input class="input" type="text" name="address[first_name]"></div><div class="field"><label>Last name</label><input class="input" type="text" name="address[last_name]"></div></div>
+        <div class="field" style="margin-top:12px"><label>Address</label><input class="input" type="text" name="address[address1]"></div>
+        <div class="field" style="margin-top:12px"><label>Apartment, suite, etc.</label><input class="input" type="text" name="address[address2]"></div>
+        <div class="tl-edit-row" style="margin-top:12px"><div class="field"><label>City</label><input class="input" type="text" name="address[city]"></div><div class="field"><label>ZIP / Postal</label><input class="input" type="text" name="address[zip]"></div></div>
+        <div class="tl-edit-row" style="margin-top:12px"><div class="field"><label>Country</label><select class="select" name="address[country]" data-default="{{ customer.new_address.country }}">{{ all_country_option_tags }}</select></div><div class="field"><label>Phone</label><input class="input" type="tel" name="address[phone]"></div></div>
+        <button type="submit" class="btn btn--coral btn--sm" style="margin-top:16px">Save address</button>
+      {%- endform -%}
+    </div>
+  </details>
+
+  {%- for address in customer.addresses -%}
+    <div class="account-card" style="margin-bottom:14px">
+      <div class="row between" style="flex-wrap:wrap;gap:12px">
+        <p style="font-size:14px;color:var(--ink-72);line-height:1.7">{% if address == customer.default_address %}<span class="badge badge--b" style="margin-bottom:6px">Default</span><br>{% endif %}{{ address | format_address }}</p>
+        <div class="row gap-2">
+          <details><summary class="btn btn--ghost btn--sm" style="cursor:pointer;list-style:none">Edit</summary>
+            <div style="margin-top:14px;min-width:280px">
+              {%- form 'customer_address', address -%}
+                <div class="field"><label>Address</label><input class="input" type="text" name="address[address1]" value="{{ address.address1 }}"></div>
+                <div class="tl-edit-row" style="margin-top:10px"><div class="field"><label>City</label><input class="input" type="text" name="address[city]" value="{{ address.city }}"></div><div class="field"><label>ZIP</label><input class="input" type="text" name="address[zip]" value="{{ address.zip }}"></div></div>
+                <div class="field" style="margin-top:10px"><label>Country</label><select class="select" name="address[country]" data-default="{{ address.country }}">{{ all_country_option_tags }}</select></div>
+                <button type="submit" class="btn btn--coral btn--sm" style="margin-top:14px">Update</button>
+              {%- endform -%}
+            </div>
+          </details>
+          {%- form 'customer_address', address, method: 'delete' -%}
+            <button type="submit" class="btn btn--ghost btn--sm" onclick="return confirm('Delete this address?')">Delete</button>
+          {%- endform -%}
+        </div>
+      </div>
+    </div>
+  {%- endfor -%}
+
+  <a href="{{ routes.account_url }}" class="btn btn--ghost btn--sm mt-6">← Back to account</a>
+</div>

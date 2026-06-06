@@ -1,0 +1,16 @@
+{%- comment -%}
+  Renders a price block.
+  Usage: {% render 'price', product: product %}  or  {% render 'price', variant: variant %}
+{%- endcomment -%}
+{%- liquid
+  assign target = variant | default: product
+  assign price = target.price
+  assign compare = target.compare_at_price
+-%}
+<span class="price-row">
+  <span class="price" data-price>{{ price | money }}</span>
+  {%- if compare > price -%}
+    <span class="price-compare">{{ compare | money }}</span>
+    <span class="price-note">At cost</span>
+  {%- endif -%}
+</span>

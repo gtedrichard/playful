@@ -1,0 +1,37 @@
+<div class="page-head">
+  <div class="dotgrid" aria-hidden="true"></div>
+  <div class="wrap wrap--narrow">
+    <span class="eyebrow">Search</span>
+    <h1 style="margin-top:10px">Search</h1>
+    <form action="{{ routes.search_url }}" method="get" role="search" class="row gap-3 mt-6" style="flex-wrap:wrap">
+      <label class="visually-hidden" for="search-input">Search the store</label>
+      <input class="input input--pill" id="search-input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search the store…" style="flex:1;min-width:220px">
+      <button class="btn btn--ink" type="submit">Search</button>
+    </form>
+  </div>
+</div>
+
+<section class="section bg-cream">
+  <div class="wrap">
+    {%- if search.performed -%}
+      {%- if search.results.size > 0 -%}
+        <p class="eyebrow" style="margin-bottom:20px">{{ search.results_count }} result{% if search.results_count != 1 %}s{% endif %} for "{{ search.terms | escape }}"</p>
+        <div class="blog-grid">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              {% render 'product-card', product: item %}
+            {%- else -%}
+              <a class="post-card" href="{{ item.url }}"><div class="post-cover"><div class="placeholder-media" style="height:100%;border:none;border-radius:0;background:transparent"><div class="pm-i">{% if item.object_type == 'article' %}📓{% else %}📄{% endif %}</div></div></div><div class="post-body"><div class="post-meta">{{ item.object_type }}</div><h3>{{ item.title }}</h3><p>{{ item.content | strip_html | truncatewords: 20 }}</p><span class="post-readmore">Open →</span></div></a>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="tl-empty" style="max-width:700px;margin:0 auto"><p style="font-weight:800;font-size:18px;color:var(--ink)">No results for "{{ search.terms | escape }}".</p><p style="margin-top:8px">Try a different word, or <a href="/products/keepkase-alpha" style="color:var(--b);text-decoration:underline">see the alpha</a>.</p></div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Search", "settings": [] }
+{% endschema %}

@@ -1,0 +1,60 @@
+<div class="page-head">
+  <div class="dotgrid" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow">Questions</span>
+    <h1 style="margin-top:10px">{{ page.title | default: 'Frequently asked.' }}</h1>
+    <p class="dek">Everything about the case, the alpha, payment, shipping, and the community. Still stuck? <a href="/pages/contact" style="color:var(--c);font-weight:700;text-decoration:underline">Ask us directly.</a></p>
+  </div>
+</div>
+
+<section class="section bg-cream">
+  <div class="faq-wrap">
+
+    <div class="faq-group">
+      <div class="faq-group-title">The product</div>
+      <details class="faq-item"><summary>How do the sheets hold my stickers? <span class="faq-q-icon">+</span></summary><div class="faq-a">The hardshell border holds two thin clear polycarbonate sheets that sandwich your stickers between them. Nothing is glued down — your layout is pressed flat and held in place by the sheets themselves.</div></details>
+      <details class="faq-item"><summary>Does any adhesive touch my MacBook? <span class="faq-q-icon">+</span></summary><div class="faq-a">No. No adhesive ever touches the laptop. The border stays on the MacBook and the sheets carry everything you put inside, so your finish stays clean.</div></details>
+      <details class="faq-item"><summary>What can I put inside besides stickers? <span class="faq-q-icon">+</span></summary><div class="faq-a">Stickers are the obvious one, but anything thin and flat works — notes, photos, cards, ticket stubs. If it lies flat and isn't sticky, it can go in.</div></details>
+      <details class="faq-item"><summary>Which MacBook models does it fit? <span class="faq-q-icon">+</span></summary><div class="faq-a">The Alpha targets a specific model list, currently {{ settings.supported_models | default: '13″ & 14″ MacBook Air and Pro (M-series)' }}. We'll confirm the exact list with the community before sheets are cut so the fit is exact.</div></details>
+      <details class="faq-item"><summary>How does the weight and thickness compare to a normal hardshell? <span class="faq-q-icon">+</span></summary><div class="faq-a">It's a thin hardshell — parity protection, not heavy armor. The border plus two sheets stays close to the profile of a standard clear case, so it feels like a normal case.</div></details>
+      <details class="faq-item"><summary>Why not just peel the stickers off when I want to change them? <span class="faq-q-icon">+</span></summary><div class="faq-a">Because peeling ends the story — it destroys the arrangement, loses the meaning, and can risk the anodized finish. KeepKase is for people who treat a layout as something to keep, not a surface to scrape clean.</div></details>
+    </div>
+
+    <div class="faq-group">
+      <div class="faq-group-title">The alpha</div>
+      <details class="faq-item"><summary>What does the $50 cover? <span class="faq-q-icon">+</span></summary><div class="faq-a">The $50 is the unit price, sold at cost — it's not a markup. You're helping fund and shape the build, not paying a margin.</div></details>
+      <details class="faq-item"><summary>What do I get as an Alpha member? <span class="faq-q-icon">+</span></summary><div class="faq-a">A unit at cost, 35–40% off the planned Kickstarter launch price, your name in the product credits, direct Discord access with the team, and first pick of colorways.</div></details>
+      <details class="faq-item"><summary>How many spots are there? <span class="faq-q-icon">+</span></summary><div class="faq-a">It's a 100-person Alpha — 100 total spots, with {{ settings.alpha_remaining | default: '87' }} left. Once they're gone, the next way in is the Launch Waitlist.</div></details>
+      <details class="faq-item"><summary>How is this different from the free waitlist? <span class="faq-q-icon">+</span></summary><div class="faq-a">The Alpha is a paid spot ($50 at cost) with perks and a hand in the build. The Launch Waitlist is free to join and simply holds a warm spot for Kickstarter — an optional $10 refundable deposit moves you to the front of the line at launch.</div></details>
+      <details class="faq-item"><summary>Is the $10 deposit refundable? <span class="faq-q-icon">+</span></summary><div class="faq-a">Yes — fully refundable, and you can ask for it back anytime. It bumps you to the front of the line when the Kickstarter launches.</div></details>
+    </div>
+
+    <div class="faq-group">
+      <div class="faq-group-title">Payment &amp; shipping</div>
+      <details class="faq-item"><summary>When does it ship? <span class="faq-q-icon">+</span></summary><div class="faq-a">The Alpha is being built in the open, so the window is {{ settings.ship_window | default: 'Fall 2026' }}. We'll keep the date honest in Discord as the build firms up rather than promise something we can't hit.</div></details>
+      <details class="faq-item"><summary>What's your refund and return policy? <span class="faq-q-icon">+</span></summary><div class="faq-a">If the Alpha unit isn't right, email us at {{ settings.support_email | default: 'hello@keepkase.com' }} within {{ settings.return_window | default: '30 days' }} and we'll sort it out. The unit is sold at cost, so please read the <a href="/pages/refund-policy" style="color:var(--b);text-decoration:underline">full refund policy</a> before ordering.</div></details>
+      <details class="faq-item"><summary>How is payment handled? <span class="faq-q-icon">+</span></summary><div class="faq-a">Checkout runs through Shopify's secure payment system. We never see or store your card details. You'll get an order confirmation by email with next steps.</div></details>
+    </div>
+
+    <div class="faq-group">
+      <div class="faq-group-title">Community</div>
+      <details class="faq-item"><summary>How does the Discord work? <span class="faq-q-icon">+</span></summary><div class="faq-a">The Discord is the home of the Alpha. Members give feedback, watch the build happen in the open, and vote on decisions like colorways and materials.</div></details>
+      <details class="faq-item"><summary>Can I really get my name in the credits? <span class="faq-q-icon">+</span></summary><div class="faq-a">Yes — every Alpha member is named in the product credits. You helped build it, so it should say so.</div></details>
+    </div>
+
+    <div class="faq-group">
+      <div class="faq-group-title">Care &amp; keepsakes</div>
+      <details class="faq-item"><summary>How do I retire a sheet and keep it? <span class="faq-q-icon">+</span></summary><div class="faq-a">When a chapter's done, lift the sheet out and set it aside — your layout stays intact, ready to box up or mount on a wall. Slide a fresh sheet in and the case keeps going.</div></details>
+      <details class="faq-item"><summary>Can I buy extra sheets? <span class="faq-q-icon">+</span></summary><div class="faq-a">Yes. Clear sheets are sold separately so you can keep swapping, and at mainstream launch they'll come in discounted 5- and 10-packs. For the Alpha, the team will sort extras with members directly in Discord.</div></details>
+      <details class="faq-item"><summary>Does swapping create a lot of waste? <span class="faq-q-icon">+</span></summary><div class="faq-a">No — it's modular, so you swap a thin sheet instead of tossing a whole case. Less waste, as a side effect of how it works.</div></details>
+    </div>
+
+    <div class="center mt-8">
+      <a href="/pages/contact" class="btn btn--ink btn--lg">Still have a question? Ask us →</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "FAQ", "settings": [], "presets": [{ "name": "FAQ" }] }
+{% endschema %}

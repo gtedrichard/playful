@@ -1,0 +1,40 @@
+<section class="em11 rv" id="waitlist">
+  <div class="em11-dd" aria-hidden="true"></div>
+  <svg style="position:absolute;bottom:0;right:0;opacity:.1;pointer-events:none;height:100%;width:80px;" preserveAspectRatio="xMidYMid slice" viewBox="0 0 80 400" aria-hidden="true">
+    <path d="M20 0 Q48 50 20 100 Q-8 150 20 200 Q48 250 20 300 Q-8 350 20 400" stroke="white" stroke-width="2.5" fill="none"/>
+    <path d="M52 25 Q74 75 52 125 Q30 175 52 225 Q74 275 52 325 Q30 375 52 400" stroke="white" stroke-width="1.6" fill="none"/>
+  </svg>
+  <div class="em11-l">
+    <div class="pill pill--c" style="margin-bottom:18px;width:fit-content;border-color:var(--c)">{{ section.settings.eyebrow | default: 'Stay in the loop' }}</div>
+    <h2>{{ section.settings.title | default: 'Join the launch<br>waitlist.' }}</h2>
+    <p style="margin-top:14px;">{{ section.settings.subtitle | default: 'Free to join for a warm spot at Kickstarter. Add an optional $10 refundable deposit to move to the front of the line.' }}</p>
+  </div>
+  <div class="em11-r">
+    {%- form 'customer', class: 'em11-r', style: 'display:contents' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter, launch-waitlist">
+      {%- if form.posted_successfully? -%}
+        <div class="form-status form-status--ok" style="background:#fff;border-color:#fff;color:var(--ink)">You're on the list ✦ Watch your inbox for build updates.</div>
+      {%- elsif form.errors -%}
+        <div class="form-status form-status--err">{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+      <label class="visually-hidden" for="waitlist-email">Email address</label>
+      <input class="em11-in" id="waitlist-email" type="email" name="contact[email]" placeholder="your@email.com" required>
+      <button class="em11-btn" type="submit">{{ section.settings.button | default: 'Join the waitlist' }} →</button>
+      <p class="em11-fine">{{ section.settings.fine | default: 'No charge to join. The optional deposit is fully refundable. We email about the build, not much else. Unsubscribe anytime.' }}</p>
+    {%- endform -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Email signup",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Stay in the loop" },
+    { "type": "richtext", "id": "title", "label": "Title", "default": "<p>Join the launch waitlist.</p>" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Free to join for a warm spot at Kickstarter. Add an optional $10 refundable deposit to move to the front of the line." },
+    { "type": "text", "id": "button", "label": "Button text", "default": "Join the waitlist" },
+    { "type": "textarea", "id": "fine", "label": "Fine print", "default": "No charge to join. The optional deposit is fully refundable. We email about the build, not much else. Unsubscribe anytime." }
+  ],
+  "presets": [{ "name": "Email signup" }]
+}
+{% endschema %}

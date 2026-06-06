@@ -1,0 +1,60 @@
+{%- liquid
+  assign discord = settings.discord_url
+  assign email = settings.support_email | default: 'hello@keepkase.com'
+-%}
+<div class="welcome-hero">
+  <div class="dotgrid dotgrid--light" aria-hidden="true"></div>
+  <div class="hr-c1" style="opacity:.25" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <span class="welcome-badge">✦ You're in</span>
+    <h1>Welcome to the <em>Alpha.</em></h1>
+    <p class="dek">You're officially <strong style="color:#fff">one of the 100</strong> — building KeepKase from the inside. Your Alpha number gets assigned by the team and shows up in your Discord welcome and the product credits. You didn't just pre-order a case; you signed on to help shape it.</p>
+    {%- if discord != blank -%}
+      <a href="{{ discord }}" class="btn discord-cta btn--lg" target="_blank" rel="noopener" style="margin-top:26px">Join the Discord 💬</a>
+    {%- endif -%}
+  </div>
+</div>
+
+<section class="section bg-cream">
+  <div class="wrap welcome-next">
+    <span class="eyebrow" style="display:block;margin-bottom:8px">First thing — join the Discord</span>
+    <h2 style="font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;letter-spacing:-1.2px;margin-bottom:24px">It's where the alpha lives.</h2>
+    <div class="steps">
+      <div class="step"><h4>Open the invite</h4><p>{% if discord != blank %}<a href="{{ discord }}" style="color:var(--b);font-weight:700;text-decoration:underline" target="_blank" rel="noopener">Tap here to open Discord</a> — it's a permanent link tied to the Alpha, so bookmark it.{% else %}We'll email your Discord invite within a day of your order — it's a permanent link tied to the Alpha, so bookmark it.{% endif %}</p></div>
+      <div class="step"><h4>Grab your Alpha role</h4><p>React in the <code>#start-here</code> channel and the bot tags you as an Alpha member. That unlocks the build channels.</p></div>
+      <div class="step"><h4>Turn on <code>#build-log</code></h4><p>That's where the real updates drop. Everything else you can mute.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-paper">
+  <div class="wrap wrap--narrow">
+    <h2 style="font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;letter-spacing:-1.2px;margin-bottom:6px">What happens next</h2>
+    <p style="color:var(--ink-60);margin-bottom:22px">The honest version of the timeline, so nothing catches you off guard.</p>
+    <div class="prose" style="max-width:none">
+      <ul style="gap:.8em">
+        <li><strong>This week —</strong> Your Alpha number gets assigned and your credits entry is logged. You'll see a welcome ping in Discord.</li>
+        <li><strong>Ongoing —</strong> Build updates post in <code>#build-log</code> as they happen: colorway tests, sheet material trials, fit checks. You see the work as it's made, rough edges included.</li>
+        <li><strong>Colorway picks —</strong> As an Alpha, you get first pick before anyone else. We'll open the vote in Discord when the options are ready.</li>
+        <li><strong>Your unit —</strong> Ships in <strong>{{ settings.ship_window | default: 'Fall 2026' }}</strong>. We'll confirm the date in Discord well before it goes out, and you'll get tracking by email. Materials are still being explored, so a few specifics may shift — we'll be straight with you about any change.</li>
+      </ul>
+    </div>
+    <div class="legal-note" style="margin-top:22px">One small ask: drop into <code>#introductions</code> and say hi — who you are, and a photo of your current setup. No pressure to make it pretty. The in-progress version is the good one.</div>
+  </div>
+</section>
+
+<section class="section bg-yellow">
+  <div class="wrap">
+    <span class="eyebrow" style="display:block;margin-bottom:18px">Keep an eye on these</span>
+    <div class="comm-cards">
+      <a class="comm-card" href="/pages/timeline" style="text-decoration:none"><div class="cc-icon">🗺️</div><div><h3>Product timeline</h3><p>Where the build is headed and what's next — updated in the open.</p></div></a>
+      <a class="comm-card" href="/blogs/devlog" style="text-decoration:none"><div class="cc-icon">📓</div><div><h3>Devlog</h3><p>The longer-form notes behind the decisions.</p></div></a>
+    </div>
+    <p style="margin-top:24px;color:var(--ink-72);font-size:14px">Thanks for backing this early — you're funding the build and shaping it. Questions the Discord can't answer? Reach us at <a href="mailto:{{ email }}" style="color:var(--ink);font-weight:700;text-decoration:underline">{{ email }}</a>.</p>
+    <p style="margin-top:8px;color:var(--ink-45);font-size:13px">Built in Berkeley. Printed in Shenzhen. Loved everywhere.</p>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Welcome", "settings": [], "presets": [{ "name": "Welcome" }] }
+{% endschema %}

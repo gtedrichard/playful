@@ -1,0 +1,53 @@
+<footer class="footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <a class="logo" id="footerLogo" href="{{ routes.root_url }}"><span class="logo-k">K</span>{{ shop.name | default: 'KeepKase' }}</a>
+      <p>{{ section.settings.blurb | default: 'A modular MacBook case with two removable clear sheets that hold your stickers. Swap layouts. Retire sheets as keepsakes. Keep what you outgrow.' }}</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="/products/keepkase-alpha">The Alpha case</a>
+      <a href="/pages/community">Launch waitlist</a>
+      <a href="{{ routes.cart_url }}">Cart</a>
+      <a href="{{ routes.account_url }}">My account</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="/pages/about">Story</a>
+      <a href="/blogs/devlog">Devlog</a>
+      <a href="/pages/community">Community</a>
+      <a href="/pages/faq">FAQ</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Help</h4>
+      <a href="/pages/contact">Contact</a>
+      <a href="/pages/shipping">Shipping</a>
+      <a href="/pages/refund-policy">Refunds &amp; returns</a>
+      <a href="/pages/privacy">Privacy</a>
+      <a href="/pages/terms">Terms</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© {{ 'now' | date: '%Y' }} {{ shop.name | default: 'KeepKase' }}. {{ settings.footer_tagline }}</p>
+    <div class="footer-social">
+      {%- if settings.social_instagram != blank -%}<a href="{{ settings.social_instagram }}" aria-label="Instagram" target="_blank" rel="noopener">IG</a>{%- endif -%}
+      {%- if settings.social_tiktok != blank -%}<a href="{{ settings.social_tiktok }}" aria-label="TikTok" target="_blank" rel="noopener">TT</a>{%- endif -%}
+      {%- if settings.social_youtube != blank -%}<a href="{{ settings.social_youtube }}" aria-label="YouTube" target="_blank" rel="noopener">YT</a>{%- endif -%}
+      {%- if settings.social_x != blank -%}<a href="{{ settings.social_x }}" aria-label="X" target="_blank" rel="noopener">X</a>{%- endif -%}
+      {%- if settings.discord_url != blank -%}<a href="{{ settings.discord_url }}" aria-label="Discord" target="_blank" rel="noopener" style="background:#5865F2;color:#fff">D</a>{%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "textarea", "id": "blurb", "label": "Brand blurb" }
+  ]
+}
+{% endschema %}

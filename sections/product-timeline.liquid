@@ -1,0 +1,44 @@
+{{ 'timeline.css' | asset_url | stylesheet_tag }}
+
+<section class="tl-section rv" id="timeline">
+  <div class="dotgrid" aria-hidden="true"></div>
+  <div class="tl-head">
+    <div class="eyebrow">{{ section.settings.eyebrow | default: 'Building in the open' }}</div>
+    <h2>{{ section.settings.title | default: 'The road to <span class="serif">launch.</span>' }}</h2>
+    <p class="dek">{{ section.settings.dek | default: 'Every step from a sticky note to a Kickstarter — what is done, what we are on now, and what is next. Links get added as each step wraps, so a finished node can point you to the recap.' }}</p>
+  </div>
+
+  <div class="tl" data-timeline-root
+       data-storage-key="{{ section.settings.storage_key | default: 'keepkase_timeline_v1' }}"
+       data-editable="{% if section.settings.editable %}true{% else %}false{% endif %}">
+    <div class="tl-empty">Loading the timeline…</div>
+  </div>
+</section>
+
+{{ 'timeline.seed.js' | asset_url | script_tag }}
+{%- if section.settings.published_json != blank -%}
+  <script>
+    (function () {
+      var raw = {{ section.settings.published_json | json }};
+      if (!raw) return;
+      try { var p = JSON.parse(raw); if (p && Array.isArray(p.nodes)) window.KEEPKASE_TIMELINE_SEED = p; }
+      catch (e) { if (window.console) console.warn('KeepKase timeline: published JSON is invalid, using seed file.'); }
+    })();
+  </script>
+{%- endif -%}
+{{ 'timeline.js' | asset_url | script_tag }}
+
+{% schema %}
+{
+  "name": "Build timeline",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Building in the open" },
+    { "type": "richtext", "id": "title", "label": "Title", "default": "<p>The road to <em>launch.</em></p>" },
+    { "type": "textarea", "id": "dek", "label": "Intro", "default": "Every step from a sticky note to a Kickstarter — what is done, what we are on now, and what is next. Links get added as each step wraps, so a finished node can point you to the recap." },
+    { "type": "checkbox", "id": "editable", "label": "Show the live editor (add / split / delete / reorder)", "default": true, "info": "Anyone can toggle edit mode, but edits save only to their own browser. Use Export to publish — see README." },
+    { "type": "text", "id": "storage_key", "label": "Local storage key", "default": "keepkase_timeline_v1" },
+    { "type": "textarea", "id": "published_json", "label": "Published timeline JSON (no-code publish)", "info": "Paste the JSON you exported from edit mode here to publish it to visitors without editing theme files. Leave blank to use assets/timeline.seed.js." }
+  ],
+  "presets": [{ "name": "Build timeline" }]
+}
+{% endschema %}

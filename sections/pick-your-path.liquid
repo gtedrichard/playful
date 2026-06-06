@@ -1,0 +1,81 @@
+{%- liquid
+  assign remaining = settings.alpha_remaining | default: '87'
+-%}
+<section class="pp rv" id="tracks">
+  <div class="pp-dd" aria-hidden="true"></div>
+  <svg class="tex" style="right:0;top:0;height:100%;width:70px;opacity:.07;" preserveAspectRatio="xMidYMid slice" viewBox="0 0 70 500" aria-hidden="true">
+    <path id="sqPP1" d="M15 0 Q38 50 15 100 Q-8 150 15 200 Q38 250 15 300 Q-8 350 15 400 Q38 450 15 500" stroke="#1A1A1A" stroke-width="2" fill="none"/>
+    <path id="sqPP2" d="M45 25 Q62 75 45 125 Q28 175 45 225 Q62 275 45 325 Q28 375 45 425" stroke="#1A1A1A" stroke-width="1.4" fill="none"/>
+  </svg>
+  <div class="wrap">
+    <div class="pp-label">{{ section.settings.label | default: 'Get in early' }}</div>
+    <h2 class="pp-title">{{ section.settings.title | default: 'Two ways <em>in.</em>' }}</h2>
+    <div class="pp-grid">
+      <div class="pp-alpha rv d1">
+        <div class="ppa-dd" aria-hidden="true"></div>
+        <div class="ppa-blob" aria-hidden="true"></div>
+        <div class="ppa-spots">{{ remaining }} spots left</div>
+        <div class="ppa-in">
+          <div class="ppa-badge">{{ section.settings.alpha_badge | default: 'Alpha tester' }}</div>
+          <h3>{{ section.settings.alpha_title | default: 'Help us build it.<br><em>Get it first.</em>' }}</h3>
+          <p class="ppa-desc">{{ section.settings.alpha_desc | default: '100 units to people who will use it hard and tell us what is broken. At cost. Real access. Your feedback shapes the final product.' }}</p>
+          <ul class="ppa-perks">
+            {%- if section.blocks.size > 0 -%}
+              {%- for block in section.blocks -%}
+                <li {{ block.shopify_attributes }}><span class="ppip ppip-{{ block.settings.color | default: 'b' }}">✓</span>{{ block.settings.text }}</li>
+              {%- endfor -%}
+            {%- else -%}
+              <li><span class="ppip ppip-b">✓</span>Unit at cost — $50</li>
+              <li><span class="ppip ppip-y">✓</span>35–40% off Kickstarter launch</li>
+              <li><span class="ppip ppip-c">✓</span>Named in product credits</li>
+              <li><span class="ppip ppip-b">✓</span>Direct Discord with the team</li>
+              <li><span class="ppip ppip-y">✓</span>First pick of colorways</li>
+            {%- endif -%}
+          </ul>
+          <a href="{{ section.settings.alpha_link | default: '/products/keepkase-alpha' }}" class="ppa-cta">{{ section.settings.alpha_cta | default: 'Claim alpha spot — $50' }} →</a>
+        </div>
+      </div>
+      <div class="pp-wl rv d2">
+        <div>
+          <div class="ppw-badge">{{ section.settings.wl_badge | default: 'Launch waitlist' }}</div>
+          <h3>{{ section.settings.wl_title | default: 'Not ready yet?<br>Lock your spot.' }}</h3>
+          <p class="ppw-desc">{{ section.settings.wl_desc | default: 'Free to join. An optional $10 refundable deposit bumps you to the front of the line when we launch on Kickstarter.' }}</p>
+          <div class="ppw-tiers">
+            <div class="ppw-tier ppwt-free"><div><div class="ppwt-l">Free join</div><div class="ppwt-s">Warm spot in queue</div></div><span class="ppwt-tag ppwt-tag-c">Open</span></div>
+            <div class="ppw-tier ppwt-paid"><div><div class="ppwt-lw">$10 deposit</div><div class="ppwt-sw">Locked priority position</div></div><span class="ppwt-tag ppwt-tag-y">Refundable</span></div>
+          </div>
+        </div>
+        <a href="{{ section.settings.wl_link | default: '/pages/community' }}" class="ppw-cta">{{ section.settings.wl_cta | default: 'Reserve launch spot — free' }} →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pick your path",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Eyebrow", "default": "Get in early" },
+    { "type": "richtext", "id": "title", "label": "Title", "default": "<p>Two ways <em>in.</em></p>" },
+    { "type": "header", "content": "Alpha card" },
+    { "type": "text", "id": "alpha_badge", "label": "Badge", "default": "Alpha tester" },
+    { "type": "richtext", "id": "alpha_title", "label": "Title", "default": "<p>Help us build it. <em>Get it first.</em></p>" },
+    { "type": "textarea", "id": "alpha_desc", "label": "Description", "default": "100 units to people who will use it hard and tell us what is broken. At cost. Real access. Your feedback shapes the final product." },
+    { "type": "text", "id": "alpha_cta", "label": "Button text", "default": "Claim alpha spot — $50" },
+    { "type": "url", "id": "alpha_link", "label": "Button link", "default": "/products/keepkase-alpha" },
+    { "type": "header", "content": "Waitlist card" },
+    { "type": "text", "id": "wl_badge", "label": "Badge", "default": "Launch waitlist" },
+    { "type": "richtext", "id": "wl_title", "label": "Title", "default": "<p>Not ready yet? Lock your spot.</p>" },
+    { "type": "textarea", "id": "wl_desc", "label": "Description", "default": "Free to join. An optional $10 refundable deposit bumps you to the front of the line when we launch on Kickstarter." },
+    { "type": "text", "id": "wl_cta", "label": "Button text", "default": "Reserve launch spot — free" },
+    { "type": "url", "id": "wl_link", "label": "Button link", "default": "/pages/community" }
+  ],
+  "blocks": [
+    { "type": "perk", "name": "Alpha perk", "settings": [
+      { "type": "text", "id": "text", "label": "Perk", "default": "Unit at cost — $50" },
+      { "type": "select", "id": "color", "label": "Check color", "options": [ { "value": "b", "label": "Blue" }, { "value": "y", "label": "Yellow" }, { "value": "c", "label": "Coral" } ], "default": "b" }
+    ] }
+  ],
+  "presets": [{ "name": "Pick your path" }]
+}
+{% endschema %}

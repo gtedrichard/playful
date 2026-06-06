@@ -1,0 +1,42 @@
+<div class="page-head">
+  <div class="dotgrid" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="breadcrumbs"><a href="{{ routes.account_url }}">Account</a><span class="sep">/</span><span>{{ order.name }}</span></div>
+    <h1 style="margin-top:6px">Order {{ order.name }}</h1>
+    <p class="dek">Placed {{ order.created_at | date: '%B %-d, %Y' }} · {{ order.financial_status_label }} · {{ order.fulfillment_status_label }}</p>
+  </div>
+</div>
+
+<div class="account-wrap">
+  <table class="order-table" style="margin-bottom:24px">
+    <thead><tr><th>Item</th><th>Qty</th><th>Price</th><th>Total</th></tr></thead>
+    <tbody>
+      {%- for line in order.line_items -%}
+        <tr><td>{{ line.title }}</td><td>{{ line.quantity }}</td><td>{{ line.price | money }}</td><td>{{ line.final_line_price | money }}</td></tr>
+      {%- endfor -%}
+    </tbody>
+  </table>
+  <div class="cart-summary">
+    <div class="cs-row"><span>Subtotal</span><span>{{ order.line_items_subtotal_price | money }}</span></div>
+    {%- for discount in order.cart_level_discount_applications -%}<div class="cs-row"><span>{{ discount.title }}</span><span>−{{ discount.total_allocated_amount | money }}</span></div>{%- endfor -%}
+    <div class="cs-row"><span>Shipping</span><span>{{ order.shipping_price | money }}</span></div>
+    <div class="cs-row"><span>Tax</span><span>{{ order.tax_price | money }}</span></div>
+    <div class="cs-total"><span style="font-weight:800">Total</span><span class="v">{{ order.total_price | money }}</span></div>
+  </div>
+  <div class="account-card" style="margin-top:20px">
+    <h2>Shipping address</h2>
+    <p style="font-size:14px;color:var(--ink-72);line-height:1.7">{{ order.shipping_address | format_address }}</p>
+  </div>
+
+  <div class="account-card" style="margin-top:20px;background:var(--ink);color:#fff">
+    <h2 style="color:#fff">You're in the Alpha ✦</h2>
+    <p style="font-size:14px;color:var(--w-72);line-height:1.7;margin-bottom:16px">Your Alpha number and a Discord invite are on their way to {{ order.email | default: customer.email }}. Here's where to go next.</p>
+    <div class="row gap-3" style="flex-wrap:wrap">
+      <a href="/pages/welcome" class="btn btn--yellow btn--sm">Read your welcome guide →</a>
+      {%- if settings.discord_url != blank -%}<a href="{{ settings.discord_url }}" class="btn discord-cta btn--sm" target="_blank" rel="noopener">Join the Discord 💬</a>{%- endif -%}
+      <a href="/pages/timeline" class="btn btn--ghost btn--sm" style="--btn-fg:#fff;border-color:var(--w-30)">See the build timeline</a>
+    </div>
+  </div>
+
+  <a href="{{ routes.account_url }}" class="btn btn--ghost btn--sm mt-6">← Back to account</a>
+</div>

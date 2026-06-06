@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "hero": { "type": "hero", "settings": {} },
+    "marquee": { "type": "marquee", "settings": { "style": "yellow" } },
+    "problem": { "type": "problem", "settings": {} },
+    "how": { "type": "how-it-works", "settings": {} },
+    "wild": { "type": "in-the-wild", "settings": {} },
+    "paths": { "type": "pick-your-path", "settings": {} },
+    "voices": { "type": "testimonials", "settings": {} },
+    "email": { "type": "email-signup", "settings": {} },
+    "promise": { "type": "promise", "settings": {} }
+  },
+  "order": ["hero", "marquee", "problem", "how", "wild", "paths", "voices", "email", "promise"]
+}

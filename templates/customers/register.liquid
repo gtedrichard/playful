@@ -1,0 +1,15 @@
+<div class="auth-wrap">
+  <div class="auth-card">
+    <h1>Create account</h1>
+    <p class="auth-sub">One account for your orders, your Alpha number, and updates.</p>
+    {%- form 'create_customer' -%}
+      {%- if form.errors -%}<div class="form-status form-status--err" style="margin-bottom:14px">{{ form.errors | default_errors }}</div>{%- endif -%}
+      <div class="field"><label for="fn">First name</label><input class="input" id="fn" type="text" name="customer[first_name]"></div>
+      <div class="field"><label for="ln">Last name</label><input class="input" id="ln" type="text" name="customer[last_name]"></div>
+      <div class="field"><label for="re">Email</label><input class="input" id="re" type="email" name="customer[email]" required></div>
+      <div class="field"><label for="rp">Password</label><input class="input" id="rp" type="password" name="customer[password]" required></div>
+      <button type="submit" class="btn btn--coral btn--block btn--lg">Create account →</button>
+    {%- endform -%}
+    <p class="auth-alt">Already have one? <a href="{{ routes.account_login_url }}">Sign in</a></p>
+  </div>
+</div>

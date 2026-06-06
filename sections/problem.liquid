@@ -1,0 +1,52 @@
+{%- liquid
+  if section.blocks.size > 0
+    assign count = section.blocks.size
+  else
+    assign count = 3
+  endif
+-%}
+<section class="p11 rv">
+  <div class="p11-dots" aria-hidden="true"></div>
+  <div class="p11-wm" aria-hidden="true">{{ section.settings.watermark | default: 'WHY' }}</div>
+  <div class="wrap">
+    <div class="p11-head">
+      <h2 class="p11-title">{{ section.settings.title | default: "Stickers on MacBooks are <em>permanent.</em><br>That's broken." }}</h2>
+      <div class="p11-count"><div class="p11-cn">{{ count | prepend: '0' | slice: -2, 2 }}</div><div class="p11-cl">{{ section.settings.count_label | default: 'real problems' }}</div></div>
+    </div>
+    <div class="p11-items">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          <div class="p11-item rv d{{ forloop.index }}" {{ block.shopify_attributes }}>
+            <div class="p11-n">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</div>
+            <div class="p11-icon draggable-emoji">{{ block.settings.icon | default: '✦' }}</div>
+            <div class="p11-body"><h3>{{ block.settings.title }}</h3><p>{{ block.settings.text }}</p></div>
+            <div class="p11-arrow">→</div>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <div class="p11-item rv d1"><div class="p11-n">01</div><div class="p11-icon draggable-emoji">💀</div><div class="p11-body"><h3>Removal destroys them</h3><p>Rare stickers, sentimental stickers — peel them off and they're gone forever.</p></div><div class="p11-arrow">→</div></div>
+        <div class="p11-item rv d2"><div class="p11-n">02</div><div class="p11-icon draggable-emoji">🔒</div><div class="p11-body"><h3>One layout, forever</h3><p>Your taste evolves. Your MacBook doesn't. You're stuck with last year's vibe.</p></div><div class="p11-arrow">→</div></div>
+        <div class="p11-item rv d3"><div class="p11-n">03</div><div class="p11-icon draggable-emoji">💸</div><div class="p11-body"><h3>Can't resell cleanly</h3><p>Adhesive eats into anodization. The laptop loses value and you lose your stickers anyway.</p></div><div class="p11-arrow">→</div></div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Problem",
+  "settings": [
+    { "type": "text", "id": "watermark", "label": "Watermark word", "default": "WHY" },
+    { "type": "richtext", "id": "title", "label": "Title", "default": "<p>Stickers on MacBooks are <em>permanent.</em> That's broken.</p>" },
+    { "type": "text", "id": "count_label", "label": "Count label", "default": "real problems" }
+  ],
+  "blocks": [
+    { "type": "problem", "name": "Problem", "settings": [
+      { "type": "text", "id": "icon", "label": "Emoji icon", "default": "💀" },
+      { "type": "text", "id": "title", "label": "Title", "default": "Removal destroys them" },
+      { "type": "textarea", "id": "text", "label": "Text", "default": "Rare stickers, sentimental stickers — peel them off and they're gone forever." }
+    ] }
+  ],
+  "presets": [{ "name": "Problem" }]
+}
+{% endschema %}

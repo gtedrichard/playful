@@ -1,0 +1,73 @@
+{%- liquid
+  assign remaining = settings.alpha_remaining | default: '87'
+  assign discord = settings.discord_url
+-%}
+<div class="page-head bg-ink" style="color:#fff">
+  <div class="dotgrid dotgrid--light" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow on-dark">Community</span>
+    <h1 style="margin-top:10px;color:#fff">{{ page.title | default: 'The alpha lives in Discord.' }}</h1>
+    <p class="dek" style="color:var(--w-60)">KeepKase is being built in the open with 100 people. Inside the server you see the decisions as we make them, weigh in on the calls that matter, and get first look at everything before it ships. The dual-sheet form is easy to copy. The taste, the speed, and the people in this room are not.</p>
+    <div class="row gap-3 mt-6" style="flex-wrap:wrap">
+      {%- if discord != blank -%}
+        <a href="{{ discord }}" class="btn discord-cta btn--lg" target="_blank" rel="noopener">Open the Discord 💬</a>
+      {%- else -%}
+        <a href="/products/keepkase-alpha" class="btn discord-cta btn--lg">Claim a spot to get your invite 💬</a>
+      {%- endif -%}
+      <a href="/products/keepkase-alpha" class="btn btn--ghost btn--lg" style="--btn-fg:#fff;border-color:var(--w-30)">Claim an alpha spot</a>
+    </div>
+  </div>
+</div>
+
+<section class="section bg-cream">
+  <div class="wrap">
+    <span class="eyebrow" style="display:block;margin-bottom:18px">What you get inside</span>
+    <div class="comm-cards">
+      <div class="comm-card"><div class="cc-icon">📋</div><div><h3>Build log &amp; decisions</h3><p>Every real choice — colorways, sheet material, sizing, packaging — gets posted with the reasoning behind it. Nothing happens behind a curtain. If we change direction, you see why.</p></div></div>
+      <div class="comm-card"><div class="cc-icon">💬</div><div><h3>A direct line to the team</h3><p>No support queue, no form. Ask a question and the people building KeepKase answer. Your feedback lands in the conversation that actually shapes the next version.</p></div></div>
+      <div class="comm-card"><div class="cc-icon">🎨</div><div><h3>First pick &amp; early looks</h3><p>Alpha members get first pick of colorways and the first look at new sheet designs and ideas — before anything goes wider.</p></div></div>
+      <div class="comm-card"><div class="cc-icon">🖼️</div><div><h3>Show your setups</h3><p>Post your layouts, your arrangements, the sheets you've retired and put on a wall. Real setups from real people are how this spreads, and the best ideas tend to start here.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-paper">
+  <div class="wrap">
+    <span class="eyebrow" style="display:block;margin-bottom:30px">How it works — once you've claimed your spot, joining takes a minute</span>
+    <div class="steps">
+      <div class="step"><h4>Claim your alpha spot</h4><p>Your $50 unit and your seat in the room come together.</p></div>
+      <div class="step"><h4>Get your invite</h4><p>We send a Discord link to the email tied to your order.</p></div>
+      <div class="step"><h4>Introduce yourself</h4><p>Drop into the intro channel, grab your colorway pick, and start shaping the build.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-yellow">
+  <div class="wrap wrap--narrow">
+    <h2 style="font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;letter-spacing:-1.2px;margin-bottom:8px">House rules</h2>
+    <p style="color:var(--ink-72);margin-bottom:22px">A few things that keep this a good room to be in.</p>
+    <div class="prose" style="max-width:none">
+      <ul style="gap:.7em">
+        <li><strong>Talk like a person.</strong> Plain, kind, direct. Disagreement is fine — sharp feedback makes the product better.</li>
+        <li><strong>Credit the source.</strong> Saw a layout idea you love? Say so. The good stuff travels because people point at it.</li>
+        <li><strong>Half-finished is welcome.</strong> Rough drafts, messy desks, unsure questions — all fair game. This is a workshop, not a showroom.</li>
+        <li><strong>Keep it yours.</strong> Share what you want to share. No pressure to post, ever.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-ink" style="text-align:center">
+  <div class="wrap wrap--narrow">
+    <h2 style="color:#fff;font-size:clamp(1.8rem,3.6vw,3rem);font-weight:900;letter-spacing:-1.5px;margin-bottom:14px">Not in the alpha yet?</h2>
+    <p style="color:var(--w-60);font-size:16px;line-height:1.7;max-width:560px;margin:0 auto 26px">The 100 spots keep the room small enough that we can actually listen. {{ remaining }} left — or join the free Launch Waitlist for a warm spot, with an optional $10 refundable deposit to move to the front of the line at launch.</p>
+    <div class="row gap-3" style="justify-content:center;flex-wrap:wrap">
+      <a href="/products/keepkase-alpha" class="btn btn--yellow btn--lg">Claim a spot — $50 →</a>
+      <a href="#waitlist" class="btn btn--ghost btn--lg" style="--btn-fg:#fff;border-color:var(--w-30)">Join the free waitlist</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Community", "settings": [], "presets": [{ "name": "Community" }] }
+{% endschema %}

@@ -1,0 +1,26 @@
+<div class="auth-wrap">
+  <div class="auth-card">
+    <h1>Sign in</h1>
+    <p class="auth-sub">Welcome back. Check your orders and account details.</p>
+
+    {%- form 'customer_login' -%}
+      {%- if form.errors -%}<div class="form-status form-status--err" style="margin-bottom:14px">{{ form.errors | default_errors }}</div>{%- endif -%}
+      <div class="field"><label for="ce">Email</label><input class="input" id="ce" type="email" name="customer[email]" required></div>
+      <div class="field"><label for="cp">Password</label><input class="input" id="cp" type="password" name="customer[password]" required></div>
+      <button type="submit" class="btn btn--coral btn--block btn--lg">Sign in →</button>
+    {%- endform -%}
+
+    <details style="margin-top:16px">
+      <summary style="cursor:pointer;font-size:13px;font-weight:700;color:var(--b)">Forgot your password?</summary>
+      <div style="margin-top:12px">
+        {%- form 'recover_customer_password' -%}
+          {%- if form.posted_successfully? -%}<div class="form-status form-status--ok" style="margin-bottom:12px">We sent you a reset link. Check your email.</div>{%- endif -%}
+          <div class="field"><label for="re">Email</label><input class="input" id="re" type="email" name="email" required></div>
+          <button type="submit" class="btn btn--ghost btn--block btn--sm">Send reset link</button>
+        {%- endform -%}
+      </div>
+    </details>
+
+    <p class="auth-alt">New here? <a href="{{ routes.account_register_url }}">Create an account</a></p>
+  </div>
+</div>

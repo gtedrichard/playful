@@ -1,0 +1,62 @@
+<section class="m8 rv">
+  <div class="m8-dd" aria-hidden="true"></div>
+  <svg class="m8-rings" width="280" height="280" viewBox="0 0 280 280" fill="none" aria-hidden="true">
+    <circle cx="280" cy="0" r="80" stroke="white" stroke-width="1.5" stroke-dasharray="8 6"/>
+    <circle cx="280" cy="0" r="140" stroke="white" stroke-width="1" stroke-dasharray="6 8"/>
+    <circle cx="280" cy="0" r="210" stroke="white" stroke-width=".6" stroke-dasharray="4 10"/>
+  </svg>
+  <div class="wrap">
+    <div class="m8-head">
+      <h2 class="m8-title">{{ section.settings.title | default: 'In the wild.' }}<br><span class="my">{{ section.settings.title_accent | default: 'Real stories.' }}</span></h2>
+      <p class="m8-sub">{{ section.settings.subtitle | default: 'Alpha testers. Real setups. Real reactions.' }}</p>
+    </div>
+    <div class="pinboard">
+      {%- assign pushcolors = 'y,c,b,y,c' | split: ',' -%}
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- assign push = pushcolors[forloop.index0] | default: 'y' -%}
+          <div class="pn{{ forloop.index }}">
+            <div class="pin">
+              <span class="pushpin push-{{ push }} draggable-emoji"></span>
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 900 }}" alt="{{ block.settings.label | escape }}" style="width:100%;height:100%;object-fit:cover">
+              {%- else -%}
+                <div class="piph"><div class="piph-d"></div><div class="piph-i">{{ block.settings.emoji | default: '📸' }}</div><div class="piph-l">{{ block.settings.label }}</div><div class="piph-s">{{ block.settings.sublabel }}</div></div>
+              {%- endif -%}
+              {%- if block.settings.badge != blank -%}<div class="pin-badge"><span class="badge badge--{{ block.settings.badge_style | default: 'ink' }}">{{ block.settings.badge }}</span></div>{%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <div class="pn1"><div class="pin"><span class="pushpin push-y draggable-emoji"></span><div class="piph"><div class="piph-d"></div><div class="piph-i">🎬</div><div class="piph-l">Hero video / GIF</div><div class="piph-s">TikTok repurpose · 16:9</div><div class="pin-badge"><span class="badge badge--ink">178K views ✦</span></div></div></div></div>
+        <div class="pn2"><div class="pin"><span class="pushpin push-c draggable-emoji"></span><div class="piph"><div class="piph-d"></div><div class="piph-i">📱</div><div class="piph-l">TikTok thumbnail</div><div class="piph-s">9:16</div><div class="pin-badge"><span class="badge badge--c">TikTok</span></div></div></div></div>
+        <div class="pn3"><div class="pin"><span class="pushpin push-b draggable-emoji"></span><div class="piph"><div class="piph-d"></div><div class="piph-i">🖼</div><div class="piph-l">Alpha tester UGC</div><div class="piph-s">Square crop</div><div class="pin-badge"><span class="badge badge--b">Alpha #04</span></div></div></div></div>
+        <div class="pn4"><div class="pin"><span class="pushpin push-y draggable-emoji"></span><div class="piph"><div class="piph-d"></div><div class="piph-i">📸</div><div class="piph-l">Setup lifestyle</div><div class="piph-s">4:3</div></div></div></div>
+        <div class="pn5"><div class="pin"><span class="pushpin push-c draggable-emoji"></span><div class="piph"><div class="piph-d"></div><div class="piph-i">🖼</div><div class="piph-l">Retired sheet · wall art</div><div class="piph-s">4:3</div></div></div></div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "In the wild",
+  "max_blocks": 5,
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "In the wild." },
+    { "type": "text", "id": "title_accent", "label": "Title accent (yellow)", "default": "Real stories." },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Alpha testers. Real setups. Real reactions." }
+  ],
+  "blocks": [
+    { "type": "pin", "name": "Pin", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Image" },
+      { "type": "text", "id": "emoji", "label": "Placeholder emoji", "default": "📸" },
+      { "type": "text", "id": "label", "label": "Label", "default": "Setup lifestyle" },
+      { "type": "text", "id": "sublabel", "label": "Sublabel", "default": "4:3" },
+      { "type": "text", "id": "badge", "label": "Badge text" },
+      { "type": "select", "id": "badge_style", "label": "Badge style", "options": [ { "value": "ink", "label": "Ink" }, { "value": "c", "label": "Coral" }, { "value": "b", "label": "Blue" }, { "value": "y", "label": "Yellow" } ], "default": "ink" }
+    ] }
+  ],
+  "presets": [{ "name": "In the wild" }]
+}
+{% endschema %}

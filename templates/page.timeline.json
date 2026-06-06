@@ -1,0 +1,4 @@
+{
+  "sections": { "main": { "type": "product-timeline", "settings": {} } },
+  "order": ["main"]
+}

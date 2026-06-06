@@ -1,0 +1,39 @@
+{%- assign email = settings.support_email | default: 'hello@keepkase.com' -%}
+<div class="page-head">
+  <div class="dotgrid" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow">Contact</span>
+    <h1 style="margin-top:10px">{{ page.title | default: 'Talk to a human.' }}</h1>
+    <p class="dek">Questions about the alpha, your order, returns, or anything else — the team reads every message.</p>
+  </div>
+</div>
+
+<section class="section bg-cream">
+  <div class="wrap" style="display:grid;grid-template-columns:1.3fr .9fr;gap:40px;align-items:start">
+    <div class="auth-card" style="max-width:none;margin:0">
+      {%- form 'contact' -%}
+        {%- if form.posted_successfully? -%}
+          <div class="form-status form-status--ok">Thanks — we got it. We'll reply to your email shortly.</div>
+        {%- elsif form.errors -%}
+          <div class="form-status form-status--err">{{ form.errors | default_errors }}</div>
+        {%- endif -%}
+        <div class="field" style="margin-bottom:14px"><label for="cname">Name</label><input class="input" id="cname" type="text" name="contact[name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" required></div>
+        <div class="field" style="margin-bottom:14px"><label for="cemail">Email</label><input class="input" id="cemail" type="email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" required></div>
+        <div class="field" style="margin-bottom:14px"><label for="csubject">Subject</label><input class="input" id="csubject" type="text" name="contact[subject]" placeholder="What's this about?"></div>
+        <div class="field" style="margin-bottom:18px"><label for="cbody">Message</label><textarea class="textarea" id="cbody" name="contact[body]" required></textarea></div>
+        <button type="submit" class="btn btn--coral btn--lg">Send message →</button>
+      {%- endform -%}
+    </div>
+    <aside>
+      <div class="comm-card" style="display:block"><h3>Email</h3><p style="margin-top:6px"><a href="mailto:{{ email }}" style="color:var(--b);font-weight:700;text-decoration:underline">{{ email }}</a></p></div>
+      {%- if settings.discord_url != blank -%}
+        <div class="comm-card" style="display:block;margin-top:14px"><h3>Discord</h3><p style="margin-top:6px">Alpha members get the fastest answers in the server. <a href="{{ settings.discord_url }}" style="color:var(--b);font-weight:700;text-decoration:underline" target="_blank" rel="noopener">Open Discord →</a></p></div>
+      {%- endif -%}
+      <div class="comm-card" style="display:block;margin-top:14px"><h3>Order help</h3><p style="margin-top:6px">Include your order number and we'll sort it fast. Returns &amp; refunds: see the <a href="/pages/refund-policy" style="color:var(--b);font-weight:700;text-decoration:underline">policy</a>.</p></div>
+    </aside>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Contact", "settings": [], "presets": [{ "name": "Contact" }] }
+{% endschema %}

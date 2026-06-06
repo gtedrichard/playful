@@ -1,0 +1,13 @@
+<div class="auth-wrap">
+  <div class="auth-card">
+    <h1>Activate account</h1>
+    <p class="auth-sub">Set a password to finish creating your account.</p>
+    {%- form 'activate_customer_password' -%}
+      {%- if form.errors -%}<div class="form-status form-status--err" style="margin-bottom:14px">{{ form.errors | default_errors }}</div>{%- endif -%}
+      <div class="field"><label for="ap">Password</label><input class="input" id="ap" type="password" name="customer[password]" required></div>
+      <div class="field"><label for="apc">Confirm password</label><input class="input" id="apc" type="password" name="customer[password_confirmation]" required></div>
+      <button type="submit" class="btn btn--coral btn--block btn--lg">Activate account →</button>
+      <button type="submit" name="decline" class="btn btn--ghost btn--block btn--sm" style="margin-top:10px">Decline invitation</button>
+    {%- endform -%}
+  </div>
+</div>

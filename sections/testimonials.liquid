@@ -1,0 +1,51 @@
+<section class="sp11 rv">
+  <svg class="sp11-rings" width="340" height="340" viewBox="0 0 340 340" fill="none" aria-hidden="true">
+    <circle cx="340" cy="340" r="90" stroke="#1A1A1A" stroke-width="1.5" stroke-dasharray="8 6"/>
+    <circle cx="340" cy="340" r="155" stroke="#1A1A1A" stroke-width="1" stroke-dasharray="6 8"/>
+    <circle cx="340" cy="340" r="225" stroke="#1A1A1A" stroke-width=".6" stroke-dasharray="4 10"/>
+  </svg>
+  <div class="wrap">
+    <div class="sp11-head"><span class="eyebrow">{{ section.settings.eyebrow | default: 'Early voices' }}</span><h2 class="sp11-title">{{ section.settings.title | default: 'What alpha testers say.' }}</h2></div>
+    <div class="sp11-grid">
+      {%- assign avs = 'b,c,y' | split: ',' -%}
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          <div class="sc11 d{{ forloop.index }}" data-draggable {{ block.shopify_attributes }}>
+            <div class="sc11-photo">
+              {%- if block.settings.photo != blank -%}
+                <img src="{{ block.settings.photo | image_url: width: 600 }}" alt="{{ block.settings.name | escape }}" style="width:100%;height:100%;object-fit:cover">
+              {%- else -%}
+                <div class="sc11-ph"><div class="sc11-ph-d"></div><div class="sc11-ph-i">📸</div><div class="sc11-ph-l">Tester photo</div></div>
+              {%- endif -%}
+            </div>
+            <div class="sc11-body"><p class="sc11-q">"{{ block.settings.quote }}"</p><div class="sc11-attr"><div class="sc11-av" style="background:var(--{{ block.settings.color | default: 'b' }})"></div><div><div class="sc11-n">{{ block.settings.name }}</div><div class="sc11-h">{{ block.settings.handle }}</div></div></div></div>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <div class="sc11 d1" data-draggable><div class="sc11-photo"><div class="sc11-ph"><div class="sc11-ph-d"></div><div class="sc11-ph-i">📸</div><div class="sc11-ph-l">Tester photo</div></div></div><div class="sc11-body"><p class="sc11-q">"Finally moved my stickers without destroying a single one. Been waiting for this forever."</p><div class="sc11-attr"><div class="sc11-av" style="background:var(--b)"></div><div><div class="sc11-n">Alex T.</div><div class="sc11-h">UC Berkeley · Alpha #04</div></div></div></div></div>
+        <div class="sc11 d2" data-draggable><div class="sc11-photo"><div class="sc11-ph"><div class="sc11-ph-d"></div><div class="sc11-ph-i">📸</div><div class="sc11-ph-l">Tester photo</div></div></div><div class="sc11-body"><p class="sc11-q">"The swap is so satisfying. My retired sheet is literally hanging on my wall right now."</p><div class="sc11-attr"><div class="sc11-av" style="background:var(--c)"></div><div><div class="sc11-n">Jamie L.</div><div class="sc11-h">Alpha #11</div></div></div></div></div>
+        <div class="sc11 d3" data-draggable><div class="sc11-photo"><div class="sc11-ph"><div class="sc11-ph-d"></div><div class="sc11-ph-i">📸</div><div class="sc11-ph-l">Tester photo</div></div></div><div class="sc11-body"><p class="sc11-q">"Skeptical about the weight but it's basically the same. The stickers look incredible."</p><div class="sc11-attr"><div class="sc11-av" style="background:var(--y)"></div><div><div class="sc11-n">Sam K.</div><div class="sc11-h">Alpha #07</div></div></div></div></div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Early voices" },
+    { "type": "text", "id": "title", "label": "Title", "default": "What alpha testers say." }
+  ],
+  "blocks": [
+    { "type": "quote", "name": "Quote", "settings": [
+      { "type": "image_picker", "id": "photo", "label": "Photo" },
+      { "type": "textarea", "id": "quote", "label": "Quote", "default": "Finally moved my stickers without destroying a single one." },
+      { "type": "text", "id": "name", "label": "Name", "default": "Alex T." },
+      { "type": "text", "id": "handle", "label": "Handle / tag", "default": "Alpha #04" },
+      { "type": "select", "id": "color", "label": "Avatar color", "options": [ { "value": "b", "label": "Blue" }, { "value": "c", "label": "Coral" }, { "value": "y", "label": "Yellow" } ], "default": "b" }
+    ] }
+  ],
+  "presets": [{ "name": "Testimonials" }]
+}
+{% endschema %}

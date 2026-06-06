@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "main": { "type": "main-product", "settings": {} },
+    "timeline": { "type": "product-timeline", "settings": {} },
+    "marquee": { "type": "marquee", "settings": { "style": "ink" } },
+    "how": { "type": "how-it-works", "settings": {} },
+    "promise": { "type": "promise", "settings": {} }
+  },
+  "order": ["main", "timeline", "marquee", "how", "promise"]
+}

@@ -1,0 +1,21 @@
+<div class="page-head">
+  <div class="dotgrid" aria-hidden="true"></div>
+  <div class="wrap"><span class="eyebrow">Shop</span><h1 style="margin-top:10px">Collections</h1></div>
+</div>
+
+<section class="section bg-cream">
+  <div class="wrap">
+    <div class="blog-grid">
+      {%- for collection in collections -%}
+        <a class="post-card" href="{{ collection.url }}">
+          <div class="post-cover">{%- if collection.featured_image -%}<img src="{{ collection.featured_image | image_url: width: 700 }}" alt="{{ collection.title | escape }}" loading="lazy" style="width:100%;height:100%;object-fit:cover">{%- else -%}<div class="placeholder-media" style="height:100%;border:none;border-radius:0;background:transparent"><div class="pm-i">🗂️</div></div>{%- endif -%}</div>
+          <div class="post-body"><h3>{{ collection.title }}</h3><p>{{ collection.products_count }} item{% if collection.products_count != 1 %}s{% endif %}</p><span class="post-readmore">View →</span></div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Collections list", "settings": [] }
+{% endschema %}

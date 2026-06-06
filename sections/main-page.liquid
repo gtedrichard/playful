@@ -1,0 +1,35 @@
+{%- liquid
+  assign is_legal = false
+  assign legal = 'privacy,terms,refund,shipping,policy' | split: ','
+  for h in legal
+    if page.handle contains h
+      assign is_legal = true
+    endif
+  endfor
+-%}
+<div class="page-head">
+  <div class="dotgrid" aria-hidden="true"></div>
+  <div class="wrap">
+    {%- if is_legal -%}<span class="eyebrow">Legal</span>{%- endif -%}
+    <h1 style="margin-top:10px">{{ page.title }}</h1>
+  </div>
+</div>
+
+<section class="section bg-cream">
+  <div class="wrap wrap--narrow">
+    {%- if is_legal -%}
+      <p class="legal-note" style="margin-bottom:28px">This is a plain-language draft written for an alpha-stage product. It is not legal advice — please have counsel review it before you rely on it.</p>
+    {%- endif -%}
+    <div class="prose">
+      {%- if page.content != blank -%}
+        {{ page.content }}
+      {%- else -%}
+        <p>Add this page's content in <strong>Shopify admin → Online Store → Pages</strong>. Paste the matching file from the theme's <code>content/</code> folder.</p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Page", "settings": [], "presets": [{ "name": "Page" }] }
+{% endschema %}

@@ -1,0 +1,147 @@
+{%- liquid
+  assign total = settings.alpha_total | default: '100'
+  assign remaining = settings.alpha_remaining | default: '87'
+  assign current = product.selected_or_first_available_variant
+-%}
+<section class="product rv">
+  <div class="dotgrid" aria-hidden="true" style="opacity:.5"></div>
+  <div class="product-grid">
+
+    {%- comment -%} ── Gallery ── {%- endcomment -%}
+    <div class="gallery">
+      <div class="gallery-main">
+        {%- if product.featured_media -%}
+          <img data-gallery-main src="{{ product.featured_media | image_url: width: 1100 }}" alt="{{ product.featured_media.alt | escape | default: product.title }}" width="1100">
+        {%- else -%}
+          <div class="placeholder-media"><div class="pm-i">🗂️</div><div class="pm-l">Product hero image</div><div class="pm-s">Drop a photo on the product in Shopify admin</div></div>
+        {%- endif -%}
+      </div>
+      {%- if product.media.size > 1 -%}
+        <div class="gallery-thumbs">
+          {%- for media in product.media limit: 8 -%}
+            <button class="gthumb{% if forloop.first %} active{% endif %}" data-gallery-thumb data-src="{{ media | image_url: width: 1100 }}" aria-label="View image {{ forloop.index }}">
+              <img src="{{ media | image_url: width: 200 }}" alt="" loading="lazy">
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="gallery-thumbs">
+          <div class="gthumb active">🗂️</div><div class="gthumb">🔄</div><div class="gthumb">🖼️</div><div class="gthumb">✦</div>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} ── Buy box ── {%- endcomment -%}
+    <div class="buybox">
+      <div class="buybox-pills">
+        <span class="pill pill--y"><span class="blink"></span>Alpha open — {{ total }} spots</span>
+        <span class="pill pill--ghost">{{ remaining }} of {{ total }} left</span>
+      </div>
+
+      <h1>{{ product.title | default: 'KeepKase Alpha' }}</h1>
+      <p class="sub">{{ section.settings.subtitle | default: "A thin hardshell that protects your laptop and holds the stickers you'd hate to lose. Designed for what you want to keep — and what you'll outgrow." }}</p>
+
+      {% render 'price', product: product %}
+
+      <form data-cart-form data-product-form method="post" action="{{ routes.cart_add_url }}">
+        <input type="hidden" name="id" value="{{ current.id }}">
+
+        {%- unless product.has_only_default_variant -%}
+          {%- for option in product.options_with_values -%}
+            {%- assign is_color = false -%}
+            {%- if option.name contains 'Color' or option.name contains 'Colour' or option.name contains 'colorway' -%}{%- assign is_color = true -%}{%- endif -%}
+            <div class="variant-group">
+              <div class="variant-label">{{ option.name }} <span class="vl-pick">{{ option.selected_value }}</span></div>
+              <div class="swatches" data-option-index="{{ forloop.index0 }}">
+                {%- for value in option.values -%}
+                  {%- assign vd = value | downcase -%}
+                  {%- assign dot = '#cccccc' -%}
+                  {%- if vd contains 'bone' -%}{%- assign dot = '#EDE6D6' -%}{%- elsif vd contains 'graphite' -%}{%- assign dot = '#3A3A3A' -%}{%- elsif vd contains 'ember' -%}{%- assign dot = '#B5654A' -%}{%- elsif vd contains 'signal' -%}{%- assign dot = '#1A8FFF' -%}{%- elsif vd contains 'white' or vd contains 'bone' -%}{%- assign dot = '#F4F1EA' -%}{%- elsif vd contains 'black' or vd contains 'ink' -%}{%- assign dot = '#1A1A1A' -%}{%- endif -%}
+                  <label class="swatch">
+                    <input type="radio" name="option-{{ option.position }}" value="{{ value | escape }}"{% if option.selected_value == value %} checked{% endif %}>
+                    {%- if is_color -%}<span class="sw-dot" style="background:{{ dot }}"></span>{%- endif -%}
+                    {{ value }}
+                  </label>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endunless -%}
+
+        <div class="buy-row" style="margin-top:8px">
+          <div class="qty" aria-label="Quantity">
+            <button type="button" data-qty="dec" aria-label="Decrease">–</button>
+            <input type="text" name="quantity" value="1" inputmode="numeric" aria-label="Quantity">
+            <button type="button" data-qty="inc" aria-label="Increase">+</button>
+          </div>
+          <button type="submit" class="btn btn--coral btn--lg" data-add-label="{{ section.settings.add_label | default: 'Join the Alpha' }}"{% unless current.available %} disabled{% endunless %}>
+            {%- if current.available -%}{{ section.settings.add_label | default: 'Join the Alpha' }}{%- else -%}Sold out{%- endif -%} →
+          </button>
+        </div>
+      </form>
+
+      <a href="{{ section.settings.waitlist_link | default: '/pages/community' }}" class="btn btn--ghost btn--block btn--sm" style="margin-top:2px">Not yet? Join the free waitlist →</a>
+
+      <div class="buy-reassure">
+        <div class="reassure-item"><span class="ri-i">✓</span>Sold at cost. The $50 funds the build, not a margin.</div>
+        <div class="reassure-item"><span class="ri-i">✦</span>Direct Discord access — the build happens in the open.</div>
+        <div class="reassure-item"><span class="ri-i">↺</span>Questions &amp; returns handled directly at {{ settings.support_email | default: 'hello@keepkase.com' }}.</div>
+      </div>
+
+      <div class="product-perks">
+        <h3>Your alpha spot includes</h3>
+        <ul>
+          <li><span class="pk">✓</span>The unit at cost — $50, no margin</li>
+          <li><span class="pk">✓</span>35–40% off the planned Kickstarter price</li>
+          <li><span class="pk">✓</span>Your name in the product credits</li>
+          <li><span class="pk">✓</span>Direct Discord access — vote on decisions</li>
+          <li><span class="pk">✓</span>First pick of colorways</li>
+        </ul>
+      </div>
+
+      <div class="product-accordions">
+        <details class="faq-item" open>
+          <summary>In the box <span class="faq-q-icon">+</span></summary>
+          <div class="faq-a">{{ section.settings.in_box | default: '<ul><li>One hardshell border, sized to your MacBook, that stays on the laptop</li><li>Two thin clear polycarbonate sheets that sandwich your stickers or flat memory items</li><li>A quick-start card on building, swapping, and retiring a layout</li></ul><p style="margin-top:8px;font-size:13px;color:var(--ink-45)">Prototypes are 3D-printed and final materials are still being explored — treat exact specs as in-flux.</p>' }}</div>
+        </details>
+        <details class="faq-item">
+          <summary>Why it's different <span class="faq-q-icon">+</span></summary>
+          <div class="faq-a">{{ section.settings.why_different | default: '<ul><li><strong>Keeps the layout, not just the laptop.</strong> Your arrangement stays intact and removable.</li><li><strong>Zero permanent adhesive.</strong> Stickers go between the sheets, never on the finish.</li><li><strong>Retire, don\'t trash.</strong> A finished sheet becomes a keepsake to store or mount.</li><li><strong>Thin, parity protection.</strong> A slim hardshell that matches the laptop\'s lines.</li></ul>' }}</div>
+        </details>
+        <details class="faq-item">
+          <summary>"Why not just peel them off?" <span class="faq-q-icon">+</span></summary>
+          <div class="faq-a">{{ section.settings.why_peel | default: '<p>Because peeling ends the story. It breaks the arrangement you built, throws away the meaning, and can scuff the anodized finish on the way out. If your stickers are just decoration, peeling is fine — but if a layout is something you\'d want to keep, KeepKase lets you set it aside whole instead of destroying it.</p>' }}</div>
+        </details>
+        <details class="faq-item">
+          <summary>The alpha, honestly <span class="faq-q-icon">+</span></summary>
+          <div class="faq-a">{%- if section.settings.alpha_details != blank -%}{{ section.settings.alpha_details }}{%- else -%}<p>You're buying into a build in progress, not a finished product. Prototypes are 3D-printed and materials are still being chosen — some details will change, and your feedback in the Discord is part of how they get decided. Your $50 is the unit at cost, not a markup. Expected ship window: {{ settings.ship_window | default: 'Fall 2026' }}.</p>{%- endif -%}</div>
+        </details>
+        {%- if product.description != blank -%}
+        <details class="faq-item">
+          <summary>Full description <span class="faq-q-icon">+</span></summary>
+          <div class="faq-a">{{ product.description }}</div>
+        </details>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <script type="application/json" data-variants-json>
+    [{%- for v in product.variants -%}{"id":{{ v.id }},"price":{{ v.price }},"available":{{ v.available }},"options":{{ v.options | json }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle" },
+    { "type": "text", "id": "add_label", "label": "Add-to-cart label", "default": "Join the Alpha" },
+    { "type": "url", "id": "waitlist_link", "label": "Waitlist link", "default": "/pages/community" },
+    { "type": "richtext", "id": "in_box", "label": "In the box" },
+    { "type": "richtext", "id": "why_different", "label": "Why it's different" },
+    { "type": "richtext", "id": "why_peel", "label": "Why not just peel" },
+    { "type": "richtext", "id": "alpha_details", "label": "The alpha, honestly" }
+  ]
+}
+{% endschema %}

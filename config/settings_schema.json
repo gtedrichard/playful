@@ -1,0 +1,120 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "KeepKase",
+    "theme_version": "1.0.0",
+    "theme_author": "KeepKase",
+    "theme_documentation_url": "https://keepkase.com",
+    "theme_support_url": "https://keepkase.com"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "text",
+        "id": "footer_tagline",
+        "label": "Footer tagline",
+        "default": "Built in Berkeley. Printed in Shenzhen. Loved everywhere."
+      },
+      {
+        "type": "header",
+        "content": "Palette (advanced)"
+      },
+      {
+        "type": "paragraph",
+        "content": "The KeepKase palette is baked into the theme CSS for a consistent look. These are here only if you ever need to retune the brand."
+      },
+      {
+        "type": "color",
+        "id": "color_blue",
+        "label": "Blue",
+        "default": "#1A8FFF"
+      },
+      {
+        "type": "color",
+        "id": "color_yellow",
+        "label": "Yellow",
+        "default": "#F7CB15"
+      },
+      {
+        "type": "color",
+        "id": "color_coral",
+        "label": "Coral",
+        "default": "#F55D3E"
+      },
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Paper background",
+        "default": "#F4F1EA"
+      },
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Ink",
+        "default": "#1A1A1A"
+      }
+    ]
+  },
+  {
+    "name": "Alpha program",
+    "settings": [
+      {
+        "type": "text",
+        "id": "alpha_total",
+        "label": "Total alpha spots",
+        "default": "100"
+      },
+      {
+        "type": "text",
+        "id": "alpha_remaining",
+        "label": "Spots remaining (shown in badges)",
+        "default": "87"
+      },
+      {
+        "type": "url",
+        "id": "discord_url",
+        "label": "Discord invite URL",
+        "info": "Used on the Community page, Welcome page, and footer."
+      },
+      {
+        "type": "text",
+        "id": "support_email",
+        "label": "Support email",
+        "default": "hello@keepkase.com"
+      },
+      {
+        "type": "text",
+        "id": "ship_window",
+        "label": "Estimated ship window",
+        "default": "Fall 2026"
+      },
+      {
+        "type": "text",
+        "id": "return_window",
+        "label": "Return window",
+        "default": "30 days"
+      },
+      {
+        "type": "text",
+        "id": "supported_models",
+        "label": "Supported MacBook models",
+        "default": "13″ & 14″ MacBook Air and Pro (M-series)"
+      }
+    ]
+  },
+  {
+    "name": "Social",
+    "settings": [
+      { "type": "url", "id": "social_instagram", "label": "Instagram URL" },
+      { "type": "url", "id": "social_tiktok", "label": "TikTok URL" },
+      { "type": "url", "id": "social_youtube", "label": "YouTube URL" },
+      { "type": "url", "id": "social_x", "label": "X / Twitter URL" }
+    ]
+  }
+]

@@ -1,0 +1,85 @@
+{%- liquid
+  assign total = settings.alpha_total | default: '100'
+  assign remaining = settings.alpha_remaining | default: '87'
+  assign menu = section.settings.menu
+-%}
+
+{%- if section.settings.announcement_show -%}
+  <div class="annc">
+    <span>
+      {%- if section.settings.announcement_text != blank -%}
+        {{ section.settings.announcement_text }}
+      {%- else -%}
+        Alpha is open — {{ total }} spots, sold at cost. {{ remaining }} left.
+      {%- endif -%}
+    </span>
+    {%- if section.settings.announcement_link != blank and section.settings.announcement_link_text != blank -%}
+      <a href="{{ section.settings.announcement_link }}">{{ section.settings.announcement_link_text }} →</a>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+<nav class="nav" role="navigation" aria-label="Primary">
+  <a class="logo" id="logoEl" href="{{ routes.root_url }}">
+    <span class="logo-k">K</span>{{ shop.name | default: 'KeepKase' }}
+  </a>
+
+  <div class="nav-links">
+    {%- if linklists[menu].links.size > 0 -%}
+      {%- for link in linklists[menu].links -%}
+        <a class="nl{% if link.active %} on{% endif %}" href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+      {%- endfor -%}
+    {%- else -%}
+      <a class="nl{% if request.path == routes.root_url %} on{% endif %}" href="{{ routes.root_url }}">Home</a>
+      <a class="nl{% if request.path contains '/products/' %} on{% endif %}" href="/products/keepkase-alpha">The case</a>
+      <a class="nl{% if request.path contains '/pages/about' %} on{% endif %}" href="/pages/about">Story</a>
+      <a class="nl{% if request.path contains '/blogs/' %} on{% endif %}" href="/blogs/devlog">Devlog</a>
+      <a class="nl{% if request.path contains '/pages/community' %} on{% endif %}" href="/pages/community">Community</a>
+      <a class="nl{% if request.path contains '/pages/faq' %} on{% endif %}" href="/pages/faq">FAQ</a>
+    {%- endif -%}
+  </div>
+
+  <div class="nav-right">
+    <button class="cart-toggle" data-cart-open aria-label="Open cart">
+      <span aria-hidden="true">🛒</span>
+      <span class="cart-count" data-count="{{ cart.item_count }}">{{ cart.item_count }}</span>
+    </button>
+    <a class="nav-btn" href="{{ section.settings.cta_link | default: '/products/keepkase-alpha' }}">{{ section.settings.cta_text | default: 'Get early access' }} →</a>
+    <button class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="MobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="MobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  {%- if linklists[menu].links.size > 0 -%}
+    {%- for link in linklists[menu].links -%}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {%- endfor -%}
+  {%- else -%}
+    <a href="{{ routes.root_url }}">Home</a>
+    <a href="/products/keepkase-alpha">The case</a>
+    <a href="/pages/about">Story</a>
+    <a href="/blogs/devlog">Devlog</a>
+    <a href="/pages/community">Community</a>
+    <a href="/pages/faq">FAQ</a>
+  {%- endif -%}
+  <a class="btn btn--coral btn--block" href="{{ section.settings.cta_link | default: '/products/keepkase-alpha' }}">{{ section.settings.cta_text | default: 'Get early access' }} →</a>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "header", "content": "Announcement bar" },
+    { "type": "checkbox", "id": "announcement_show", "label": "Show announcement bar", "default": true },
+    { "type": "text", "id": "announcement_text", "label": "Announcement text", "info": "Leave blank to auto-build from the Alpha settings." },
+    { "type": "text", "id": "announcement_link_text", "label": "Announcement link text", "default": "Claim a spot" },
+    { "type": "url", "id": "announcement_link", "label": "Announcement link", "default": "/products/keepkase-alpha" },
+    { "type": "header", "content": "Call to action" },
+    { "type": "text", "id": "cta_text", "label": "Button text", "default": "Get early access" },
+    { "type": "url", "id": "cta_link", "label": "Button link", "default": "/products/keepkase-alpha" }
+  ]
+}
+{% endschema %}

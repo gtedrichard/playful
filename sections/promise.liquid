@@ -1,0 +1,21 @@
+<div class="pr12 rv">
+  <div class="pr12-cross" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="pr12-text">
+      <span class="prw">{{ section.settings.line1 | default: 'Change everything.' }}</span><br>
+      <span class="prw">{{ section.settings.line2_pre | default: 'Lose' }} </span><span class="prc pr-serif">{{ section.settings.line2_accent | default: 'nothing.' }}</span>
+    </p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Promise",
+  "settings": [
+    { "type": "text", "id": "line1", "label": "Line 1", "default": "Change everything." },
+    { "type": "text", "id": "line2_pre", "label": "Line 2 (solid)", "default": "Lose" },
+    { "type": "text", "id": "line2_accent", "label": "Line 2 (serif accent)", "default": "nothing." }
+  ],
+  "presets": [{ "name": "Promise" }]
+}
+{% endschema %}

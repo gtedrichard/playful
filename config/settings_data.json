@@ -1,0 +1,29 @@
+{
+  "current": {
+    "footer_tagline": "Built in Berkeley. Printed in Shenzhen. Loved everywhere.",
+    "color_blue": "#1A8FFF",
+    "color_yellow": "#F7CB15",
+    "color_coral": "#F55D3E",
+    "color_bg": "#F4F1EA",
+    "color_ink": "#1A1A1A",
+    "alpha_total": "100",
+    "alpha_remaining": "87",
+    "discord_url": "",
+    "support_email": "hello@keepkase.com",
+    "ship_window": "Fall 2026",
+    "return_window": "30 days",
+    "supported_models": "13″ & 14″ MacBook Air and Pro (M-series)",
+    "social_instagram": "",
+    "social_tiktok": "",
+    "social_youtube": "",
+    "social_x": ""
+  },
+  "presets": {
+    "KeepKase": {
+      "footer_tagline": "Built in Berkeley. Printed in Shenzhen. Loved everywhere.",
+      "alpha_total": "100",
+      "alpha_remaining": "87",
+      "support_email": "hello@keepkase.com"
+    }
+  }
+}

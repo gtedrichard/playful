@@ -1,0 +1,7 @@
+{
+  "sections": {
+    "main": { "type": "community", "settings": {} },
+    "email": { "type": "email-signup", "settings": {} }
+  },
+  "order": ["main", "email"]
+}

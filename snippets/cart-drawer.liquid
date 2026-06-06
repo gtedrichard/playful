@@ -1,0 +1,53 @@
+{%- comment -%} Slide-in AJAX cart drawer. Rendered on every page from theme.liquid. {%- endcomment -%}
+<div class="overlay" id="cart-overlay" data-cart-close></div>
+<aside class="drawer" id="cart-drawer" aria-label="Shopping cart" aria-hidden="true" role="dialog">
+  <div class="drawer-head">
+    <h3><span style="width:26px;height:26px;border-radius:8px;background:var(--ink);color:var(--y);display:grid;place-items:center;font-size:13px;font-weight:900">K</span> Your cart</h3>
+    <button class="drawer-close" data-cart-close aria-label="Close cart">×</button>
+  </div>
+
+  <div class="drawer-body" id="cart-drawer-body">
+    {%- if cart.item_count > 0 -%}
+      {%- for item in cart.items -%}
+        <div class="line-item" data-key="{{ item.key }}">
+          {%- if item.image -%}
+            <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.product.title | escape }}" loading="lazy">
+          {%- else -%}
+            <div class="li-media">🗂️</div>
+          {%- endif -%}
+          <div class="li-info">
+            <div class="li-title">{{ item.product.title }}</div>
+            {%- unless item.variant.title contains 'Default' -%}<div class="li-variant">{{ item.variant.title }}</div>{%- endunless -%}
+            <div class="li-foot">
+              <div class="qty">
+                <button data-li="dec" aria-label="Decrease quantity">–</button>
+                <label class="visually-hidden" for="li-qty-{{ item.key }}">Quantity for {{ item.product.title | escape }}</label>
+                <input id="li-qty-{{ item.key }}" value="{{ item.quantity }}" inputmode="numeric">
+                <button data-li="inc" aria-label="Increase quantity">+</button>
+              </div>
+              <strong>{{ item.final_line_price | money }}</strong>
+            </div>
+            <button class="li-remove" data-li="remove">Remove</button>
+          </div>
+        </div>
+      {%- endfor -%}
+    {%- else -%}
+      <div class="drawer-empty">
+        <p style="font-weight:800;font-size:18px;letter-spacing:-.5px;color:var(--ink)">Your cart is empty.</p>
+        <p style="margin-top:8px">Claim an alpha spot to start your KeepKase.</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--ink" style="margin-top:18px">Browse the alpha →</a>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="drawer-foot{% if cart.item_count == 0 %} hidden{% endif %}" id="cart-drawer-foot">
+    <div class="drawer-subtotal">
+      <span class="ds-l">Subtotal</span>
+      <span class="ds-v" id="cart-subtotal">{{ cart.total_price | money }}</span>
+    </div>
+    <p class="drawer-fine">Shipping &amp; taxes calculated at checkout. Alpha units ship at cost.</p>
+    <form action="{{ routes.cart_url }}" method="post">
+      <button type="submit" name="checkout" class="btn btn--coral btn--block btn--lg">Checkout →</button>
+    </form>
+  </div>
+</aside>
