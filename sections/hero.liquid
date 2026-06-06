@@ -45,16 +45,9 @@
         <img src="{{ section.settings.hero_image | image_url: width: 880 }}" alt="KeepKase on a MacBook" width="440">
       </div>
     {%- else -%}
-      <div id="macDrag" class="mb-wrap">
+      <div id="macDrag" class="mb-wrap" style="position:relative;max-width:460px;">
         <div class="sw">Swap anytime ✦</div>
-        <div class="mbf"><div class="mbs"><div class="mb-sheet">
-          <div class="sk" id="sk1" style="width:48px;height:48px;background:#fff3cd;font-size:1.2rem;">🌿</div>
-          <div class="sk" id="sk2" style="width:42px;height:42px;background:#cce5ff;font-size:1.2rem;">⚡</div>
-          <div class="sk" id="sk3" style="width:58px;height:34px;background:#f8d7da;border-radius:16px;font-size:.6rem;font-weight:700;color:#444;">✦ vibes</div>
-          <div class="sk" id="sk4" style="width:36px;height:48px;background:#e2d9f3;font-size:1.2rem;">🎸</div>
-          <div class="sk" id="sk5" style="width:46px;height:46px;background:#d4edda;border-radius:50%;font-size:1.2rem;">🌙</div>
-          <div class="sk" id="sk6" style="width:52px;height:32px;background:#fff3cd;font-size:.58rem;font-weight:700;color:#444;">BKL 2024</div>
-        </div></div><div class="mb-notch"></div></div>
+        <img src="{{ 'hero_emblem_silver.jpg' | asset_url }}" alt="KeepKase — a clear sheet preserving a sticker on a MacBook" width="460" style="display:block;width:100%;height:auto;border-radius:16px;border:3px solid #1a1a1a;box-shadow:10px 10px 0 #1a1a1a;">
       </div>
     {%- endif -%}
   </div>
