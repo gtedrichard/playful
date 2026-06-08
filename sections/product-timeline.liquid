@@ -1,44 +1,159 @@
 {{ 'timeline.css' | asset_url | stylesheet_tag }}
 
+{%- comment -%} Display-only timeline. Each step is a "Timeline node" block edited in the theme editor.
+  No JavaScript, no localStorage — it simply renders, so there is nothing to break. {%- endcomment -%}
+
+{%- liquid
+  assign total = section.blocks.size
+  assign done = 0
+  assign inprog = 0
+  for b in section.blocks
+    if b.settings.status == 'done'
+      assign done = done | plus: 1
+    elsif b.settings.status == 'in-progress'
+      assign inprog = inprog | plus: 1
+    endif
+  endfor
+  assign upcoming = total | minus: done | minus: inprog
+  assign pct = 0
+  if total > 0
+    assign pct = done | times: 100 | divided_by: total
+  endif
+-%}
+
 <section class="tl-section rv" id="timeline">
   <div class="dotgrid" aria-hidden="true"></div>
   <div class="tl-head">
     <div class="eyebrow">{{ section.settings.eyebrow | default: 'Building in the open' }}</div>
-    <h2>{{ section.settings.title | default: 'The road to <span class="serif">launch.</span>' }}</h2>
-    <p class="dek">{{ section.settings.dek | default: 'Every step from a sticky note to a Kickstarter — what is done, what we are on now, and what is next. Links get added as each step wraps, so a finished node can point you to the recap.' }}</p>
+    <h2>{{ section.settings.title }}</h2>
+    {%- if section.settings.dek != blank -%}<p class="dek">{{ section.settings.dek }}</p>{%- endif -%}
   </div>
 
-  <div class="tl" data-timeline-root
-       data-storage-key="{{ section.settings.storage_key | default: 'keepkase_timeline_v1' }}"
-       data-editable="{% if section.settings.editable %}true{% else %}false{% endif %}">
-    <div class="tl-empty">Loading the timeline…</div>
+  {%- if section.settings.show_progress and total > 0 -%}
+  <div class="tl-toolbar">
+    <div class="tl-progress">
+      <div class="tl-progress-bar"><div class="tl-progress-fill" style="width:{{ pct }}%"></div></div>
+      <div class="tl-progress-meta"><span>{{ done }} done &middot; {{ inprog }} in progress &middot; {{ upcoming }} upcoming</span><span>{{ pct }}%</span></div>
+    </div>
+    <div class="tl-legend">
+      <span class="tl-leg"><span class="dot done"></span>Done</span>
+      <span class="tl-leg"><span class="dot in-progress"></span>In progress</span>
+      <span class="tl-leg"><span class="dot upcoming"></span>Upcoming</span>
+    </div>
+  </div>
+  {%- endif -%}
+
+  <div class="tl-track">
+    {%- for block in section.blocks -%}
+      {%- assign st = block.settings.status -%}
+      <div class="tl-node{% if block.settings.substep %} depth-1{% endif %}" data-status="{{ st }}" {{ block.shopify_attributes }}>
+        {%- if block.settings.substep -%}<span class="tl-fork" aria-hidden="true"></span>{%- endif -%}
+        <div class="tl-dot" aria-hidden="true">{% if st == 'done' %}&#10003;{% endif %}</div>
+        <div class="tl-card">
+          <div class="tl-card-meta">
+            <span class="tl-status-pill {{ st }}">{{ st | replace: '-', ' ' }}</span>
+            {%- if block.settings.date != blank -%}<span class="tl-date">{{ block.settings.date }}</span>{%- endif -%}
+          </div>
+          {%- if block.settings.title != blank -%}<h3>{{ block.settings.title }}</h3>{%- endif -%}
+          {%- if block.settings.description != blank -%}<div class="tl-desc">{{ block.settings.description }}</div>{%- endif -%}
+
+          {%- if block.settings.milestones != blank -%}
+            {%- assign mlines = block.settings.milestones | strip | newline_to_br | split: '<br />' -%}
+            <div class="tl-miles">
+              {%- for raw in mlines -%}
+                {%- assign m = raw | strip -%}
+                {%- if m != blank -%}
+                  {%- assign pre = m | slice: 0, 2 -%}
+                  {%- assign mstate = 'pending' -%}
+                  {%- if pre == 'x ' -%}{%- assign mstate = 'done' -%}{%- assign m = m | remove_first: 'x ' | strip -%}
+                  {%- elsif pre == '~ ' -%}{%- assign mstate = 'active' -%}{%- assign m = m | remove_first: '~ ' | strip -%}
+                  {%- endif -%}
+                  <div class="tl-mile" data-state="{{ mstate }}"><span class="mk">{% if mstate == 'done' %}&#10003;{% endif %}</span><span class="ml">{{ m }}</span></div>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
+          {%- if block.settings.link1_url != blank or block.settings.link2_url != blank -%}
+            <div class="tl-links">
+              {%- if block.settings.link1_url != blank -%}
+                {%- assign k1 = block.settings.link1_kind -%}
+                {%- case k1 -%}{%- when 'video' -%}{%- assign i1 = '&#9654;' -%}{%- when 'discord' -%}{%- assign i1 = '#' -%}{%- when 'alpha' -%}{%- assign i1 = '&#10038;' -%}{%- when 'waitlist' -%}{%- assign i1 = '&#10039;' -%}{%- else -%}{%- assign i1 = '&#8599;' -%}{%- endcase -%}
+                <a class="tl-link" data-kind="{{ k1 }}" href="{{ block.settings.link1_url }}"><span class="lk-ic">{{ i1 }}</span>{{ block.settings.link1_label | default: 'Link' }}</a>
+              {%- endif -%}
+              {%- if block.settings.link2_url != blank -%}
+                {%- assign k2 = block.settings.link2_kind -%}
+                {%- case k2 -%}{%- when 'video' -%}{%- assign i2 = '&#9654;' -%}{%- when 'discord' -%}{%- assign i2 = '#' -%}{%- when 'alpha' -%}{%- assign i2 = '&#10038;' -%}{%- when 'waitlist' -%}{%- assign i2 = '&#10039;' -%}{%- else -%}{%- assign i2 = '&#8599;' -%}{%- endcase -%}
+                <a class="tl-link" data-kind="{{ k2 }}" href="{{ block.settings.link2_url }}"><span class="lk-ic">{{ i2 }}</span>{{ block.settings.link2_label | default: 'Link' }}</a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- else -%}
+      <div class="tl-empty">No timeline steps yet. In the theme editor, add &ldquo;Timeline node&rdquo; blocks to this section.</div>
+    {%- endfor -%}
   </div>
 </section>
-
-{{ 'timeline.seed.js' | asset_url | script_tag }}
-{%- if section.settings.published_json != blank -%}
-  <script>
-    (function () {
-      var raw = {{ section.settings.published_json | json }};
-      if (!raw) return;
-      try { var p = JSON.parse(raw); if (p && Array.isArray(p.nodes)) window.KEEPKASE_TIMELINE_SEED = p; }
-      catch (e) { if (window.console) console.warn('KeepKase timeline: published JSON is invalid, using seed file.'); }
-    })();
-  </script>
-{%- endif -%}
-{{ 'timeline.js' | asset_url | script_tag }}
 
 {% schema %}
 {
   "name": "Build timeline",
+  "tag": "section",
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Building in the open" },
     { "type": "richtext", "id": "title", "label": "Title", "default": "<p>The road to <em>launch.</em></p>" },
     { "type": "textarea", "id": "dek", "label": "Intro", "default": "Every step from a sticky note to a Kickstarter — what is done, what we are on now, and what is next. Links get added as each step wraps, so a finished node can point you to the recap." },
-    { "type": "checkbox", "id": "editable", "label": "Show the live editor (add / split / delete / reorder)", "default": true, "info": "Anyone can toggle edit mode, but edits save only to their own browser. Use Export to publish — see README." },
-    { "type": "text", "id": "storage_key", "label": "Local storage key", "default": "keepkase_timeline_v1" },
-    { "type": "textarea", "id": "published_json", "label": "Published timeline JSON (no-code publish)", "info": "Paste the JSON you exported from edit mode here to publish it to visitors without editing theme files. Leave blank to use assets/timeline.seed.js." }
+    { "type": "checkbox", "id": "show_progress", "label": "Show progress bar", "default": true }
   ],
-  "presets": [{ "name": "Build timeline" }]
+  "blocks": [
+    {
+      "type": "node",
+      "name": "Timeline node",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "select", "id": "status", "label": "Status", "default": "upcoming", "options": [
+          { "value": "done", "label": "Done" },
+          { "value": "in-progress", "label": "In progress" },
+          { "value": "upcoming", "label": "Upcoming" }
+        ] },
+        { "type": "text", "id": "date", "label": "Date", "info": "e.g. 2025-08" },
+        { "type": "checkbox", "id": "substep", "label": "Indent as a sub-step", "default": false },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "textarea", "id": "milestones", "label": "Milestones", "info": "One per line. Start a line with 'x ' for done, or '~ ' for in progress. No prefix = upcoming." },
+        { "type": "header", "content": "Link 1 (optional)" },
+        { "type": "url", "id": "link1_url", "label": "URL" },
+        { "type": "text", "id": "link1_label", "label": "Label" },
+        { "type": "select", "id": "link1_kind", "label": "Type", "default": "link", "options": [
+          { "value": "video", "label": "Video" },
+          { "value": "discord", "label": "Discord" },
+          { "value": "alpha", "label": "Alpha" },
+          { "value": "waitlist", "label": "Waitlist" },
+          { "value": "link", "label": "Link" }
+        ] },
+        { "type": "header", "content": "Link 2 (optional)" },
+        { "type": "url", "id": "link2_url", "label": "URL" },
+        { "type": "text", "id": "link2_label", "label": "Label" },
+        { "type": "select", "id": "link2_kind", "label": "Type", "default": "link", "options": [
+          { "value": "video", "label": "Video" },
+          { "value": "discord", "label": "Discord" },
+          { "value": "alpha", "label": "Alpha" },
+          { "value": "waitlist", "label": "Waitlist" },
+          { "value": "link", "label": "Link" }
+        ] }
+      ]
+    }
+  ],
+  "max_blocks": 50,
+  "presets": [
+    {
+      "name": "Build timeline",
+      "blocks": [
+        { "type": "node", "settings": { "title": "Concept", "status": "done", "date": "2024-09", "description": "Where it started.", "milestones": "x First milestone\nx Second milestone" } },
+        { "type": "node", "settings": { "title": "Current work", "status": "in-progress", "date": "2025-08", "description": "What we are on now.", "milestones": "x A done step\n~ A step in progress\nAn upcoming step" } },
+        { "type": "node", "settings": { "title": "What's next", "status": "upcoming", "date": "2026-04", "description": "Where we are headed." } }
+      ]
+    }
+  ]
 }
 {% endschema %}

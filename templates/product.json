@@ -9,12 +9,202 @@
  */
 {
   "sections": {
-    "main": { "type": "main-product", "settings": {} },
-    "timeline": { "type": "product-timeline", "settings": {} },
-    "marquee": { "type": "marquee", "settings": { "style": "ink" } },
-    "how": { "type": "how-it-works", "settings": {} },
-    "promise": { "type": "promise", "settings": {} }
+    "main": {
+      "type": "main-product",
+      "settings": {}
+    },
+    "timeline": {
+      "type": "product-timeline",
+      "settings": {
+        "show_progress": true
+      },
+      "blocks": {
+        "node-1": {
+          "type": "node",
+          "settings": {
+            "title": "Concept & first insight",
+            "status": "done",
+            "date": "2024-09",
+            "substep": false,
+            "description": "Started as a personal need — a sticker layout of clubs, brands, and projects worth keeping when the laptop changed. The insight: expression changes faster than devices, so protection and personality should come apart.",
+            "milestones": "x First sketch of a removable expression layer\nx Wrote the founding note: “change freely because nothing is lost”",
+            "link1_url": "https://youtube.com/watch?v=PLACEHOLDER_ORIGIN",
+            "link1_label": "Origin story",
+            "link1_kind": "video",
+            "link2_url": "https://discord.com/channels/PLACEHOLDER/ORIGIN",
+            "link2_label": "#the-first-idea",
+            "link2_kind": "discord"
+          }
+        },
+        "node-2": {
+          "type": "node",
+          "settings": {
+            "title": "Early 3D-printed prototypes",
+            "status": "done",
+            "date": "2024-11",
+            "substep": false,
+            "description": "First 3D-printed borders to test the basic idea — a hardshell frame that stays on the laptop. Rough, but enough to prove the case could hold something swappable.",
+            "milestones": "x First printed border that clipped on cleanly\nx Confirmed no adhesive needs to touch the MacBook\nx Hand-cut sheet mockup held in place",
+            "link1_url": "https://discord.com/channels/PLACEHOLDER/PRINTS",
+            "link1_label": "Print log",
+            "link1_kind": "discord"
+          }
+        },
+        "node-3": {
+          "type": "node",
+          "settings": {
+            "title": "Dual-sheet mechanism",
+            "status": "done",
+            "date": "2025-01",
+            "substep": false,
+            "description": "Landed on the two-sheet sandwich: a layout sits between two thin clear sheets, held by the border. Stickers and flat memory items stay intact and removable, with nothing permanent.",
+            "milestones": "x Two-sheet sandwich holds a layout flat\nx Swap test: pull one layout, drop in the next\nx Retire test: a finished sheet lifts out clean as a keepsake",
+            "link1_url": "https://youtube.com/watch?v=PLACEHOLDER_SWAP",
+            "link1_label": "Swap demo",
+            "link1_kind": "video",
+            "link2_url": "https://discord.com/channels/PLACEHOLDER/MECH",
+            "link2_label": "#mechanism-feedback",
+            "link2_kind": "discord"
+          }
+        },
+        "node-4": {
+          "type": "node",
+          "settings": {
+            "title": "Material trials — clear sheets",
+            "status": "in-progress",
+            "date": "2025-04",
+            "substep": false,
+            "description": "Testing thin clear polycarbonate sheets for clarity, thinness, and how well they hold a layout flat without yellowing. Materials are still being explored — nothing locked yet.",
+            "milestones": "x Shortlist of clear sheet candidates\n~ Clarity and thinness comparison\nLong-term yellowing / wear check",
+            "link1_url": "https://discord.com/channels/PLACEHOLDER/MATERIAL",
+            "link1_label": "#material-trials",
+            "link1_kind": "discord"
+          }
+        },
+        "node-5": {
+          "type": "node",
+          "settings": {
+            "title": "Border fit across models",
+            "status": "in-progress",
+            "date": "2025-06",
+            "substep": false,
+            "description": "Dialing in the hardshell border so it sits flush and thin across current MacBook models, keeping protection at parity with a normal case — not bulky, not rugged.",
+            "milestones": "x Port and vent cutouts aligned\n~ Flush fit on first target model\nFit confirmed across the model lineup",
+            "link1_url": "https://discord.com/channels/PLACEHOLDER/FIT",
+            "link1_label": "#fit-and-models",
+            "link1_kind": "discord"
+          }
+        },
+        "node-6": {
+          "type": "node",
+          "settings": {
+            "title": "Packaging design",
+            "status": "in-progress",
+            "date": "2025-08",
+            "substep": false,
+            "description": "Designing packaging that protects the case in transit and reads as something worth keeping.",
+            "milestones": "x First packaging concept drafted\nRecyclable cardboard supplier shortlisted\nDieline approved and print-proofed",
+            "link1_url": "https://discord.com/channels/PLACEHOLDER/PACKAGING",
+            "link1_label": "Packaging concepts",
+            "link1_kind": "discord"
+          }
+        },
+        "node-7": {
+          "type": "node",
+          "settings": {
+            "title": "Open 100 alpha spots",
+            "status": "upcoming",
+            "date": "2025-10",
+            "substep": false,
+            "description": "Open the 100-person Alpha. Units at cost — $50 — so buyers help fund and shape the build. Members are named in product credits and join the Discord with first pick of colorways.",
+            "milestones": "Alpha page and checkout ready\nFirst 100 spots live\nColorway picks opened to members",
+            "link1_url": "/products/keepkase-alpha",
+            "link1_label": "Join the Alpha",
+            "link1_kind": "alpha",
+            "link2_url": "https://discord.com/channels/PLACEHOLDER/ALPHA",
+            "link2_label": "#welcome-alpha",
+            "link2_kind": "discord"
+          }
+        },
+        "node-8": {
+          "type": "node",
+          "settings": {
+            "title": "Alpha feedback — wave 1",
+            "status": "upcoming",
+            "date": "2025-12",
+            "substep": false,
+            "description": "First round of real-world use from Alpha members. The build stays in the open — members vote on decisions and flag what to fix before scaling up.",
+            "milestones": "First units in members’ hands\nStructured feedback round collected\nTop changes voted and queued",
+            "link1_url": "https://discord.com/channels/PLACEHOLDER/WAVE1",
+            "link1_label": "#feedback-wave-1",
+            "link1_kind": "discord"
+          }
+        },
+        "node-9": {
+          "type": "node",
+          "settings": {
+            "title": "Manufacturing partner",
+            "status": "upcoming",
+            "date": "2026-02",
+            "substep": false,
+            "description": "Move from 3D-printed prototypes to a production partner who can hold the fit and finish at scale. Built in Berkeley, printed in Shenzhen.",
+            "milestones": "Partner shortlist and quotes\nSample run reviewed against spec\nProduction partner selected",
+            "link1_url": "https://discord.com/channels/PLACEHOLDER/MFG",
+            "link1_label": "#manufacturing-updates",
+            "link1_kind": "discord"
+          }
+        },
+        "node-10": {
+          "type": "node",
+          "settings": {
+            "title": "Kickstarter prep",
+            "status": "upcoming",
+            "date": "2026-04",
+            "substep": false,
+            "description": "Final stretch before launch — campaign page, pricing, and rewards. Alpha members keep 35–40% off the planned Kickstarter price and stay in the credits.",
+            "milestones": "Campaign page drafted\nReward tiers and pricing set\nLaunch date locked",
+            "link1_url": "/pages/community",
+            "link1_label": "Free launch waitlist",
+            "link1_kind": "waitlist",
+            "link2_url": "https://discord.com/channels/PLACEHOLDER/KS",
+            "link2_label": "#kickstarter-prep",
+            "link2_kind": "discord"
+          }
+        }
+      },
+      "block_order": [
+        "node-1",
+        "node-2",
+        "node-3",
+        "node-4",
+        "node-5",
+        "node-6",
+        "node-7",
+        "node-8",
+        "node-9",
+        "node-10"
+      ]
+    },
+    "marquee": {
+      "type": "marquee",
+      "settings": {
+        "style": "ink"
+      }
+    },
+    "how": {
+      "type": "how-it-works",
+      "settings": {}
+    },
+    "promise": {
+      "type": "promise",
+      "settings": {}
+    }
   },
-  "order": ["main", "timeline", "marquee", "how", "promise"]
+  "order": [
+    "main",
+    "timeline",
+    "marquee",
+    "how",
+    "promise"
+  ]
 }
-
