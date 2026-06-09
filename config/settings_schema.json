@@ -19,7 +19,7 @@
         "type": "text",
         "id": "footer_tagline",
         "label": "Footer tagline",
-        "default": "Built in Berkeley. Printed in Shenzhen. Loved everywhere."
+        "default": "KeepKase"
       },
       {
         "type": "header",
