@@ -16,7 +16,10 @@
     "social_instagram": "",
     "social_tiktok": "",
     "social_youtube": "",
-    "social_x": ""
+    "social_x": "",
+    "settings": {
+      "discord_url": "https://discord.gg/tzTVTZMMZa"
+    }
   },
   "presets": {
     "KeepKase": {
