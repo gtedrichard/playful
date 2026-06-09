@@ -45,7 +45,7 @@
       <span class="ds-l">Subtotal</span>
       <span class="ds-v" id="cart-subtotal">{{ cart.total_price | money }}</span>
     </div>
-    <p class="drawer-fine">Shipping &amp; taxes calculated at checkout. Alpha units ship at cost.</p>
+    <p class="drawer-fine">Shipping &amp; taxes calculated at checkout.</p>
     <form action="{{ routes.cart_url }}" method="post">
       <button type="submit" name="checkout" class="btn btn--coral btn--block btn--lg">Checkout →</button>
     </form>

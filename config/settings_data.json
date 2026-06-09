@@ -9,7 +9,7 @@
  */
 {
   "current": {
-    "footer_tagline": "Built in Berkeley. Printed in Shenzhen. Loved everywhere.",
+    "footer_tagline": "",
     "color_blue": "#1A8FFF",
     "color_yellow": "#F7CB15",
     "color_coral": "#F55D3E",
@@ -29,7 +29,7 @@
   },
   "presets": {
     "KeepKase": {
-      "footer_tagline": "Built in Berkeley. Printed in Shenzhen. Loved everywhere.",
+      "footer_tagline": "",
       "alpha_total": "100",
       "alpha_remaining": "87",
       "support_email": "hello@keepkase.com"

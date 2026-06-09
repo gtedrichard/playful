@@ -1,7 +1,7 @@
 {%- comment -%} resync 2026-06-06 {%- endcomment -%}
 {%- liquid
   assign total = settings.alpha_total | default: '100'
-  assign remaining = settings.alpha_remaining | default: '87'
+  assign remaining = product.selected_or_first_available_variant.inventory_quantity | default: 100
   assign current = product.selected_or_first_available_variant
 -%}
 <section class="product rv">
@@ -81,10 +81,10 @@
         </div>
       </form>
 
-      <a href="{{ section.settings.waitlist_link | default: '/pages/community' }}" class="btn btn--ghost btn--block btn--sm" style="margin-top:2px">Not yet? Join the free waitlist →</a>
+      <a href="{{ section.settings.waitlist_link | default: '/#email' }}" class="btn btn--ghost btn--block btn--sm" style="margin-top:2px">Not yet? Join the free waitlist →</a>
 
       <div class="buy-reassure">
-        <div class="reassure-item"><span class="ri-i">✓</span>Sold at cost. The $50 funds the build, not a margin.</div>
+        <div class="reassure-item"><span class="ri-i">✓</span>It's 3D-printed and a build in progress — it protects like a hardshell, and we're honest about the trade-offs.</div>
         <div class="reassure-item"><span class="ri-i">✦</span>Direct Discord access — the build happens in the open.</div>
         <div class="reassure-item"><span class="ri-i">↺</span>Questions &amp; returns handled directly at {{ settings.support_email | default: 'hello@keepkase.com' }}.</div>
       </div>
@@ -92,22 +92,16 @@
       <div class="product-perks">
         <h3>Your alpha spot includes</h3>
         <ul>
-          <li><span class="pk">✓</span>The unit at cost — $50, no margin</li>
-          <li><span class="pk">✓</span>35–40% off the planned Kickstarter price</li>
-          <li><span class="pk">✓</span>Your name in the product credits</li>
-          <li><span class="pk">✓</span>Direct Discord access — vote on decisions</li>
-          <li><span class="pk">✓</span>First pick of colorways</li>
+          <li><span class="pk">✓</span>Direct Discord access with the team</li>
+          <li><span class="pk">✓</span>Vote on the build</li>
+          <li><span class="pk">✓</span>A free injection-molded unit when we get there</li>
         </ul>
       </div>
 
       <div class="product-accordions">
         <details class="faq-item" open>
           <summary>In the box <span class="faq-q-icon">+</span></summary>
-          <div class="faq-a">{{ section.settings.in_box | default: '<ul><li>One hardshell border, sized to your MacBook, that stays on the laptop</li><li>Two thin clear polycarbonate sheets that sandwich your stickers or flat memory items</li><li>A quick-start card on building, swapping, and retiring a layout</li></ul><p style="margin-top:8px;font-size:13px;color:var(--ink-45)">Prototypes are 3D-printed and final materials are still being explored — treat exact specs as in-flux.</p>' }}</div>
-        </details>
-        <details class="faq-item">
-          <summary>Why it's different <span class="faq-q-icon">+</span></summary>
-          <div class="faq-a">{{ section.settings.why_different | default: '<ul><li><strong>Keeps the layout, not just the laptop.</strong> Your arrangement stays intact and removable.</li><li><strong>Zero permanent adhesive.</strong> Stickers go between the sheets, never on the finish.</li><li><strong>Retire, don&rsquo;t trash.</strong> A finished sheet becomes a keepsake to store or mount.</li><li><strong>Thin, parity protection.</strong> A slim hardshell that matches the laptop&rsquo;s lines.</li></ul>' }}</div>
+          <div class="faq-a">{{ section.settings.in_box | default: '<ul><li>The KeepKase border (3D-printed)</li><li>Two clear sheets that sandwich your stickers</li><li>A microfiber cloth</li></ul><p style="margin-top:8px;font-size:13px;color:var(--ink-45)">Final box contents are still being finalized.</p>' }}</div>
         </details>
         <details class="faq-item">
           <summary>"Why not just peel them off?" <span class="faq-q-icon">+</span></summary>
@@ -115,7 +109,7 @@
         </details>
         <details class="faq-item">
           <summary>The alpha, honestly <span class="faq-q-icon">+</span></summary>
-          <div class="faq-a">{%- if section.settings.alpha_details != blank -%}{{ section.settings.alpha_details }}{%- else -%}<p>You're buying into a build in progress, not a finished product. Prototypes are 3D-printed and materials are still being chosen — some details will change, and your feedback in the Discord is part of how they get decided. Your $50 is the unit at cost, not a markup. Expected ship window: {{ settings.ship_window | default: 'Fall 2026' }}.</p>{%- endif -%}</div>
+          <div class="faq-a">{%- if section.settings.alpha_details != blank -%}{{ section.settings.alpha_details }}{%- else -%}<p>You're buying into a build in progress, not a finished product. It's 3D-printed and materials are still being chosen — some details will change, and your feedback in the Discord is part of how they get decided. We're targeting a Fall 2026 ship window.</p>{%- endif -%}</div>
         </details>
         {%- if product.description != blank -%}
         <details class="faq-item">

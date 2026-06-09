@@ -1,7 +1,7 @@
 {%- comment -%} resync 2026-06-06 {%- endcomment -%}
 {%- liquid
   assign total = settings.alpha_total | default: '100'
-  assign remaining = settings.alpha_remaining | default: '87'
+  assign remaining = all_products['keepkase-alpha'].selected_or_first_available_variant.inventory_quantity | default: 100
 -%}
 <section class="hero">
   <svg class="tex" style="top:0;left:0;width:100%;height:100%;opacity:.06;" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -28,7 +28,7 @@
       </h1>
       <p class="hero-sub">{{ section.settings.subheading | default: 'A thin hardshell that holds two clear sheets over your stickers — no adhesive on the laptop. Swap a layout anytime, or retire one as a keepsake.' }}</p>
       <div class="hero-btns">
-        <a href="{{ section.settings.cta1_link | default: '/products/keepkase-alpha' }}" class="btn btn--blue">{{ section.settings.cta1_text | default: 'Claim alpha spot — $50' }}</a>
+        <a href="{{ section.settings.cta1_link | default: '/products/keepkase-alpha' }}" class="btn btn--blue">{{ section.settings.cta1_text | default: 'Claim alpha spot — $35' }}</a>
         <a href="{{ section.settings.cta2_link | default: '/pages/community' }}" class="btn btn--ghost">{{ section.settings.cta2_text | default: 'Reserve free spot' }}</a>
       </div>
     </div>
@@ -46,9 +46,16 @@
         <img src="{{ section.settings.hero_image | image_url: width: 880 }}" alt="KeepKase on a MacBook" width="440">
       </div>
     {%- else -%}
-      <div id="macDrag" class="mb-wrap" style="position:relative;max-width:460px;">
+      <div id="macDrag" class="mb-wrap">
         <div class="sw">Swap anytime ✦</div>
-        <img src="{{ 'hero_emblem_silver.jpg' | asset_url }}" alt="KeepKase — a clear sheet preserving a sticker on a MacBook" width="460" style="display:block;width:100%;height:auto;border-radius:16px;border:3px solid #1a1a1a;box-shadow:10px 10px 0 #1a1a1a;">
+        <div class="mbf"><div class="mbs"><div class="mb-sheet">
+          <div class="sk" id="sk1" style="width:48px;height:48px;background:#fff3cd;font-size:1.2rem;">🌿</div>
+          <div class="sk" id="sk2" style="width:42px;height:42px;background:#cce5ff;font-size:1.2rem;">⚡</div>
+          <div class="sk" id="sk3" style="width:58px;height:34px;background:#f8d7da;border-radius:16px;font-size:.6rem;font-weight:700;color:#444;">✦ vibes</div>
+          <div class="sk" id="sk4" style="width:36px;height:48px;background:#e2d9f3;font-size:1.2rem;">🎸</div>
+          <div class="sk" id="sk5" style="width:46px;height:46px;background:#d4edda;border-radius:50%;font-size:1.2rem;">🌙</div>
+          <div class="sk" id="sk6" style="width:52px;height:32px;background:#fff3cd;font-size:.58rem;font-weight:700;color:#444;">BKL 2024</div>
+        </div></div><div class="mb-notch"></div></div>
       </div>
     {%- endif -%}
   </div>
@@ -62,7 +69,7 @@
     { "type": "text", "id": "heading_serif", "label": "Heading line 2 (serif accent)", "default": "The story" },
     { "type": "text", "id": "heading_post", "label": "Heading line 2 (underlined)", "default": "swaps." },
     { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "A thin hardshell that holds two clear sheets over your stickers — no adhesive on the laptop. Swap a layout anytime, or retire one as a keepsake." },
-    { "type": "text", "id": "cta1_text", "label": "Primary button text", "default": "Claim alpha spot — $50" },
+    { "type": "text", "id": "cta1_text", "label": "Primary button text", "default": "Claim alpha spot — $35" },
     { "type": "text", "id": "cta1_link", "label": "Primary button link", "default": "/products/keepkase-alpha" },
     { "type": "text", "id": "cta2_text", "label": "Secondary button text", "default": "Reserve free spot" },
     { "type": "text", "id": "cta2_link", "label": "Secondary button link", "default": "/pages/community" },

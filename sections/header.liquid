@@ -1,7 +1,7 @@
 {%- comment -%} resync 2026-06-06 {%- endcomment -%}
 {%- liquid
   assign total = settings.alpha_total | default: '100'
-  assign remaining = settings.alpha_remaining | default: '87'
+  assign remaining = all_products['keepkase-alpha'].selected_or_first_available_variant.inventory_quantity | default: 100
   assign menu = section.settings.menu
 -%}
 
@@ -11,7 +11,7 @@
       {%- if section.settings.announcement_text != blank -%}
         {{ section.settings.announcement_text }}
       {%- else -%}
-        Alpha is open — {{ total }} spots, sold at cost. {{ remaining }} left.
+        Alpha is open — {{ total }} spots. {{ remaining }} left.
       {%- endif -%}
     </span>
     {%- if section.settings.announcement_link != blank and section.settings.announcement_link_text != blank -%}
@@ -33,10 +33,7 @@
     {%- else -%}
       <a class="nl{% if request.path == routes.root_url %} on{% endif %}" href="{{ routes.root_url }}">Home</a>
       <a class="nl{% if request.path contains '/products/' %} on{% endif %}" href="/products/keepkase-alpha">The case</a>
-      <a class="nl{% if request.path contains '/pages/about' %} on{% endif %}" href="/pages/about">Story</a>
-      <a class="nl{% if request.path contains '/blogs/' %} on{% endif %}" href="/blogs/devlog">Devlog</a>
-      <a class="nl{% if request.path contains '/pages/community' %} on{% endif %}" href="/pages/community">Community</a>
-      <a class="nl{% if request.path contains '/pages/faq' %} on{% endif %}" href="/pages/faq">FAQ</a>
+      <a class="nl" href="/#email">Waitlist</a>
     {%- endif -%}
   </div>
 

@@ -15,6 +15,7 @@
     },
     "timeline": {
       "type": "product-timeline",
+      "disabled": true,
       "settings": {
         "show_progress": true
       },
@@ -147,7 +148,7 @@
             "status": "upcoming",
             "date": "2026-02",
             "substep": false,
-            "description": "Move from 3D-printed prototypes to a production partner who can hold the fit and finish at scale. Built in Berkeley, printed in Shenzhen.",
+            "description": "Move from 3D-printed prototypes to a production partner who can hold the fit and finish at scale.",
             "milestones": "Partner shortlist and quotes\nSample run reviewed against spec\nProduction partner selected",
             "link1_url": "https://discord.com/channels/PLACEHOLDER/MFG",
             "link1_label": "#manufacturing-updates",
@@ -157,17 +158,17 @@
         "node-10": {
           "type": "node",
           "settings": {
-            "title": "Kickstarter prep",
+            "title": "After the alpha",
             "status": "upcoming",
             "date": "2026-04",
             "substep": false,
-            "description": "Final stretch before launch — campaign page, pricing, and rewards. Alpha members keep 35–40% off the planned Kickstarter price and stay in the credits.",
-            "milestones": "Campaign page drafted\nReward tiers and pricing set\nLaunch date locked",
-            "link1_url": "/pages/community",
-            "link1_label": "Free launch waitlist",
+            "description": "The alpha decides what comes next — keep selling directly or run a bigger launch. Either way, alpha members are first in line and help shape the call.",
+            "milestones": "Alpha feedback reviewed\nNext run planned\nDirection decided with the community",
+            "link1_url": "/#email",
+            "link1_label": "Join the waitlist",
             "link1_kind": "waitlist",
-            "link2_url": "https://discord.com/channels/PLACEHOLDER/KS",
-            "link2_label": "#kickstarter-prep",
+            "link2_url": "https://discord.gg/tzTVTZMMZa",
+            "link2_label": "Build updates",
             "link2_kind": "discord"
           }
         }

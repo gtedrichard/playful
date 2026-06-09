@@ -7,7 +7,7 @@
   <div class="em11-l">
     <div class="pill pill--c" style="margin-bottom:18px;width:fit-content;border-color:var(--c)">{{ section.settings.eyebrow | default: 'Stay in the loop' }}</div>
     <h2>{{ section.settings.title | default: 'Join the launch<br>waitlist.' }}</h2>
-    <p style="margin-top:14px;">{{ section.settings.subtitle | default: 'Free to join for a warm spot at Kickstarter. Add an optional $10 refundable deposit to move to the front of the line.' }}</p>
+    <p style="margin-top:14px;">{{ section.settings.subtitle | default: 'Free to join — build updates by email, the same ones we post in the Discord.' }}</p>
   </div>
   <div class="em11-r">
     {%- form 'customer', class: 'em11-r', style: 'display:contents' -%}
@@ -20,7 +20,7 @@
       <label class="visually-hidden" for="waitlist-email">Email address</label>
       <input class="em11-in" id="waitlist-email" type="email" name="contact[email]" placeholder="your@email.com" required>
       <button class="em11-btn" type="submit">{{ section.settings.button | default: 'Join the waitlist' }} →</button>
-      <p class="em11-fine">{{ section.settings.fine | default: 'No charge to join. The optional deposit is fully refundable. We email about the build, not much else. Unsubscribe anytime.' }}</p>
+      <p class="em11-fine">{{ section.settings.fine | default: 'No spam. Build updates only. Unsubscribe anytime.' }}</p>
     {%- endform -%}
   </div>
 </section>
@@ -31,9 +31,9 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Stay in the loop" },
     { "type": "richtext", "id": "title", "label": "Title", "default": "<p>Join the launch waitlist.</p>" },
-    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Free to join for a warm spot at Kickstarter. Add an optional $10 refundable deposit to move to the front of the line." },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Free to join — build updates by email, the same ones we post in the Discord." },
     { "type": "text", "id": "button", "label": "Button text", "default": "Join the waitlist" },
-    { "type": "textarea", "id": "fine", "label": "Fine print", "default": "No charge to join. The optional deposit is fully refundable. We email about the build, not much else. Unsubscribe anytime." }
+    { "type": "textarea", "id": "fine", "label": "Fine print", "default": "No spam. Build updates only. Unsubscribe anytime." }
   ],
   "presets": [{ "name": "Email signup" }]
 }
