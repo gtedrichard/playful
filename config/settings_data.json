@@ -16,7 +16,7 @@
     "color_bg": "#F4F1EA",
     "color_ink": "#1A1A1A",
     "alpha_total": "100",
-    "alpha_remaining": "87",
+    "alpha_remaining": "100",
     "discord_url": "https://discord.gg/tzTVTZMMZa",
     "support_email": "hello@keepkase.com",
     "ship_window": "Fall 2026",
@@ -31,7 +31,7 @@
     "KeepKase": {
       "footer_tagline": "",
       "alpha_total": "100",
-      "alpha_remaining": "87",
+      "alpha_remaining": "100",
       "support_email": "hello@keepkase.com"
     }
   }
