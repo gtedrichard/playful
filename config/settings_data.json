@@ -25,7 +25,28 @@
     "social_instagram": "",
     "social_tiktok": "",
     "social_youtube": "",
-    "social_x": ""
+    "social_x": "",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "menu": "main-menu",
+          "announcement_show": true,
+          "announcement_text": "",
+          "announcement_link_text": "Claim a spot",
+          "announcement_link": "/products/keepkase-alpha",
+          "cta_text": "Get early access",
+          "cta_link": "/products/keepkase-alpha"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "blurb": ""
+        }
+      }
+    },
+    "content_for_index": []
   },
   "presets": {
     "KeepKase": {
