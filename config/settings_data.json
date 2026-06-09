@@ -8,7 +8,7 @@
     "color_ink": "#1A1A1A",
     "alpha_total": "100",
     "alpha_remaining": "87",
-    "discord_url": "",
+    "discord_url": "https://discord.gg/tzTVTZMMZa",
     "support_email": "hello@keepkase.com",
     "ship_window": "Fall 2026",
     "return_window": "30 days",
@@ -16,10 +16,7 @@
     "social_instagram": "",
     "social_tiktok": "",
     "social_youtube": "",
-    "social_x": "",
-    "settings": {
-      "discord_url": "https://discord.gg/tzTVTZMMZa"
-    }
+    "social_x": ""
   },
   "presets": {
     "KeepKase": {
