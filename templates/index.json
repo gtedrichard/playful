@@ -9,16 +9,102 @@
  */
 {
   "sections": {
-    "hero": { "type": "hero", "settings": {} },
-    "marquee": { "type": "marquee", "settings": { "style": "yellow" } },
-    "problem": { "type": "problem", "settings": {} },
-    "how": { "type": "how-it-works", "settings": {} },
-    "wild": { "type": "in-the-wild", "settings": {} },
-    "paths": { "type": "pick-your-path", "settings": {} },
-    "voices": { "type": "testimonials", "settings": {} },
-    "email": { "type": "email-signup", "settings": {} },
-    "promise": { "type": "promise", "settings": {} }
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "heading_pre": "The case stays.",
+        "heading_serif": "The story",
+        "heading_post": "swaps.",
+        "subheading": "A thin hardshell that holds two clear sheets over your stickers — no adhesive on the laptop. Swap a layout anytime, or retire one as a keepsake.",
+        "cta1_text": "Claim alpha spot — $50",
+        "cta1_link": "/products/keepkase-alpha",
+        "cta2_text": "Reserve free spot",
+        "cta2_link": "/pages/community"
+      }
+    },
+    "marquee": {
+      "type": "marquee",
+      "settings": {
+        "style": "yellow"
+      }
+    },
+    "problem": {
+      "type": "problem",
+      "settings": {
+        "watermark": "WHY",
+        "title": "<p>Stickers on MacBooks are <em>permanent.</em> That's broken.</p>",
+        "count_label": "real problems"
+      }
+    },
+    "how": {
+      "type": "how-it-works",
+      "settings": {
+        "eyebrow": "How it works",
+        "title": "<p>Three steps to <em>freedom.</em></p>"
+      }
+    },
+    "wild": {
+      "type": "in-the-wild",
+      "disabled": true,
+      "settings": {
+        "title": "In the wild.",
+        "title_accent": "Real stories.",
+        "subtitle": "Alpha testers. Real setups. Real reactions."
+      }
+    },
+    "paths": {
+      "type": "pick-your-path",
+      "settings": {
+        "label": "Get in early",
+        "title": "<p>Two ways <em>in.</em></p>",
+        "alpha_badge": "Alpha tester",
+        "alpha_title": "<p>Help us build it. <em>Get it first.</em></p>",
+        "alpha_desc": "100 units to people who will use it hard and tell us what is broken. At cost. Real access. Your feedback shapes the final product.",
+        "alpha_cta": "Claim alpha spot — $50",
+        "alpha_link": "/products/keepkase-alpha",
+        "wl_badge": "Launch waitlist",
+        "wl_title": "<p>Not ready yet? Lock your spot.</p>",
+        "wl_desc": "Free to join. An optional $10 refundable deposit bumps you to the front of the line when we launch on Kickstarter.",
+        "wl_cta": "Reserve launch spot — free",
+        "wl_link": "/pages/community"
+      }
+    },
+    "voices": {
+      "type": "testimonials",
+      "disabled": true,
+      "settings": {
+        "eyebrow": "Early voices",
+        "title": "What alpha testers say."
+      }
+    },
+    "email": {
+      "type": "email-signup",
+      "settings": {
+        "eyebrow": "Stay in the loop",
+        "title": "<p>Join the launch waitlist.</p>",
+        "subtitle": "Free to join for a warm spot at Kickstarter. Add an optional $10 refundable deposit to move to the front of the line.",
+        "button": "Join the waitlist",
+        "fine": "No charge to join. The optional deposit is fully refundable. We email about the build, not much else. Unsubscribe anytime."
+      }
+    },
+    "promise": {
+      "type": "promise",
+      "settings": {
+        "line1": "Change everything.",
+        "line2_pre": "Lose",
+        "line2_accent": "nothing."
+      }
+    }
   },
-  "order": ["hero", "marquee", "problem", "how", "wild", "paths", "voices", "email", "promise"]
+  "order": [
+    "hero",
+    "marquee",
+    "problem",
+    "how",
+    "wild",
+    "paths",
+    "voices",
+    "email",
+    "promise"
+  ]
 }
-
