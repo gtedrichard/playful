@@ -52,18 +52,10 @@
 </nav>
 
 <div class="mobile-menu" id="MobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
-  {%- if linklists[menu].links.size > 0 -%}
-    {%- for link in linklists[menu].links -%}
-      <a href="{{ link.url }}">{{ link.title }}</a>
-    {%- endfor -%}
-  {%- else -%}
-    <a href="{{ routes.root_url }}">Home</a>
-    <a href="/products/keepkase-alpha">The case</a>
-    <a href="/pages/about">Story</a>
-    <a href="/blogs/devlog">Devlog</a>
-    <a href="/pages/community">Community</a>
-    <a href="/pages/faq">FAQ</a>
-  {%- endif -%}
+  <a href="{{ routes.root_url }}">Home</a>
+  <a href="/products/keepkase-alpha">The Alpha</a>
+  {%- if settings.discord_url != blank -%}<a href="{{ settings.discord_url }}" target="_blank" rel="noopener">Join Discord</a>{%- endif -%}
+  <a href="{{ routes.account_url }}">Account</a>
   <a class="btn btn--coral btn--block" href="{{ section.settings.cta_link | default: '/products/keepkase-alpha' }}">{{ section.settings.cta_text | default: 'Get early access' }} →</a>
 </div>
 
