@@ -102,30 +102,31 @@
   </script>
 </section>
 
-{%- comment -%} ── What your spot includes (full width — merged from the old icon-row + checklist) ── {%- endcomment -%}
+{%- comment -%} ── The case: concise + visual spec grid ── {%- endcomment -%}
 <section class="section">
   <div class="wrap">
-    <h2 class="psec-h">{{ section.settings.perks_title | default: 'What your alpha spot includes' }}</h2>
-    <div class="perk-grid">
-      <div class="perk-card"><div class="perk-ic">💬</div><h3>Direct Discord access</h3><p>The build happens in the open, with the team.</p></div>
-      <div class="perk-card"><div class="perk-ic">🗳️</div><h3>Vote on the build</h3><p>Your feedback helps shape the final product.</p></div>
-      <div class="perk-card"><div class="perk-ic">🎁</div><h3>A free injection-molded unit</h3><p>When we raise the funds for a mold, you get one — free.</p></div>
+    <div class="psec-eyebrow">The case</div>
+    <h2 class="psec-h">Made to hold what matters.</h2>
+    <div class="spec-grid">
+      <div class="spec-card"><div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg></div><h4>Two clear sheets</h4><p>Sandwich your stickers — no adhesive, ever.</p></div>
+      <div class="spec-card"><div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></div><h4>3D-printed border</h4><p>A thin hardshell that stays on the laptop.</p></div>
+      <div class="spec-card"><div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.67 19a2 2 0 0 0 1.42-.59l6.15-6.17a6 6 0 0 0-8.49-8.49L5.59 9.91A2 2 0 0 0 5 11.33V18a1 1 0 0 0 1 1z"/><path d="M16 8 2 22"/><path d="M17.5 15H9"/></svg></div><h4>Barely heavier</h4><p>Adds almost nothing. Still closes flush.</p></div>
+      <div class="spec-card"><div class="spec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></div><h4>Swap &amp; retire</h4><p>Rearrange anytime. Keep old sheets as keepsakes.</p></div>
     </div>
   </div>
 </section>
 
-{%- comment -%} ── In the box + the honest version (full width, two columns) ── {%- endcomment -%}
+{%- comment -%} ── Your alpha spot: concise perk chips ── {%- endcomment -%}
 <section class="section bg-cream">
-  <div class="wrap pinfo-grid">
-    <div>
-      <h3>In the box</h3>
-      {{ section.settings.in_box | default: '<ul><li>The KeepKase border (3D-printed)</li><li>Two clear sheets that sandwich your stickers</li><li>A microfiber cloth</li></ul>' }}
-      <p class="pinfo-fine">Final box contents are still being finalized.</p>
+  <div class="wrap">
+    <div class="psec-eyebrow">Your alpha spot</div>
+    <h2 class="psec-h">More than a case.</h2>
+    <div class="perk-row">
+      <div class="perk-chip"><div class="pc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></div><div><strong>Discord access</strong><span>Build in the open with the team.</span></div></div>
+      <div class="perk-chip"><div class="pc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.8 10A10 10 0 1 1 17 3.3"/><path d="m9 11 3 3L22 4"/></svg></div><div><strong>A vote on the build</strong><span>Your feedback shapes it.</span></div></div>
+      <div class="perk-chip"><div class="pc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8"/><path d="M16.5 8a2.5 2.5 0 0 0 0-5C13 3 12 8 12 8"/></svg></div><div><strong>A free production unit</strong><span>When we tool up an injection mold.</span></div></div>
     </div>
-    <div>
-      <h3>The honest version</h3>
-      <div class="prose" style="font-size:15px;line-height:1.7">{%- if section.settings.alpha_details != blank -%}{{ section.settings.alpha_details }}{%- else -%}<p>You&rsquo;re buying into a build in progress, not a finished product. It&rsquo;s 3D-printed — it protects like a hardshell, with a prototype&rsquo;s trade-offs. Materials are still being chosen, and your feedback in the Discord helps decide them. We&rsquo;re targeting a Fall 2026 ship window.</p>{%- endif -%}</div>
-    </div>
+    <p class="honest-line">It&rsquo;s a 3D-printed alpha — a build in progress. In the box: the border, two clear sheets, and a microfiber cloth (final contents still being finalized).</p>
   </div>
 </section>
 
