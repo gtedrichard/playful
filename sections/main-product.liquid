@@ -108,18 +108,6 @@
   </script>
 </section>
 
-{%- comment -%} ── Full product detail — ONE optional accordion (was four) ── {%- endcomment -%}
-{%- if product.description != blank -%}
-<section class="section">
-  <div class="wrap wrap--narrow">
-    <details class="faq-item">
-      <summary>Full details <span class="faq-q-icon">+</span></summary>
-      <div class="faq-a">{{ product.description }}</div>
-    </details>
-  </div>
-</section>
-{%- endif -%}
-
 {% schema %}
 {
   "name": "Product",
