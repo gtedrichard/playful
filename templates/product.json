@@ -15,10 +15,6 @@
     },
     "timeline": {
       "type": "product-timeline",
-      "disabled": true,
-      "settings": {
-        "show_progress": true
-      },
       "blocks": {
         "node-1": {
           "type": "node",
@@ -184,7 +180,11 @@
         "node-8",
         "node-9",
         "node-10"
-      ]
+      ],
+      "disabled": true,
+      "settings": {
+        "show_progress": true
+      }
     },
     "marquee": {
       "type": "marquee",
@@ -198,14 +198,20 @@
     },
     "promise": {
       "type": "promise",
+      "disabled": true,
+      "settings": {}
+    },
+    "story": {
+      "type": "product-story",
       "settings": {}
     }
   },
   "order": [
     "main",
-    "timeline",
     "marquee",
     "how",
+    "story",
+    "timeline",
     "promise"
   ]
 }
