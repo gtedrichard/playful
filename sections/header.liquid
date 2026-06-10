@@ -44,6 +44,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
       <span class="cart-count" data-count="{{ cart.item_count }}">{{ cart.item_count }}</span>
     </button>
+    <a class="nav-btn" href="{{ section.settings.cta_link | default: '/products/keepkase-alpha' }}">{{ section.settings.cta_text | default: 'Get early access' }} →</a>
     <button class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="MobileMenu">
       <span></span><span></span><span></span>
     </button>
