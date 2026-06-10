@@ -22,7 +22,7 @@
 
 <nav class="nav" role="navigation" aria-label="Primary">
   <a class="logo" id="logoEl" href="{{ routes.root_url }}">
-    <span class="logo-k">K</span>{{ shop.name | default: 'KeepKase' }}
+    <span class="logo-k"><img src="{{ 'keepkase-mark-ink.png' | asset_url }}" alt="KeepKase"></span>{{ shop.name | default: 'KeepKase' }}
   </a>
 
   <div class="nav-links">
