@@ -1,0 +1,83 @@
+{%- liquid
+  assign remaining = all_products['keepkase-alpha'].selected_or_first_available_variant.inventory_quantity | default: 100
+-%}
+
+{%- comment -%} ── Beat 1: The old way vs KeepKase — INK band, comparison ── {%- endcomment -%}
+<section class="ps-compare">
+  <div class="dotgrid dotgrid--light" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative;z-index:1;text-align:center">
+    <div class="ps-eyebrow" style="color:var(--y)">The old way vs KeepKase</div>
+    <h2 class="ps-h">Stickers shouldn&rsquo;t be a <span class="serif" style="color:var(--y)">one-way</span> decision.</h2>
+    <div class="cmp-grid">
+      <div class="cmp-col cmp-col--old">
+        <span class="pill pill--ghost-light">Stuck on the lid</span>
+        <ul>
+          <li><span class="cmp-x">&#10007;</span> Peel marks left behind</li>
+          <li><span class="cmp-x">&#10007;</span> Can&rsquo;t restyle without losing them</li>
+          <li><span class="cmp-x">&#10007;</span> Gone when the laptop changes</li>
+        </ul>
+      </div>
+      <div class="cmp-col cmp-col--new">
+        <span class="pill pill--y">KeepKase</span>
+        <ul>
+          <li><span class="cmp-check">&#10003;</span> No adhesive — friction only</li>
+          <li><span class="cmp-check">&#10003;</span> Swap the layout anytime</li>
+          <li><span class="cmp-check">&#10003;</span> Retire old sheets as keepsakes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} ── Beat 2: Try the swap — BLUE band, interactive sticker-mock (the peak) ── {%- endcomment -%}
+<section class="ps-mock">
+  <div class="dotgrid dotgrid--light" aria-hidden="true"></div>
+  <div class="wrap ps-mock-wrap">
+    <div class="ps-mock-copy">
+      <div class="ps-eyebrow" style="color:rgba(255,255,255,.6)">Try it</div>
+      <h2 class="ps-h">Slide it.<br><span class="serif" style="color:var(--y)">Swap it.</span></h2>
+      <p>No glue. Just friction and your favorite stickers. Drag one around &mdash; the sheet holds whatever you arrange, and lets it go when you want a change.</p>
+    </div>
+    <div class="ps-mock-stage">
+      <div class="mb-wrap">
+        <div class="sw">drag me &#10038;</div>
+        <div class="mbf"><div class="mbs"><div class="mb-sheet">
+          <div class="sk draggable-emoji" style="width:48px;height:48px;background:#fff3cd;font-size:1.2rem;">🌿</div>
+          <div class="sk draggable-emoji" style="width:42px;height:42px;background:#cce5ff;font-size:1.2rem;">⚡</div>
+          <div class="sk draggable-emoji" style="width:58px;height:34px;background:#f8d7da;border-radius:16px;font-size:.6rem;font-weight:700;color:#444;">✦ vibes</div>
+          <div class="sk draggable-emoji" style="width:36px;height:48px;background:#e2d9f3;font-size:1.2rem;">🎸</div>
+          <div class="sk draggable-emoji" style="width:46px;height:46px;background:#d4edda;border-radius:50%;font-size:1.2rem;">🌙</div>
+          <div class="sk draggable-emoji" style="width:52px;height:32px;background:#fff3cd;font-size:.58rem;font-weight:700;color:#444;">BKL 2024</div>
+        </div></div><div class="mb-notch"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} ── Beat 3: By the numbers — CREAM, color-blocked stat tiles (the one allowed grid) ── {%- endcomment -%}
+<section class="section">
+  <div class="wrap">
+    <div class="stat-band">
+      <div class="stat-tile stat-tile--y"><div class="stat-n">{{ remaining }}</div><div class="stat-l">of 100 spots left</div></div>
+      <div class="stat-tile stat-tile--b"><div class="stat-n">$35</div><div class="stat-l">founding price</div></div>
+      <div class="stat-tile stat-tile--c"><div class="stat-n">0</div><div class="stat-l">adhesive, ever</div></div>
+      <div class="stat-tile stat-tile--g"><div class="stat-n">2</div><div class="stat-l">clear swappable sheets</div></div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} ── Beat 4: Final CTA — CORAL band, bold close ── {%- endcomment -%}
+<section class="ps-cta">
+  <div class="dotgrid dotgrid--light" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="pill pill--light">{{ remaining }} of 100 left</span>
+    <h2 class="ps-cta-h">Grab <span class="serif" style="color:var(--y)">1 of 100.</span></h2>
+    <p class="ps-cta-sub">Discord access &middot; a vote on the build &middot; a free production unit later.</p>
+    <a href="#buy" class="btn btn--yellow btn--lg">Join the Alpha &rarr;</a>
+    <div class="ps-cta-links">{%- if settings.discord_url != blank -%}<a href="{{ settings.discord_url }}" target="_blank" rel="noopener">Or just join the Discord</a> &middot; {%- endif -%}<a href="/#email">free waitlist</a></div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Product story", "settings": [], "presets": [{ "name": "Product story" }] }
+{% endschema %}
