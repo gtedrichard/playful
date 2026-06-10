@@ -659,6 +659,20 @@ ul{list-style:none;}
 .buy-row{display:flex;gap:12px;align-items:stretch;flex-wrap:wrap;}
 .buy-row .btn{flex:1;min-width:180px;}
 .buy-reassure{display:flex;flex-direction:column;gap:8px;margin-top:4px;}
+.buy-note{font-size:13px;color:var(--ink-45);line-height:1.6;margin-top:2px;}
+.buy-note a{color:var(--ink-60);text-decoration:underline;}
+.psec-h{font-size:clamp(1.4rem,3vw,2rem);font-weight:900;letter-spacing:-1px;margin-bottom:22px;}
+.perk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.perk-card{border:var(--line);border-radius:var(--r-lg);background:var(--paper);padding:22px;box-shadow:var(--sh-3);}
+.perk-card .perk-ic{font-size:24px;margin-bottom:10px;}
+.perk-card h3{font-size:16px;font-weight:800;margin-bottom:6px;letter-spacing:-.3px;}
+.perk-card p{font-size:14px;color:var(--ink-60);line-height:1.6;}
+.pinfo-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+.pinfo-grid h3{font-size:18px;font-weight:800;margin-bottom:12px;letter-spacing:-.3px;}
+.pinfo-grid ul{display:flex;flex-direction:column;gap:8px;color:var(--ink-72);font-size:15px;line-height:1.5;list-style:none;}
+.pinfo-grid ul li::before{content:"\2022";color:var(--c);font-weight:900;margin-right:8px;}
+.pinfo-fine{margin-top:14px;font-size:13px;color:var(--ink-45);}
+@media(max-width:768px){.perk-grid{grid-template-columns:1fr;}.pinfo-grid{grid-template-columns:1fr;gap:28px;}}
 .reassure-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-60);}
 .reassure-item .ri-i{width:22px;height:22px;border-radius:50%;background:var(--y);border:1.5px solid var(--ink);display:grid;place-items:center;font-size:11px;flex-shrink:0;}
 .product-accordions{margin-top:8px;display:flex;flex-direction:column;gap:10px;}

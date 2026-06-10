@@ -3,6 +3,7 @@
   assign total = settings.alpha_total | default: '100'
   assign remaining = product.selected_or_first_available_variant.inventory_quantity | default: 100
   assign current = product.selected_or_first_available_variant
+  assign email = settings.support_email | default: 'hello@keepkase.com'
 -%}
 <section class="product rv">
   <div class="dotgrid" aria-hidden="true" style="opacity:.5"></div>
@@ -32,7 +33,7 @@
       {%- endif -%}
     </div>
 
-    {%- comment -%} ── Buy box ── {%- endcomment -%}
+    {%- comment -%} ── Buy box (lean — essentials only) ── {%- endcomment -%}
     <div class="buybox">
       <div class="buybox-pills">
         <span class="pill pill--y"><span class="blink"></span>Alpha open — {{ total }} spots</span>
@@ -40,7 +41,7 @@
       </div>
 
       <h1>{{ product.title | default: 'KeepKase Alpha' }}</h1>
-      <p class="sub">{{ section.settings.subtitle | default: "A thin hardshell that protects your laptop and holds the stickers you'd hate to lose. Designed for what you want to keep — and what you'll outgrow." }}</p>
+      <p class="sub">{{ section.settings.subtitle | default: "A thin hardshell that holds the stickers you'd hate to lose — no adhesive, fully swappable." }}</p>
 
       {% render 'price', product: product %}
 
@@ -83,41 +84,7 @@
 
       <a href="{{ section.settings.waitlist_link | default: '/#email' }}" class="btn btn--ghost btn--block btn--sm" style="margin-top:2px">Not yet? Join the free waitlist →</a>
 
-      <div class="buy-reassure">
-        <div class="reassure-item"><span class="ri-i">✓</span>It's 3D-printed and a build in progress — it protects like a hardshell, and we're honest about the trade-offs.</div>
-        <div class="reassure-item"><span class="ri-i">✦</span>Direct Discord access — the build happens in the open.</div>
-        <div class="reassure-item"><span class="ri-i">↺</span>Questions &amp; returns handled directly at {{ settings.support_email | default: 'hello@keepkase.com' }}.</div>
-      </div>
-
-      <div class="product-perks">
-        <h3>Your alpha spot includes</h3>
-        <ul>
-          <li><span class="pk">✓</span>Direct Discord access with the team</li>
-          <li><span class="pk">✓</span>Vote on the build</li>
-          <li><span class="pk">✓</span>A free injection-molded unit when we get there</li>
-        </ul>
-      </div>
-
-      <div class="product-accordions">
-        <details class="faq-item" open>
-          <summary>In the box <span class="faq-q-icon">+</span></summary>
-          <div class="faq-a">{{ section.settings.in_box | default: '<ul><li>The KeepKase border (3D-printed)</li><li>Two clear sheets that sandwich your stickers</li><li>A microfiber cloth</li></ul><p style="margin-top:8px;font-size:13px;color:var(--ink-45)">Final box contents are still being finalized.</p>' }}</div>
-        </details>
-        <details class="faq-item">
-          <summary>"Why not just peel them off?" <span class="faq-q-icon">+</span></summary>
-          <div class="faq-a">{{ section.settings.why_peel | default: '<p>Because peeling ends the story. It breaks the arrangement you built, throws away the meaning, and can scuff the anodized finish on the way out. If your stickers are just decoration, peeling is fine — but if a layout is something you&rsquo;d want to keep, KeepKase lets you set it aside whole instead of destroying it.</p>' }}</div>
-        </details>
-        <details class="faq-item">
-          <summary>The alpha, honestly <span class="faq-q-icon">+</span></summary>
-          <div class="faq-a">{%- if section.settings.alpha_details != blank -%}{{ section.settings.alpha_details }}{%- else -%}<p>You're buying into a build in progress, not a finished product. It's 3D-printed and materials are still being chosen — some details will change, and your feedback in the Discord is part of how they get decided. We're targeting a Fall 2026 ship window.</p>{%- endif -%}</div>
-        </details>
-        {%- if product.description != blank -%}
-        <details class="faq-item">
-          <summary>Full description <span class="faq-q-icon">+</span></summary>
-          <div class="faq-a">{{ product.description }}</div>
-        </details>
-        {%- endif -%}
-      </div>
+      <p class="buy-note">3D-printed alpha · ships {{ settings.ship_window | default: 'Fall 2026' }} · questions at <a href="mailto:{{ email }}">{{ email }}</a></p>
     </div>
   </div>
 
@@ -126,6 +93,45 @@
   </script>
 </section>
 
+{%- comment -%} ── What your spot includes (full width — merged from the old icon-row + checklist) ── {%- endcomment -%}
+<section class="section">
+  <div class="wrap">
+    <h2 class="psec-h">{{ section.settings.perks_title | default: 'What your alpha spot includes' }}</h2>
+    <div class="perk-grid">
+      <div class="perk-card"><div class="perk-ic">💬</div><h3>Direct Discord access</h3><p>The build happens in the open, with the team.</p></div>
+      <div class="perk-card"><div class="perk-ic">🗳️</div><h3>Vote on the build</h3><p>Your feedback helps shape the final product.</p></div>
+      <div class="perk-card"><div class="perk-ic">🎁</div><h3>A free injection-molded unit</h3><p>When we raise the funds for a mold, you get one — free.</p></div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} ── In the box + the honest version (full width, two columns) ── {%- endcomment -%}
+<section class="section bg-cream">
+  <div class="wrap pinfo-grid">
+    <div>
+      <h3>In the box</h3>
+      {{ section.settings.in_box | default: '<ul><li>The KeepKase border (3D-printed)</li><li>Two clear sheets that sandwich your stickers</li><li>A microfiber cloth</li></ul>' }}
+      <p class="pinfo-fine">Final box contents are still being finalized.</p>
+    </div>
+    <div>
+      <h3>The honest version</h3>
+      <div class="prose" style="font-size:15px;line-height:1.7">{%- if section.settings.alpha_details != blank -%}{{ section.settings.alpha_details }}{%- else -%}<p>You&rsquo;re buying into a build in progress, not a finished product. It&rsquo;s 3D-printed — it protects like a hardshell, with a prototype&rsquo;s trade-offs. Materials are still being chosen, and your feedback in the Discord helps decide them. We&rsquo;re targeting a Fall 2026 ship window.</p>{%- endif -%}</div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} ── Full product detail — ONE optional accordion (was four) ── {%- endcomment -%}
+{%- if product.description != blank -%}
+<section class="section">
+  <div class="wrap wrap--narrow">
+    <details class="faq-item">
+      <summary>Full details <span class="faq-q-icon">+</span></summary>
+      <div class="faq-a">{{ product.description }}</div>
+    </details>
+  </div>
+</section>
+{%- endif -%}
+
 {% schema %}
 {
   "name": "Product",
@@ -133,10 +139,9 @@
     { "type": "textarea", "id": "subtitle", "label": "Subtitle" },
     { "type": "text", "id": "add_label", "label": "Add-to-cart label", "default": "Join the Alpha" },
     { "type": "text", "id": "waitlist_link", "label": "Waitlist link", "default": "/#email" },
+    { "type": "text", "id": "perks_title", "label": "Perks heading", "default": "What your alpha spot includes" },
     { "type": "richtext", "id": "in_box", "label": "In the box" },
-    { "type": "richtext", "id": "why_different", "label": "Why it's different" },
-    { "type": "richtext", "id": "why_peel", "label": "Why not just peel" },
-    { "type": "richtext", "id": "alpha_details", "label": "The alpha, honestly" }
+    { "type": "richtext", "id": "alpha_details", "label": "The honest version" }
   ]
 }
 {% endschema %}
