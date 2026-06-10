@@ -16,6 +16,8 @@
     </span>
     {%- if section.settings.announcement_link != blank and section.settings.announcement_link_text != blank -%}
       <a href="{{ section.settings.announcement_link }}">{{ section.settings.announcement_link_text }} →</a>
+    {%- elsif settings.discord_url != blank -%}
+      <a href="{{ settings.discord_url }}" target="_blank" rel="noopener">Join the Discord →</a>
     {%- endif -%}
   </div>
 {%- endif -%}
@@ -26,15 +28,9 @@
   </a>
 
   <div class="nav-links">
-    {%- if linklists[menu].links.size > 0 -%}
-      {%- for link in linklists[menu].links -%}
-        <a class="nl{% if link.active %} on{% endif %}" href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
-      {%- endfor -%}
-    {%- else -%}
-      <a class="nl{% if request.path == routes.root_url %} on{% endif %}" href="{{ routes.root_url }}">Home</a>
-      <a class="nl{% if request.path contains '/products/' %} on{% endif %}" href="/products/keepkase-alpha">The case</a>
-      <a class="nl" href="/#email">Waitlist</a>
-    {%- endif -%}
+    <a class="nl{% if request.path == routes.root_url %} on{% endif %}" href="{{ routes.root_url }}">Home</a>
+    <a class="nl{% if request.path contains '/products/' %} on{% endif %}" href="/products/keepkase-alpha">The Alpha</a>
+    {%- if settings.discord_url != blank -%}<a class="nl" href="{{ settings.discord_url }}" target="_blank" rel="noopener">Join Discord</a>{%- endif -%}
   </div>
 
   <div class="nav-right">
