@@ -44,7 +44,7 @@
 
     {%- comment -%} ── Buy box (lean — essentials only) ── {%- endcomment -%}
     <div class="buybox">
-      <span class="bb-badge"><span class="blink"></span> Founding alpha &middot; {{ remaining }} of {{ total }} left</span>
+      <span class="bb-badge"><span class="blink"></span> Alpha tester &middot; {{ remaining }} of {{ total }} left</span>
       <h1 class="bb-title">KeepKase <span class="serif" style="color:var(--c)">Alpha.</span></h1>
       <p class="bb-sub">{{ section.settings.subtitle | default: "A thin hardshell that holds the stickers you'd hate to lose — no adhesive, fully swappable." }}</p>
 
@@ -90,8 +90,8 @@
             <input type="text" name="quantity" value="1" inputmode="numeric" aria-label="Quantity">
             <button type="button" data-qty="inc" aria-label="Increase">+</button>
           </div>
-          <button type="submit" class="btn btn--coral btn--lg" data-add-label="{{ section.settings.add_label | default: 'Join the Alpha' }}"{% unless current.available %} disabled{% endunless %}>
-            {%- if current.available -%}{{ section.settings.add_label | default: 'Join the Alpha' }}{%- else -%}Sold out{%- endif -%} →
+          <button type="submit" class="btn btn--coral btn--lg" data-add-label="{{ section.settings.add_label | default: 'Become an alpha tester' }}"{% unless current.available %} disabled{% endunless %}>
+            {%- if current.available -%}{{ section.settings.add_label | default: 'Become an alpha tester' }}{%- else -%}Sold out{%- endif -%} →
           </button>
         </div>
       </form>
@@ -99,7 +99,7 @@
         <a href="{{ section.settings.waitlist_link | default: '/#email' }}" class="btn btn--ghost btn--block btn--sm" style="margin-top:2px">Not yet? Join the free waitlist →</a>
       </div>
 
-      <p class="buy-note">3D-printed alpha · questions at <a href="mailto:{{ email }}">{{ email }}</a></p>
+      <p class="buy-note">3D-printed prototype · questions at <a href="mailto:{{ email }}">{{ email }}</a></p>
     </div>
   </div>
 
@@ -124,7 +124,7 @@
   "name": "Product",
   "settings": [
     { "type": "textarea", "id": "subtitle", "label": "Subtitle" },
-    { "type": "text", "id": "add_label", "label": "Add-to-cart label", "default": "Join the Alpha" },
+    { "type": "text", "id": "add_label", "label": "Add-to-cart label", "default": "Become an alpha tester" },
     { "type": "text", "id": "waitlist_link", "label": "Waitlist link", "default": "/#email" },
     { "type": "text", "id": "perks_title", "label": "Perks heading", "default": "What your alpha spot includes" },
     { "type": "richtext", "id": "in_box", "label": "In the box" },

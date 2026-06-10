@@ -11,7 +11,7 @@
       {%- if section.settings.announcement_text != blank -%}
         {{ section.settings.announcement_text }}
       {%- else -%}
-        Alpha is open — {{ total }} spots. {{ remaining }} left.
+        Alpha testing is open — {{ total }} spots. {{ remaining }} left.
       {%- endif -%}
     </span>
     {%- if section.settings.announcement_link != blank and section.settings.announcement_link_text != blank -%}
@@ -29,7 +29,7 @@
 
   <div class="nav-links">
     <a class="nl{% if request.path == routes.root_url %} on{% endif %}" href="{{ routes.root_url }}">Home</a>
-    <a class="nl{% if request.path contains '/products/' %} on{% endif %}" href="/products/keepkase-alpha">The Alpha</a>
+    <a class="nl{% if request.path contains '/products/' %} on{% endif %}" href="/products/keepkase-alpha">Alpha test</a>
     <a class="nl{% if request.path contains '/blogs/' %} on{% endif %}" href="/blogs/journal">Journal</a>
     {%- if settings.discord_url != blank -%}<a class="nl" href="{{ settings.discord_url }}" target="_blank" rel="noopener">Join Discord</a>{%- endif -%}
   </div>
@@ -54,7 +54,7 @@
 
 <div class="mobile-menu" id="MobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
   <a href="{{ routes.root_url }}">Home</a>
-  <a href="/products/keepkase-alpha">The Alpha</a>
+  <a href="/products/keepkase-alpha">Alpha test</a>
   <a href="/blogs/journal">Journal</a>
   {%- if settings.discord_url != blank -%}<a href="{{ settings.discord_url }}" target="_blank" rel="noopener">Join Discord</a>{%- endif -%}
   <a href="{{ routes.account_url }}">Account</a>

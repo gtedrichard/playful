@@ -18,7 +18,7 @@
     <div class="hero-lattice" aria-hidden="true"></div>
     <div class="hero-lc">
       <div class="hero-ey">
-        <div class="pill pill--y"><span class="blink"></span>Alpha open — {{ total }} spots</div>
+        <div class="pill pill--y"><span class="blink"></span>Alpha testing open — {{ total }} spots</div>
         <div class="pill pill--ghost">{{ remaining }} left</div>
       </div>
       <h1 class="hero-h1">
@@ -28,8 +28,24 @@
       </h1>
       <p class="hero-sub">{{ section.settings.subheading | default: 'A thin hardshell that holds two clear sheets over your stickers — no adhesive on the laptop. Swap a layout anytime, or retire one as a keepsake.' }}</p>
       <div class="hero-btns">
-        <a href="{{ section.settings.cta1_link | default: '/products/keepkase-alpha' }}" class="btn btn--blue">{{ section.settings.cta1_text | default: 'Claim alpha spot — $35' }}</a>
-        <a href="{{ section.settings.cta2_link | default: '#email' }}" class="btn btn--ghost">{{ section.settings.cta2_text | default: 'Reserve free spot' }}</a>
+        <a href="{{ section.settings.cta1_link | default: '/products/keepkase-alpha' }}" class="btn btn--blue">{{ section.settings.cta1_text | default: 'Become an alpha tester — $35' }}</a>
+      </div>
+      <div class="hero-email">
+        <span class="hero-email-lab">Or join the free waitlist</span>
+        {%- form 'customer', id: 'hero-waitlist' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter, hero-signup">
+          {%- if form.posted_successfully? -%}
+            <div class="form-status form-status--ok">You&rsquo;re on the list &#10038; Watch your inbox.</div>
+          {%- else -%}
+            {%- if form.errors -%}<div class="form-status form-status--err" style="margin-bottom:8px">{{ form.errors | default_errors }}</div>{%- endif -%}
+            <div class="hero-email-row">
+              <label class="visually-hidden" for="hero-email-input">Email address</label>
+              <input class="hero-email-in" id="hero-email-input" type="email" name="contact[email]" placeholder="your@email.com" required>
+              <button class="hero-email-btn" type="submit">Join &rarr;</button>
+            </div>
+            <p class="hero-email-fine">Free &middot; build updates only &middot; no spam.</p>
+          {%- endif -%}
+        {%- endform -%}
       </div>
     </div>
   </div>
@@ -69,7 +85,7 @@
     { "type": "text", "id": "heading_serif", "label": "Heading line 2 (serif accent)", "default": "The story" },
     { "type": "text", "id": "heading_post", "label": "Heading line 2 (underlined)", "default": "swaps." },
     { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "A thin hardshell that holds two clear sheets over your stickers — no adhesive on the laptop. Swap a layout anytime, or retire one as a keepsake." },
-    { "type": "text", "id": "cta1_text", "label": "Primary button text", "default": "Claim alpha spot — $35" },
+    { "type": "text", "id": "cta1_text", "label": "Primary button text", "default": "Become an alpha tester — $35" },
     { "type": "text", "id": "cta1_link", "label": "Primary button link", "default": "/products/keepkase-alpha" },
     { "type": "text", "id": "cta2_text", "label": "Secondary button text", "default": "Reserve free spot" },
     { "type": "text", "id": "cta2_link", "label": "Secondary button link", "default": "/pages/community" },

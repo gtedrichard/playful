@@ -16,7 +16,7 @@
         "heading_serif": "Finally",
         "heading_post": "yours to keep.",
         "subheading": "A modular MacBook case with two removable transparent sheets that sandwich your stickers. Swap layouts. Retire sheets. Keep your history.",
-        "cta1_text": "Claim alpha spot — $35",
+        "cta1_text": "Become an alpha tester — $35",
         "cta1_link": "/products/keepkase-alpha",
         "cta2_text": "Reserve free spot",
         "cta2_link": "#email"
@@ -61,7 +61,7 @@
         "alpha_badge": "Alpha tester",
         "alpha_title": "<p>Help us build it. <em>Get it first.</em></p>",
         "alpha_desc": "100 units to people who will use it hard and tell us what is broken. Real access. Your feedback shapes the final product.",
-        "alpha_cta": "Claim alpha spot — $35",
+        "alpha_cta": "Become an alpha tester — $35",
         "alpha_link": "/products/keepkase-alpha",
         "wl_badge": "Waitlist",
         "wl_title": "<p>Not ready yet?</p>",
@@ -91,7 +91,10 @@
     "promise": {
       "type": "promise",
       "settings": {
-        "line1": "Designed"
+        "line1": "Designed",
+        "line1_serif": "for",
+        "line2": "what you",
+        "line2_b": "keep."
       }
     }
   },
