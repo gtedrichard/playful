@@ -2,8 +2,8 @@
   <div class="pr12-cross" aria-hidden="true"></div>
   <div class="wrap">
     <p class="pr12-text">
-      <span class="prw">{{ section.settings.line1 | default: 'Designed' }}</span><br>
-      <span class="prw">{{ section.settings.line2_pre | default: 'for what you' }} </span><span class="prc pr-serif">{{ section.settings.line2_accent | default: 'keep.' }}</span>
+      <span class="prw">{{ section.settings.line1 | default: 'Designed' }} </span><span class="prc pr-serif">{{ section.settings.line1_serif | default: 'for' }}</span><br>
+      <span class="pr-stroke">{{ section.settings.line2 | default: 'what you' }} </span><span class="prb"> {{ section.settings.line2_b | default: 'keep.' }}</span>
     </p>
   </div>
 </div>
@@ -12,9 +12,10 @@
 {
   "name": "Promise",
   "settings": [
-    { "type": "text", "id": "line1", "label": "Line 1", "default": "Designed" },
-    { "type": "text", "id": "line2_pre", "label": "Line 2 (solid)", "default": "for what you" },
-    { "type": "text", "id": "line2_accent", "label": "Line 2 (serif accent)", "default": "keep." }
+    { "type": "text", "id": "line1", "label": "Line 1 (solid)", "default": "Designed" },
+    { "type": "text", "id": "line1_serif", "label": "Line 1 (serif accent)", "default": "for" },
+    { "type": "text", "id": "line2", "label": "Line 2 (outline)", "default": "what you" },
+    { "type": "text", "id": "line2_b", "label": "Line 2 (blue)", "default": "keep." }
   ],
   "presets": [{ "name": "Promise" }]
 }

@@ -13,8 +13,8 @@
       "type": "hero",
       "settings": {
         "heading_pre": "Your stickers.",
-        "heading_serif": "Finally yours",
-        "heading_post": "to keep.",
+        "heading_serif": "Finally",
+        "heading_post": "yours to keep.",
         "subheading": "A modular MacBook case with two removable transparent sheets that sandwich your stickers. Swap layouts. Retire sheets. Keep your history.",
         "cta1_text": "Claim alpha spot — $35",
         "cta1_link": "/products/keepkase-alpha",
@@ -82,7 +82,7 @@
       "type": "email-signup",
       "settings": {
         "eyebrow": "Stay in the loop",
-        "title": "<p>Be the first to know.</p>",
+        "title": "<p>Be the first<br>to know.</p>",
         "subtitle": "Free to join — build updates by email, the same ones we post in the Discord.",
         "button": "Subscribe",
         "fine": "No spam. Build updates only. Unsubscribe anytime."
@@ -91,9 +91,7 @@
     "promise": {
       "type": "promise",
       "settings": {
-        "line1": "Designed",
-        "line2_pre": "for what you",
-        "line2_accent": "keep."
+        "line1": "Designed"
       }
     }
   },
