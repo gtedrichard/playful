@@ -44,15 +44,20 @@
 
     {%- comment -%} ── Buy box (lean — essentials only) ── {%- endcomment -%}
     <div class="buybox">
-      <div class="buybox-pills">
-        <span class="pill pill--y"><span class="blink"></span>Alpha open — {{ total }} spots</span>
-        <span class="pill pill--ghost">{{ remaining }} of {{ total }} left</span>
-      </div>
+      <span class="bb-badge"><span class="blink"></span> Founding alpha &middot; {{ remaining }} of {{ total }} left</span>
+      <h1 class="bb-title">KeepKase <span class="serif" style="color:var(--c)">Alpha.</span></h1>
+      <p class="bb-sub">{{ section.settings.subtitle | default: "A thin hardshell that holds the stickers you'd hate to lose — no adhesive, fully swappable." }}</p>
 
-      <h1>{{ product.title | default: 'KeepKase Alpha' }}</h1>
-      <p class="sub">{{ section.settings.subtitle | default: "A thin hardshell that holds the stickers you'd hate to lose — no adhesive, fully swappable." }}</p>
-
-      {% render 'price', product: product %}
+      <div class="bb-buy">
+        <div class="bb-price-row">
+          <span class="bb-price">{% render 'price', product: product %}</span>
+          <span class="bb-price-l">founding price<br>ships {{ settings.ship_window | default: 'Fall 2026' }}</span>
+        </div>
+        {%- assign claimed_pct = 100 | minus: remaining -%}
+        <div class="bb-scarcity">
+          <div class="bb-bar"><span style="width:{{ claimed_pct }}%"></span></div>
+          <div class="bb-bar-l"><strong>{{ remaining }}</strong> of {{ total }} spots left</div>
+        </div>
 
       <form data-cart-form data-product-form method="post" action="{{ routes.cart_add_url }}">
         <input type="hidden" name="id" value="{{ current.id }}">
@@ -91,9 +96,10 @@
         </div>
       </form>
 
-      <a href="{{ section.settings.waitlist_link | default: '/#email' }}" class="btn btn--ghost btn--block btn--sm" style="margin-top:2px">Not yet? Join the free waitlist →</a>
+        <a href="{{ section.settings.waitlist_link | default: '/#email' }}" class="btn btn--ghost btn--block btn--sm" style="margin-top:2px">Not yet? Join the free waitlist →</a>
+      </div>
 
-      <p class="buy-note">3D-printed alpha · ships {{ settings.ship_window | default: 'Fall 2026' }} · questions at <a href="mailto:{{ email }}">{{ email }}</a></p>
+      <p class="buy-note">3D-printed alpha · questions at <a href="mailto:{{ email }}">{{ email }}</a></p>
     </div>
   </div>
 

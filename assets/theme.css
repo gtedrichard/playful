@@ -696,6 +696,39 @@ ul{list-style:none;}
 .ps-cta-sub{font-size:15px;color:rgba(255,255,255,.9);margin-bottom:26px;font-weight:600;}
 .ps-cta-links{margin-top:20px;font-size:13px;color:rgba(255,255,255,.85);}
 .ps-cta-links a{color:#fff;text-decoration:underline;font-weight:700;}
+/* Bold buy box (top half) */
+.bb-badge{display:inline-flex;align-items:center;gap:8px;background:var(--y);border:var(--line);border-radius:var(--r-pill);padding:8px 16px;font-size:12.5px;font-weight:800;box-shadow:4px 4px 0 var(--ink);}
+.bb-title{font-size:clamp(2.6rem,5.5vw,3.6rem);font-weight:900;letter-spacing:-2px;line-height:.96;margin:20px 0 12px;}
+.bb-sub{font-size:16px;color:var(--ink-60);line-height:1.55;max-width:430px;}
+.bb-buy{border:var(--line);border-radius:var(--r-lg);background:var(--paper);box-shadow:var(--sh-8);padding:24px;margin-top:24px;display:flex;flex-direction:column;gap:18px;}
+.bb-price-row{display:flex;align-items:center;gap:16px;}
+.bb-price .price{font-size:2.7rem;font-weight:900;letter-spacing:-1.5px;}
+.bb-price .price-row{align-items:center;}
+.bb-price-l{font-size:11.5px;font-weight:800;color:var(--ink-45);line-height:1.35;text-transform:uppercase;letter-spacing:.5px;}
+.bb-bar{height:11px;border:2px solid var(--ink);border-radius:var(--r-pill);background:#fff;overflow:hidden;}
+.bb-bar span{display:block;height:100%;background:var(--c);transition:width .4s;}
+.bb-bar-l{font-size:13px;font-weight:700;margin-top:9px;}
+.bb-bar-l strong{color:var(--c);}
+/* Perks — playful sticker cards */
+.ps-perks{padding:var(--s-20) var(--pad-x);position:relative;overflow:hidden;border-bottom:var(--line);}
+.perk-stickers{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px;}
+.perk-sticker{border:var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-8);padding:24px 20px;background:#fff;text-align:left;transition:transform .18s;}
+.perk-sticker .pk-ic{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:23px;margin-bottom:16px;border:2px solid var(--ink);}
+.perk-sticker b{display:block;font-size:16px;font-weight:800;letter-spacing:-.3px;margin-bottom:6px;}
+.perk-sticker span{font-size:13.5px;color:var(--ink-60);line-height:1.5;}
+.perk-sticker:nth-child(1){transform:rotate(-2deg);}.perk-sticker:nth-child(1) .pk-ic{background:var(--y);}
+.perk-sticker:nth-child(2){transform:rotate(1.5deg);}.perk-sticker:nth-child(2) .pk-ic{background:var(--b);}
+.perk-sticker:nth-child(3){transform:rotate(-1deg);}.perk-sticker:nth-child(3) .pk-ic{background:var(--c);}
+.perk-sticker:nth-child(4){transform:rotate(2deg);}.perk-sticker:nth-child(4) .pk-ic{background:#1fae6b;}
+.perk-sticker:hover{transform:rotate(0) translateY(-4px);}
+/* Honesty / limitations note */
+.ps-honest{background:#FBF1D4;padding:var(--s-20) var(--pad-x);border-bottom:var(--line);position:relative;overflow:hidden;}
+.honest-card{max-width:740px;margin:0 auto;background:var(--paper);border:var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-8);padding:34px;}
+.honest-badge{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border-radius:var(--r-pill);padding:7px 16px;font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:18px;}
+.honest-card p{font-size:16px;line-height:1.7;color:var(--ink-72);margin-bottom:14px;}
+.honest-card p strong{color:var(--ink);}
+.honest-box{font-size:13px;color:var(--ink-60);border-top:2px dashed var(--ink-20);padding-top:16px;margin-top:6px;}
+@media(max-width:768px){.perk-stickers{grid-template-columns:1fr 1fr;}}
 @media(max-width:768px){.cmp-grid{grid-template-columns:1fr;}.cmp-col--new{transform:none;}.ps-mock-wrap{grid-template-columns:1fr;gap:26px;}.stat-band{grid-template-columns:1fr 1fr;}}
 .reassure-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-60);}
 .reassure-item .ri-i{width:22px;height:22px;border-radius:50%;background:var(--y);border:1.5px solid var(--ink);display:grid;place-items:center;font-size:11px;flex-shrink:0;}
