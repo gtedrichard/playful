@@ -1,11 +1,34 @@
 <div class="page-head">
   <div class="dotgrid" aria-hidden="true"></div>
   <div class="wrap">
-    <span class="eyebrow">{{ blog.title | default: 'Devlog' }}</span>
-    <h1 style="margin-top:10px">Building in the open.</h1>
-    <p class="dek">Decisions, tradeoffs, and the occasional dead end.</p>
+    <span class="eyebrow">{{ blog.title | default: 'Journal' }}</span>
+    <h1 style="margin-top:10px">The <span class="serif">Journal.</span></h1>
+    <p class="dek">{{ section.settings.intro | default: 'Build notes and decisions in the open — the same updates we send by email.' }}</p>
   </div>
 </div>
+
+<section class="em11 rv" id="email">
+  <div class="em11-dd" aria-hidden="true"></div>
+  <div class="em11-l">
+    <div class="pill pc-pill" style="margin-bottom:18px;width:fit-content;border-color:var(--c)">{{ section.settings.news_eyebrow | default: 'Newsletter' }}</div>
+    <h2>{{ section.settings.news_title | default: '<p>One note,<br>once a month.</p>' }}</h2>
+    <p style="margin-top:14px;">{{ section.settings.news_sub | default: 'Subscribe and the next issue lands in your inbox — and lives here too.' }}</p>
+  </div>
+  <div class="em11-r">
+    {%- form 'customer', class: 'em11-r', style: 'display:contents' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter, journal">
+      {%- if form.posted_successfully? -%}
+        <div class="form-status form-status--ok" style="background:#fff;border-color:#fff;color:var(--ink)">You&rsquo;re on the list &#10038; Watch your inbox.</div>
+      {%- elsif form.errors -%}
+        <div class="form-status form-status--err">{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+      <label class="visually-hidden" for="journal-email">Email address</label>
+      <input class="em11-in" id="journal-email" type="email" name="contact[email]" placeholder="your@email.com" required>
+      <button class="em11-btn" type="submit">{{ section.settings.news_button | default: 'Subscribe' }} &rarr;</button>
+      <p class="em11-fine">{{ section.settings.news_fine | default: 'No spam. Unsubscribe anytime.' }}</p>
+    {%- endform -%}
+  </div>
+</section>
 
 <section class="section bg-cream">
   <div class="wrap">
@@ -15,13 +38,13 @@
         {%- for article in blog.articles -%}
           <a class="post-card" href="{{ article.url }}">
             <div class="post-cover">
-              {%- if article.image -%}<img src="{{ article.image | image_url: width: 700 }}" alt="{{ article.title | escape }}" loading="lazy" style="width:100%;height:100%;object-fit:cover">{%- else -%}<div class="placeholder-media" style="height:100%;border:none;border-radius:0;background:transparent"><div class="pm-i">📓</div></div>{%- endif -%}
+              {%- if article.image -%}<img src="{{ article.image | image_url: width: 700 }}" alt="{{ article.title | escape }}" loading="lazy" style="width:100%;height:100%;object-fit:cover">{%- else -%}<div class="placeholder-media" style="height:100%;border:none;border-radius:0;background:transparent"><div class="pm-i">&#128211;</div></div>{%- endif -%}
             </div>
             <div class="post-body">
-              <div class="post-meta">{{ article.published_at | date: '%b %-d, %Y' }}{% if article.tags.size > 0 %} · {{ article.tags.first }}{% endif %}</div>
+              <div class="post-meta">{{ article.published_at | date: '%b %-d, %Y' }}{% if article.tags.size > 0 %} &middot; {{ article.tags.first }}{% endif %}</div>
               <h3>{{ article.title }}</h3>
               <p>{{ article.excerpt_or_content | strip_html | truncatewords: 24 }}</p>
-              <span class="post-readmore">Read →</span>
+              <span class="post-readmore">Read &rarr;</span>
             </div>
           </a>
         {%- endfor -%}
@@ -31,14 +54,24 @@
       {%- endif -%}
       {%- endpaginate -%}
     {%- else -%}
-      <div class="tl-empty" style="max-width:700px;margin:0 auto">
-        <p style="font-weight:800;font-size:18px;color:var(--ink)">No posts yet.</p>
-        <p style="margin-top:8px">Create a blog named <strong>devlog</strong> in Shopify admin and add posts — or use the baked <a href="/pages/devlog" style="color:var(--b);text-decoration:underline">Devlog page</a>.</p>
+      <div class="tl-empty" style="max-width:680px;margin:0 auto;text-align:center">
+        <p style="font-weight:800;font-size:18px;color:var(--ink)">The first issue is on its way.</p>
+        <p style="margin-top:8px;color:var(--ink-60)">Subscribe above &mdash; you&rsquo;ll get it in your inbox, and every issue lives here too.</p>
       </div>
     {%- endif -%}
   </div>
 </section>
 
 {% schema %}
-{ "name": "Blog", "settings": [] }
+{
+  "name": "Blog",
+  "settings": [
+    { "type": "text", "id": "intro", "label": "Intro", "default": "Build notes and decisions in the open — the same updates we send by email." },
+    { "type": "text", "id": "news_eyebrow", "label": "Newsletter eyebrow", "default": "Newsletter" },
+    { "type": "richtext", "id": "news_title", "label": "Newsletter title", "default": "<p>One note, once a month.</p>" },
+    { "type": "text", "id": "news_sub", "label": "Newsletter subtitle", "default": "Subscribe and the next issue lands in your inbox — and lives here too." },
+    { "type": "text", "id": "news_button", "label": "Button", "default": "Subscribe" },
+    { "type": "text", "id": "news_fine", "label": "Fine print", "default": "No spam. Unsubscribe anytime." }
+  ]
+}
 {% endschema %}
