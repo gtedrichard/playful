@@ -632,6 +632,9 @@ ul{list-style:none;}
 .product-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;max-width:var(--maxw);margin:0 auto;align-items:start;}
 .gallery{position:sticky;top:calc(var(--nav-h) + 20px);}
 .gallery-main{border:var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-6);aspect-ratio:4/3;background:var(--b);position:relative;}
+.gallery-main--mock{display:flex;align-items:center;justify-content:center;padding:7% 30px;background:radial-gradient(circle at 30% 20%, #2a9dff, var(--b));}
+.gallery-main--mock .mb-wrap{margin:0;width:300px;}
+.gallery-cap{margin-top:14px;font-size:13px;color:var(--ink-45);text-align:center;line-height:1.5;}
 .gallery-main .placeholder-media{height:100%;border:none;border-radius:0;background:transparent;color:var(--w-45);}
 .gallery-main .pm-i{font-size:40px;}
 .gallery-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
