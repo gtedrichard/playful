@@ -51,7 +51,7 @@
       <div class="bb-buy">
         <div class="bb-price-row">
           <span class="bb-price">{% render 'price', product: product %}</span>
-          <span class="bb-price-l">founding price<br>ships {{ settings.ship_window | default: 'Fall 2026' }}</span>
+          <span class="bb-price-l">founding price<br>probably ships summer/fall</span>
         </div>
         {%- assign claimed_pct = 100 | minus: remaining -%}
         <div class="bb-scarcity">
@@ -106,6 +106,17 @@
   <script type="application/json" data-variants-json>
     [{%- for v in product.variants -%}{"id":{{ v.id }},"price":{{ v.price }},"available":{{ v.available }},"options":{{ v.options | json }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]
   </script>
+</section>
+
+{%- comment -%} ── Real talk — honesty/limitations, right below the product ── {%- endcomment -%}
+<section class="ps-honest">
+  <div class="honest-card">
+    <span class="honest-badge">&#9995; Real talk</span>
+    <p><strong>KeepKase is a functional prototype. It does what it claims. It is not a polished consumer product.</strong></p>
+    <p>It&rsquo;s 3D-printed — it may feel a touch less rigid than a molded case, but it protects like a hardshell, and it&rsquo;s barely any heavier. Materials and small details are still being chosen, and your feedback in the Discord helps decide them. Alpha purchases are for functional test units, not finished consumer products.</p>
+    <p>There&rsquo;s <strong>no fixed ship date</strong> yet — probably summer or fall. Refunds are <strong>case-by-case</strong>: if something genuinely fails, we&rsquo;ll make it right.</p>
+    <div class="honest-box">In the box: the border, two clear sheets, and a microfiber cloth — final contents still being finalized.</div>
+  </div>
 </section>
 
 {% schema %}

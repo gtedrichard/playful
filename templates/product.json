@@ -194,6 +194,7 @@
     },
     "how": {
       "type": "how-it-works",
+      "disabled": true,
       "settings": {}
     },
     "promise": {
