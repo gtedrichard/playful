@@ -30,6 +30,7 @@
   <div class="nav-links">
     <a class="nl{% if request.path == routes.root_url %} on{% endif %}" href="{{ routes.root_url }}">Home</a>
     <a class="nl{% if request.path contains '/products/' %} on{% endif %}" href="/products/keepkase-alpha">The Alpha</a>
+    <a class="nl{% if request.path contains '/blogs/' %} on{% endif %}" href="/blogs/journal">Journal</a>
     {%- if settings.discord_url != blank -%}<a class="nl" href="{{ settings.discord_url }}" target="_blank" rel="noopener">Join Discord</a>{%- endif -%}
   </div>
 
@@ -54,6 +55,7 @@
 <div class="mobile-menu" id="MobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
   <a href="{{ routes.root_url }}">Home</a>
   <a href="/products/keepkase-alpha">The Alpha</a>
+  <a href="/blogs/journal">Journal</a>
   {%- if settings.discord_url != blank -%}<a href="{{ settings.discord_url }}" target="_blank" rel="noopener">Join Discord</a>{%- endif -%}
   <a href="{{ routes.account_url }}">Account</a>
   <a class="btn btn--coral btn--block" href="{{ section.settings.cta_link | default: '/products/keepkase-alpha' }}">{{ section.settings.cta_text | default: 'Get early access' }} →</a>
