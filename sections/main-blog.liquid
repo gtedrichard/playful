@@ -3,7 +3,7 @@
     <h1 class="kk-blog-title">{{ blog.title | default: 'From the team.' }}</h1>
   </div>
 
-  {%- paginate blog.articles by section.settings.posts_per_page | default: 9 -%}
+  {%- paginate blog.articles by section.settings.posts_per_page -%}
     <div class="kk-blog-grid">
       {%- for article in blog.articles -%}
         <a href="{{ article.url }}" class="kk-blog-card kk-reveal kk-d{{ forloop.index | modulo: 3 | plus: 1 }}">
@@ -59,3 +59,14 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- paginate blog.articles by section.settings.posts_per_page | default:
+    9 -%}"
+  to: "{%- paginate blog.articles by section.settings.posts_per_page -%}"
+  position: 155..220
+{% endcomment %}
